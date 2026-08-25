@@ -187,11 +187,21 @@ if not pokes[pokemon] then return false end
    local id = pokeballs[btype].alive
    -- END Ball System
 
-   if (getPlayerFreeCap(cid) >= 6 and not isInArray({5, 6}, getPlayerGroupId(cid))) or not hasSpaceInContainer(getPlayerSlotItem(cid, 3).uid) then 
+   -- START Pokebar System
+   local pokemonBag = getPlayerSlotItem(cid, CONST_SLOT_BACKPACK)
+   local reachedPokemonLimit = not canPlayerCarryPokemon(cid, 1)
+   local sendToPokemonCenter = reachedPokemonLimit or not hasSpaceInContainer(pokemonBag.uid)
+
+   if sendToPokemonCenter then
       item = doCreateItemEx(id)
    else
-      item = addItemInFreeBag(getPlayerSlotItem(cid, 3).uid, id, 1)   
+      item = addItemInFreeBag(pokemonBag.uid, id, 1)
+      if not item then
+         sendToPokemonCenter = true
+         item = doCreateItemEx(id)
+      end
    end
+   -- END Pokebar System
    if not item then return false end
 
    doItemSetAttribute(item, "poke", pokemon)
@@ -217,10 +227,17 @@ if not pokes[pokemon] then return false end
       doItemSetAttribute(item, "unique", getCreatureName(cid))
    end
                                                                              
-   if (getPlayerFreeCap(cid) >= 6 and not isInArray({5, 6}, getPlayerGroupId(cid))) or not hasSpaceInContainer(getPlayerSlotItem(cid, 3).uid) then
+   -- START Pokebar System
+   if sendToPokemonCenter then
       doPlayerSendMailByName(getCreatureName(cid), item, 1)
-      sendMsgToPlayer(cid, 27, "You are already holding six pokemons, so your new pokemon was sent to your depot.")
+      if reachedPokemonLimit then
+         sendMsgToPlayer(cid, 27, "Você já possui seis Pokémon. O novo Pokémon foi enviado para o Centro Pokémon (depósito).")
+      else
+         sendMsgToPlayer(cid, 27, "Sua bag está sem espaço. O novo Pokémon foi enviado para o Centro Pokémon (depósito).")
+      end
    end
+   addEvent(doUpdatePokemonsBar, 300, cid)
+   -- END Pokebar System
    -- START Ball System
    -- A transformacao visual ja foi aplicada por setPhysicalPokemonBall.
    -- END Ball System

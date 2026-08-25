@@ -209,6 +209,9 @@ end
 if useKpdoDlls then
   doUpdateMoves(cid)
   onPokeHealthChange(cid)
+  -- START Pokebar System
+  addEvent(doUpdatePokemonsBar, 750, cid)
+  -- END Pokebar System
 end
 
 

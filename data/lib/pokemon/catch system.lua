@@ -236,12 +236,21 @@ local description = "Contains a "..poke.."."
 
 local gender = status.gender
 local happy = 200
-                                                   --alterado v1.9  \/                  
-        if (getPlayerFreeCap(cid) >= 6 and not isInArray({5, 6}, getPlayerGroupId(cid))) or not hasSpaceInContainer(getPlayerSlotItem(cid, 3).uid) then 
+        -- START Pokebar System
+        local pokemonBag = getPlayerSlotItem(cid, CONST_SLOT_BACKPACK)
+        local reachedPokemonLimit = not canPlayerCarryPokemon(cid, 1)
+        local sendToPokemonCenter = reachedPokemonLimit or not hasSpaceInContainer(pokemonBag.uid)
+
+        if sendToPokemonCenter then
            item = doCreateItemEx(ballid)
         else
-            item = addItemInFreeBag(getPlayerSlotItem(cid, 3).uid, ballid, 1) 
+           item = addItemInFreeBag(pokemonBag.uid, ballid, 1)
+           if not item then
+              sendToPokemonCenter = true
+              item = doCreateItemEx(ballid)
+           end
         end
+        -- END Pokebar System
 
 		doItemSetAttribute(item, "poke", poke)
 		doItemSetAttribute(item, "hp", 1)
@@ -265,13 +274,19 @@ local happy = 200
            doItemSetAttribute(item, "task", 1)
            setPlayerStorageValue(cid, 854788, 'done')
         end		
-        -------------------------------------------                                  --alterado v1.9 \/ 
-	if getPlayerFreeCap(cid) >= 6 then   
+        -------------------------------------------
+	-- START Pokebar System
+	if sendToPokemonCenter then
         doPlayerSendMailByName(getCreatureName(cid), item, 1)	
-		doPlayerSendTextMessage(cid, 27, "Congratulations, you caught a pokemon ("..poke..")!")
-		doPlayerSendTextMessage(cid, 27, "Since you are already holding six pokemons, this pokeball has been sent to your depot.")  
-		doPlayerSendTextMessage(cid, 27, "Digite !save para evitar perdas!")  
+		if reachedPokemonLimit then
+			doPlayerSendTextMessage(cid, 27, "Você já possui seis Pokémon. A nova ball foi enviada para o Centro Pokémon (depósito).")
+		else
+			doPlayerSendTextMessage(cid, 27, "Sua bag está sem espaço. A nova ball foi enviada para o Centro Pokémon (depósito).")
+		end
     end
+	doPlayerSendTextMessage(cid, 27, "Parabéns, você capturou um "..poke.."!")
+	addEvent(doUpdatePokemonsBar, 300, cid)
+	-- END Pokebar System
 -- END Ball System
     
     local storage = newpokedex[poke].stoCatch 

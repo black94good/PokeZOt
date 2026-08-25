@@ -1,71 +1,90 @@
-function getPlayerPokeballs(cid)                                   --alterado v1.9 \/
-local ret = {}
-local container = 0
+-- START Pokebar System
+MAX_CARRIED_POKEMON = 6
 
-if isCreature(cid) then
-   container = getPlayerSlotItem(cid, 3).uid
-   local myball = getPlayerSlotItem(cid, 8)
-   if myball.uid > 0 then
-      table.insert(ret, myball)
-   end
-else
-   container = cid
-end
+local function collectPokeballs(container, result)
+   if not isContainer(container) then return end
 
-if isContainer(container) and getContainerSize(container) > 0 then
-   for slot = 0, (getContainerSize(container) - 1) do
-       local item = getContainerItem(container, slot)
-       if isContainer(item.uid) then
-          local itemsbag = getPlayerPokeballs(item.uid)
-          if itemsbag and #itemsbag > 0 then
-             for i = 0, #itemsbag do
-                 table.insert(ret, itemsbag[i])
-             end
-          end
-       elseif isPokeball(item.itemid) then
-          table.insert(ret, item)
-       end
+   for slot = 0, getContainerSize(container) - 1 do
+      local item = getContainerItem(container, slot)
+      if isContainer(item.uid) then
+         collectPokeballs(item.uid, result)
+      elseif isPokeball(item.itemid) and getItemAttribute(item.uid, "poke") then
+         table.insert(result, item)
+      end
    end
 end
-return ret
+
+function getPlayerPokeballs(cid)
+   local result = {}
+
+   if isCreature(cid) then
+      local equippedBall = getPlayerSlotItem(cid, CONST_SLOT_FEET)
+      if equippedBall.uid > 0 and isPokeball(equippedBall.itemid) and getItemAttribute(equippedBall.uid, "poke") then
+         table.insert(result, equippedBall)
+      end
+      collectPokeballs(getPlayerSlotItem(cid, CONST_SLOT_BACKPACK).uid, result)
+   else
+      collectPokeballs(cid, result)
+   end
+
+   return result
+end
+
+function getPlayerPokemonCount(cid)
+   return #getPlayerPokeballs(cid)
+end
+
+function canPlayerCarryPokemon(cid, amount)
+   return getPlayerPokemonCount(cid) + (tonumber(amount) or 1) <= MAX_CARRIED_POKEMON
+end
+
+local function getPokebarPortraitId(name)
+   local portraitId = fotos[name]
+   if not portraitId then return nil end
+
+   if portraitId >= 11137 and portraitId <= 11387 then
+      return portraitId - 911
+   elseif portraitId >= 12605 then
+      return portraitId - 1178
+   end
+
+   return portraitId - 928
 end
 
 function doUpdatePokemonsBar(cid)
-if not isCreature(cid) then return true end
-if getPlayerStorageValue(cid, 656494) > 0 then
-return true
-end
-setPlayerStorageValue(cid, 656494, 1000)
-addEvent(setPlayerStorageValue, 100, cid, 656494, -1)
+   if not isCreature(cid) then return true end
+   if getPlayerStorageValue(cid, 656494) > 0 then return true end
 
-local ret = {}
-table.insert(ret, "p#,")
-local balls = getPlayerPokeballs(cid)
-local times = 0
-for a = 1, #balls do
-    local item = balls[a]
-    local hp = math.ceil(getItemAttribute(item.uid, "hp") * 100)
-    local name = getItemAttribute(item.uid, "poke")
-    local port = getPlayerSlotItem(cid, CONST_SLOT_LEGS) 
-    if fotos[name] >= 11137 and fotos[name] <= 11387 then
-       times = times + 1
-       local foto = fotos[name] - 911
-       doItemSetAttribute(item.uid, "ballorder", times)
-       table.insert(ret, foto..","..name..""..times..","..hp..",")                
-    elseif fotos[name] >= 12605 then                                           
-       times = times + 1                                                      
-       local foto = fotos[name] - 1178  --alterado v1.9 
-       doItemSetAttribute(item.uid, "ballorder", times)
-       table.insert(ret, foto..","..name..""..times..","..hp..",")
-    else
-       times = times + 1
-       local foto = fotos[name] - 928
-       doItemSetAttribute(item.uid, "ballorder", times)
-       table.insert(ret, foto..","..name..""..times..","..hp..",")
-    end
+   setPlayerStorageValue(cid, 656494, 1000)
+   addEvent(setPlayerStorageValue, 100, cid, 656494, -1)
+
+   local response = {"p#,"}
+   local balls = getPlayerPokeballs(cid)
+   local order = 0
+
+   for index = 1, #balls do
+      doItemEraseAttribute(balls[index].uid, "ballorder")
+   end
+
+   for index = 1, #balls do
+      if order >= MAX_CARRIED_POKEMON then break end
+      local item = balls[index]
+      local name = getItemAttribute(item.uid, "poke")
+      local portraitId = getPokebarPortraitId(name)
+
+      if portraitId and portraitId >= 9000 then
+         order = order + 1
+         local hp = math.max(0, math.min(100, math.ceil((tonumber(getItemAttribute(item.uid, "hp")) or 0) * 100)))
+         local gender = tonumber(getItemAttribute(item.uid, "gender")) or 0
+         doItemSetAttribute(item.uid, "ballorder", order)
+         table.insert(response, portraitId.."|"..name.."|"..order.."|"..gender.."|"..hp..",")
+      end
+   end
+
+   doPlayerSendCancel(cid, table.concat(response))
+   return true
 end
-doPlayerSendCancel(cid, table.concat(ret))
-end
+-- END Pokebar System
 
 function getNewMoveTable(table, n)
 if table == nil or not n then return false end

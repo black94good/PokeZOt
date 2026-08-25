@@ -3,3 +3,7 @@ Name: god - PokÈmon: Psyduck -
 Name: god - PokÈmon: Psyduck - 
 Name: god - PokÈmon: Psyduck - 
 Name: god - Pok√©mon: Caterpie - 
+Name: god - Pok√©mon: Rattata - 
+Name: god - Pok√©mon: Rattata - 
+Name: god - Pok√©mon: Rattata - 
+Name: god - Pok√©mon: Rattata - 
