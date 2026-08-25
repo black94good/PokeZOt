@@ -50,6 +50,10 @@ function onLogout(cid)
 	if #getCreatureSummons(cid) >= 1 and thisitem.uid > 1 then
 	    if getPlayerStorageValue(cid, 212124) <= 0 then
 		   doItemSetAttribute(thisitem.uid, "hp", (getCreatureHealth(summon) / getCreatureMaxHealth(summon)))
+           -- START Ball Look System
+           doItemSetAttribute(thisitem.uid, "currenthp", getCreatureHealth(summon))
+           doItemSetAttribute(thisitem.uid, "maxhp", getCreatureMaxHealth(summon))
+           -- END Ball Look System
         end                                                          
         setPlayerStorageValue(cid, 212124, 0)
         -- START Ball System
@@ -108,6 +112,10 @@ function onDeath(cid, deathList)
         end
 
 		doSendMagicEffect(getThingPos(cid), pokeballs[btype].effect)
+        -- START Ball Look System
+        doItemSetAttribute(thisball.uid, "currenthp", 0)
+        doItemSetAttribute(thisball.uid, "maxhp", getCreatureMaxHealth(cid))
+        -- END Ball Look System
         -- START Ball System
         setPhysicalPokemonBall(thisball.uid, ballName, btype, "dead")
         -- END Ball System

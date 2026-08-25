@@ -79,7 +79,7 @@ local happy = 255
 
 -- START Ball System
 local physicalBallType = getPhysicalPokemonBallType(btype, name)
-local item = doCreateItemEx(pokeballs[physicalBallType].on)
+local item = doCreateItemEx(pokeballs[physicalBallType].alive)
 -- END Ball System
 doItemSetAttribute(item, "poke", name)
 doItemSetAttribute(item, "hp", 1)
@@ -88,13 +88,16 @@ if t[2] and tonumber(t[2]) > 0 and tonumber(t[2]) <= 50 then
 end
 doItemSetAttribute(item, "happy", happy)
 doItemSetAttribute(item, "gender", gender)
+-- START Ball Look System
+setPokemonBallCaptureInfo(item, cid, name, 0)
+-- END Ball Look System
 if name == "Shiny Hitmonchan" or name == "Hitmonchan" then
    doItemSetAttribute(item, "hands", 0)
 end
 doItemSetAttribute(item, "description", "Contains a "..name..".")
 doItemSetAttribute(item, "fakedesc", "Contains a "..name..".")
 -- START Ball System
-setPhysicalPokemonBall(item, name, physicalBallType, "on")
+setPhysicalPokemonBall(item, name, physicalBallType, "alive")
 doPlayerAddItemEx(cid, item, true)
 -- END Ball System
 return 1

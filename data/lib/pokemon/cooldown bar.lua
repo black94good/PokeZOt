@@ -152,11 +152,13 @@ doPlayerSendCancel(cid, table.concat(ret))
 end
 
 function getBallsAttributes(item)
-local t = {"poke", "gender", "nick", "boost", "happy", "hp", "description", "transBegin", "hunger", "transLeft", "transTurn", "transOutfit", "transName", 
+-- START Ball Look System
+local t = {"poke", "gender", "nick", "boost", "happy", "hp", "description", "capturedAt", "capturedBy", "pokeExperience", "currenthp", "maxhp", "ball", "ballstate", "morta", "transBegin", "hunger", "transLeft", "transTurn", "transOutfit", "transName", 
 "trans", "light", "blink", "move1", "move2", "move3", "move4", "move5", "move6", "move7", "move8", "move9", "move10", "move11", "move12", "ballorder", 
 "hands", "aura", "burn", "burndmg", "poison", "poisondmg", "confuse", "sleep", "miss", "missSpell", "missEff", "fear", "fearSkill", "silence", 
 "silenceEff", "stun", "stunEff", "stunSpell", "paralyze", "paralyzeEff", "slow", "slowEff", "leech", "leechdmg", "Buff1", "Buff2", "Buff3", "Buff1skill",
-"Buff2skill", "Buff3skill", "control", "unique", "task", "lock"} 
+"Buff2skill", "Buff3skill", "control", "unique", "task", "lock"}
+-- END Ball Look System
 local ret = {}
 for a = 1, #t do
 if getItemAttribute(item, t[a]) == "hands" then

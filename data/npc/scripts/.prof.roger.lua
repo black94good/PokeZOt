@@ -25,17 +25,27 @@ local btype = "normal"
 local happy = 220
 
 if getPlayerFreeCap(cid) >= 6 or not hasSpaceInContainer(getPlayerSlotItem(cid, 3).uid) then
-   item = doCreateItemEx(11826)
+   -- START Ball System
+   item = doCreateItemEx(pokeballs[btype].alive)
+   -- END Ball System
 else
-    item = doAddContainerItem(getPlayerSlotItem(cid, 3).uid, 11826, 1) 
+    -- START Ball System
+    item = doAddContainerItem(getPlayerSlotItem(cid, 3).uid, pokeballs[btype].alive, 1)
+    -- END Ball System
 end
 
 doItemSetAttribute(item, "poke", pokemon)
 doItemSetAttribute(item, "hp", 1)
 doItemSetAttribute(item, "happy", happy)
 doItemSetAttribute(item, "gender", gender)
+-- START Ball Look System
+setPokemonBallCaptureInfo(item, cid, pokemon, 0)
+-- END Ball Look System
 doItemSetAttribute(item, "description", "Contains a "..pokemon..".")
 doItemSetAttribute(item, "fakedesc", "Contains a "..pokemon..".")
+-- START Ball System
+setPhysicalPokemonBall(item, pokemon, btype, "alive")
+-- END Ball System
 
 if getPlayerFreeCap(cid) >= 6 or not hasSpaceInContainer(getPlayerSlotItem(cid, 3).uid) then
    doPlayerSendMailByName(getCreatureName(cid), item, 1)

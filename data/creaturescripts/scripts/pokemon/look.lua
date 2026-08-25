@@ -22,7 +22,7 @@ local shinys = {
 ["Shiny Snorlax"] = "Big Snorlax",
 }
 
--- tabela adicionado ao configuration s� procura por price = ..--
+-- tabela adicionado ao configuration só procura por price = ..--
 
 local xhelds = {
 [1] = {name = "X-Defense(Tier: 1)"},
@@ -86,6 +86,70 @@ local yhelds = {
 [14] = {name = "Y-Cure(Tier: 7)"},
 }
 
+-- START Ball Look System
+local function getBallGenderDescription(gender)
+   if gender == SEX_MALE then return "Masculino" end
+   if gender == SEX_FEMALE then return "Feminino" end
+   return "Sem sexo"
+end
+
+local function getBallLookDetails(cid, thing, pokename)
+   local hpRate = tonumber(getItemAttribute(thing.uid, "hp")) or 1
+   local isDead = getItemAttribute(thing.uid, "morta") == "yes"
+      or getItemAttribute(thing.uid, "ballstate") == "dead"
+      or hpRate <= 0
+
+   local currentHp = tonumber(getItemAttribute(thing.uid, "currenthp"))
+   local maxHp = tonumber(getItemAttribute(thing.uid, "maxhp"))
+   local playerBall = getPlayerSlotItem(cid, CONST_SLOT_FEET)
+   local summons = getCreatureSummons(cid)
+   local hasLiveSummonHp = false
+
+   if playerBall.uid == thing.uid and #summons >= 1 and isCreature(summons[1]) then
+      currentHp = getCreatureHealth(summons[1])
+      maxHp = getCreatureMaxHealth(summons[1])
+      isDead = currentHp <= 0
+      hasLiveSummonHp = true
+   end
+
+   if not maxHp or maxHp <= 0 then
+      local pokemonInfo = pokes[pokename]
+      local boost = tonumber(getItemAttribute(thing.uid, "boost")) or 0
+      if pokemonInfo and pokemonInfo.vitality then
+         maxHp = math.floor(HPperVITsummon * pokemonInfo.vitality * (getPlayerLevel(cid) + boost))
+      else
+         maxHp = 0
+      end
+   end
+
+   if isDead then
+      currentHp = 0
+   elseif not hasLiveSummonHp then
+      currentHp = math.floor(maxHp * hpRate)
+   end
+
+   currentHp = math.max(0, math.min(math.floor(currentHp or 0), math.floor(maxHp)))
+
+   local capturedAt = tonumber(getItemAttribute(thing.uid, "capturedAt"))
+   local capturedDate = capturedAt and os.date("%d/%m/%Y %H:%M:%S", capturedAt) or "Não registrada"
+   local capturedBy = getItemAttribute(thing.uid, "capturedBy") or "Não registrado"
+   local experience = tonumber(getItemAttribute(thing.uid, "pokeExperience"))
+      or tonumber(getItemAttribute(thing.uid, "experience"))
+      or tonumber(getItemAttribute(thing.uid, "exp"))
+      or 0
+
+   return {
+      capturedDate = capturedDate,
+      capturedBy = capturedBy,
+      gender = getBallGenderDescription(getItemAttribute(thing.uid, "gender")),
+      status = isDead and "Morto" or "Vivo",
+      currentHp = currentHp,
+      maxHp = math.floor(maxHp),
+      experience = math.floor(experience)
+   }
+end
+-- END Ball Look System
+
 function onLook(cid, thing, position, lookDistance)
                                                           
 local str = {}
@@ -125,13 +189,15 @@ table.insert(str, "Holding: "..(xhelds[heldx].name)..". ")
 elseif heldy then
 table.insert(str, "Holding: "..(yhelds[heldy].name)..". ")
 end
-      if getItemAttribute(thing.uid, "gender") == SEX_MALE then
-         table.insert(str, "It is male.")
-      elseif getItemAttribute(thing.uid, "gender") == SEX_FEMALE then
-         table.insert(str, "It is female.")
-      else
-         table.insert(str, "It is genderless.")
-      end
+      -- START Ball Look System
+      local ballDetails = getBallLookDetails(cid, thing, pokename)
+      table.insert(str, "\nCapturado em: "..ballDetails.capturedDate..".")
+      table.insert(str, "\nSexo: "..ballDetails.gender..".")
+      table.insert(str, "\nCapturado por: "..ballDetails.capturedBy..".")
+      table.insert(str, "\nStatus: "..ballDetails.status..".")
+      table.insert(str, "\nHP: "..ballDetails.currentHp.." / "..ballDetails.maxHp..".")
+      table.insert(str, "\nExperiência: "..ballDetails.experience..".")
+      -- END Ball Look System
       doPlayerSendTextMessage(cid, MESSAGE_INFO_DESCR, table.concat(str))
       return false
       

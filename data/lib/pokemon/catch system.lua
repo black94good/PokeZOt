@@ -249,6 +249,9 @@ local happy = 200
 		doItemSetAttribute(item, "gender", gender)
 		doItemSetAttribute(item, "fakedesc", description)
 		doItemSetAttribute(item, "description", description)	
+		-- START Ball Look System
+		setPokemonBallCaptureInfo(item, cid, poke, 0)
+		-- END Ball Look System
 		if poke == "Hitmonchan" or poke == "Shiny Hitmonchan" then    
 		   doItemSetAttribute(item, "hands", 0)
 		end

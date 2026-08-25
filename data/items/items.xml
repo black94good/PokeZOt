@@ -16844,9 +16844,6 @@
 	<item id="11130" name="crocodile steak">
 		<attribute key="weight" value="440" />
 	</item>
-	<item id="11138" name="nightmare doll">
-		<attribute key="weight" value="1800" />
-	</item>
 
 	<item fromid="11139" toid="11285" article="a" name="portrait">
 		<attribute key="weight" value="0" />                 <!-- alterado v1.9 -->

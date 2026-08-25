@@ -29,6 +29,10 @@ function onPokeHealthChange(cid, zerar)
       local pokemon = getCreatureSummons(cid)[1]
       local pokelife = (getCreatureHealth(pokemon) / getCreatureMaxHealth(pokemon))
       doItemSetAttribute(ball, "hp", pokelife)
+      -- START Ball Look System
+      doItemSetAttribute(ball, "currenthp", getCreatureHealth(pokemon))
+      doItemSetAttribute(ball, "maxhp", getCreatureMaxHealth(pokemon))
+      -- END Ball Look System
    end
    
       local rd = 1 - (tonumber(getItemAttribute(ball, "hp")))
@@ -124,11 +128,43 @@ function setPhysicalPokemonBall(item, pokemon, ballType, state)
    doItemSetAttribute(item, "ball", physicalType)
    doItemSetAttribute(item, "ballstate", ballState)
    doItemSetAttribute(item, "morta", ballState == "dead" and "yes" or "no")
+   -- START Ball Look System
+   if ballState == "dead" then
+      doItemSetAttribute(item, "currenthp", 0)
+   end
+   -- END Ball Look System
    doItemSetAttribute(item, "Icone", "no")
    doItemSetAttribute(item, "icon", "no")
    return physicalType
 end
 -- END Ball System
+
+-- START Ball Look System
+function setPokemonBallCaptureInfo(item, cid, pokemon, experience)
+   if not item or item <= 0 or not pokemon then return false end
+
+   if not getItemAttribute(item, "capturedAt") then
+      doItemSetAttribute(item, "capturedAt", os.time())
+   end
+   if not getItemAttribute(item, "capturedBy") and isCreature(cid) then
+      doItemSetAttribute(item, "capturedBy", getCreatureName(cid))
+   end
+   if not getItemAttribute(item, "pokeExperience") then
+      doItemSetAttribute(item, "pokeExperience", tonumber(experience) or 0)
+   end
+
+   local pokemonInfo = pokes[pokemon]
+   if pokemonInfo and pokemonInfo.vitality and isCreature(cid) then
+      local boost = tonumber(getItemAttribute(item, "boost")) or 0
+      local maxHp = math.floor(HPperVITsummon * pokemonInfo.vitality * (getPlayerLevel(cid) + boost))
+      local hpRate = tonumber(getItemAttribute(item, "hp")) or 1
+      doItemSetAttribute(item, "maxhp", maxHp)
+      doItemSetAttribute(item, "currenthp", math.max(0, math.floor(maxHp * hpRate)))
+   end
+
+   return true
+end
+-- END Ball Look System
 
 function addPokeToPlayer(cid, pokemon, boost, gender, ball)             --alterado v1.9 \/ peguem ele todo...
 local genders = {
@@ -161,7 +197,9 @@ if not pokes[pokemon] then return false end
    doItemSetAttribute(item, "poke", pokemon)
    doItemSetAttribute(item, "hp", 1)
    doItemSetAttribute(item, "happy", happy)
-   --doItemSetAttribute(item, "-1", GENDER)
+   -- START Ball Look System
+   doItemSetAttribute(item, "gender", GENDER)
+   -- END Ball Look System
    doSetItemAttribute(item, "hands", 0)
    doItemSetAttribute(item, "description", "Contains a "..pokemon..".")
    doItemSetAttribute(item, "fakedesc", "Contains a "..pokemon..".") 
@@ -172,6 +210,9 @@ if not pokes[pokemon] then return false end
    if boost and tonumber(boost) and tonumber(boost) > 0 and tonumber(boost) <= 50 then
       doItemSetAttribute(item, "boost", boost)
    end
+   -- START Ball Look System
+   setPokemonBallCaptureInfo(item, cid, pokemon, 0)
+   -- END Ball Look System
    if unique then
       doItemSetAttribute(item, "unique", getCreatureName(cid))
    end
@@ -930,6 +971,10 @@ function doReturnPokemon(cid, pokemon, pokeball, effect, hideeffects, blockevo)
 		doItemSetAttribute(pokeball.uid, "happy", happy)
 		doItemSetAttribute(pokeball.uid, "hunger", hunger)
 		doItemSetAttribute(pokeball.uid, "hp", pokelife)
+		-- START Ball Look System
+		doItemSetAttribute(pokeball.uid, "currenthp", getCreatureHealth(pokemon))
+		doItemSetAttribute(pokeball.uid, "maxhp", getCreatureMaxHealth(pokemon))
+		-- END Ball Look System
 	end
 
 --	if getCreatureName(pokemon) == "Ditto" then
