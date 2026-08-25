@@ -20,7 +20,9 @@ function creatureSayCallback(cid, type, msg)
 	  {id = 12170, qt = 15}, -- water pendant
    }
    local rewards = {
-      {id = 2392, qt = 85}, --ultra ball
+      -- START Ball System
+      {id = pokeballs.ultra.empty, qt = 85}, --ultra ball
+      -- END Ball System
       {id = 11442, qt = 1}, --water stone
    }
    local stoFinish = 92091

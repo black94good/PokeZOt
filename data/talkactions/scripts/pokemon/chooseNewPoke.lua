@@ -1,10 +1,12 @@
+-- START Ball System
 local reward_cfg = {
 {12344, 1},
 {12348, 20},
 {12349, 15},
-{2394, 25},
-{2392, 2},
+{pokeballs.normal.empty, 25},
+{pokeballs.ultra.empty, 2},
 }
+-- END Ball System
 
 local sto_city = 13611 --storage para quando o player ganhar a ball
 

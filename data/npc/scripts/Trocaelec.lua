@@ -53,8 +53,9 @@ end
 		      doItemEraseAttribute(pb, "boost")
 		      doTransformItem(getPlayerSlotItem(cid, 7).uid, fotos["Shiny Electivire"])
 
-		doItemSetAttribute(pb, "Icone", "yes")	
-		doTransformItem(pb, icons[getItemAttribute(pb, "poke")].on)
+		-- START Ball System
+		setPhysicalPokemonBall(pb, getItemAttribute(pb, "poke"), nil, "on")
+		-- END Ball System
 
 		      if useKpdoDlls then
 		        doCreatureExecuteTalkAction(cid, "/pokeread")

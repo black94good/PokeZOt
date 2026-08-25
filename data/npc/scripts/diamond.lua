@@ -43,77 +43,79 @@ elseif(msgcontains(msg, 'Mega Box') or msgcontains(msg, 'mega box')) then
 selfSay('A Mega Box custa 50 Diamond, quer mesmo comprar?', cid) 
 talkState[talkUser] = 8
  
--- Confirmação da Compra  
+-- ConfirmaÃ§Ã£o da Compra  
 elseif(msgcontains(msg, 'yes') and talkState[talkUser] == 1) then  
 if(doPlayerRemoveItem(cid, 2145, 5) == true) then  
-selfSay('Obrigado! Você recebeu 100 rare candy', cid) 
+selfSay('Obrigado! VocÃª recebeu 100 rare candy', cid) 
 doPlayerAddItem(cid, 14261, 100)
 talkState[talkUser] = 0 
 else  
-selfSay('Você não possui diamonds necessarios para essa compra.', cid) 
+selfSay('VocÃª nÃ£o possui diamonds necessarios para essa compra.', cid) 
 talkState[talkUser] = 0  
 end  
 elseif(msgcontains(msg, 'yes') and talkState[talkUser] == 2) then  
 if(doPlayerRemoveItem(cid, 2145, 20) == true) then  
-selfSay('Obrigado! Você recebeu uma Master Ball.', cid) 
-doPlayerAddItem(cid, 12832, 1)
+selfSay('Obrigado! VocÃª recebeu uma Master Ball.', cid) 
+-- START Ball System
+doPlayerAddItem(cid, pokeballs.dark.empty, 1)
+-- END Ball System
 talkState[talkUser] = 0 
 else  
-selfSay('Você não possui diamonds necessarios para essa compra.', cid) 
+selfSay('VocÃª nÃ£o possui diamonds necessarios para essa compra.', cid) 
 talkState[talkUser] = 0  
 end
 elseif(msgcontains(msg, 'yes') and talkState[talkUser] == 3) then  
 if(doPlayerRemoveItem(cid, 2145, 10) == true) then  
-selfSay('Obrigado! Você recebeu uma Shiny Poke Box +1.', cid) 
+selfSay('Obrigado! VocÃª recebeu uma Shiny Poke Box +1.', cid) 
 doPlayerAddItem(cid, 14337, 1)
 talkState[talkUser] = 0 
 else  
-selfSay('Você não possui diamonds necessarios para essa compra.', cid) 
+selfSay('VocÃª nÃ£o possui diamonds necessarios para essa compra.', cid) 
 talkState[talkUser] = 0  
 end
 elseif(msgcontains(msg, 'yes') and talkState[talkUser] == 4) then  
 if(doPlayerRemoveItem(cid, 2145, 15) == true) then  
-selfSay('Obrigado! Você recebeu uma Shiny Poke Box +2.', cid) 
+selfSay('Obrigado! VocÃª recebeu uma Shiny Poke Box +2.', cid) 
 doPlayerAddItem(cid, 14338, 1)
 talkState[talkUser] = 0 
 else  
-selfSay('Você não possui diamonds necessarios para essa compra.', cid) 
+selfSay('VocÃª nÃ£o possui diamonds necessarios para essa compra.', cid) 
 talkState[talkUser] = 0  
 end
 elseif(msgcontains(msg, 'yes') and talkState[talkUser] == 5) then  
 if(doPlayerRemoveItem(cid, 2145, 25) == true) then  
-selfSay('Obrigado! Você recebeu uma Shiny Poke Box +3.', cid) 
+selfSay('Obrigado! VocÃª recebeu uma Shiny Poke Box +3.', cid) 
 doPlayerAddItem(cid, 14339, 1)
 talkState[talkUser] = 0 
 else  
-selfSay('Você não possui diamonds necessarios para essa compra.', cid) 
+selfSay('VocÃª nÃ£o possui diamonds necessarios para essa compra.', cid) 
 talkState[talkUser] = 0  
 end
 elseif(msgcontains(msg, 'yes') and talkState[talkUser] == 6) then  
 if(doPlayerRemoveItem(cid, 2145, 5) == true) then  
-selfSay('Obrigado! Você recebeu uma Bike.', cid) 
+selfSay('Obrigado! VocÃª recebeu uma Bike.', cid) 
 doPlayerAddItem(cid, 12420, 1)
 talkState[talkUser] = 0 
 else  
-selfSay('Você não possui diamonds necessarios para essa compra.', cid) 
+selfSay('VocÃª nÃ£o possui diamonds necessarios para essa compra.', cid) 
 talkState[talkUser] = 0  
 end
 elseif(msgcontains(msg, 'yes') and talkState[talkUser] == 7) then  
 if(doPlayerRemoveItem(cid, 2145, 5) == true) then  
-selfSay('Obrigado! Você recebeu um Cupom.', cid) 
+selfSay('Obrigado! VocÃª recebeu um Cupom.', cid) 
 doPlayerAddItem(cid, 14573, 1)
 talkState[talkUser] = 0 
 else  
-selfSay('Você não possui diamonds necessarios para essa compra.', cid) 
+selfSay('VocÃª nÃ£o possui diamonds necessarios para essa compra.', cid) 
 talkState[talkUser] = 0  
 end
 elseif(msgcontains(msg, 'yes') and talkState[talkUser] == 8) then  
 if(doPlayerRemoveItem(cid, 2145, 50) == true) then  
-selfSay('Obrigado! Você recebeu uma Mega Box.', cid) 
+selfSay('Obrigado! VocÃª recebeu uma Mega Box.', cid) 
 doPlayerAddItem(cid, 14577, 1)
 talkState[talkUser] = 0 
 else  
-selfSay('Você não possui diamonds necessarios para essa compra.', cid) 
+selfSay('VocÃª nÃ£o possui diamonds necessarios para essa compra.', cid) 
 talkState[talkUser] = 0  
 end
 

@@ -9,7 +9,9 @@ function Saffari(cid, message, keywords, parameters, node)
 if(not npcHandler:isFocused(cid)) then
 return false
 end
-local pokeball = {2391, 2392, 2393, 2394, 12617, 12832} -- whit this pokeballs you CANT enter in the quest.
+-- START Ball System
+local pokeball = {pokeballs.normal.empty, pokeballs.great.empty, pokeballs.super.empty, pokeballs.ultra.empty, pokeballs.saffari.empty, pokeballs.dark.empty}
+-- END Ball System
 for i = 1, #pokeball do
 if getPlayerItemCount(cid, pokeball[i]) >= 1 then
 npcHandler:say('Deposit your pokeballs on the DP!', cid)
@@ -28,7 +30,7 @@ doTeleportThing(cid, parameters.enter)
 npcHandler:resetNpc()
 return true
 end
-local node1 = keywordHandler:addKeyword({'quest'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = 'Nessa {quest} possui monstros muito fortes você esta pronto para enfrenta-los?? Mais antes guarde suas pokebolas no DP....ah você so tem 60 minutos de tempo para realizar essa quest!!!!'})
+local node1 = keywordHandler:addKeyword({'quest'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = 'Nessa {quest} possui monstros muito fortes vocÃª esta pronto para enfrenta-los?? Mais antes guarde suas pokebolas no DP....ah vocÃª so tem 60 minutos de tempo para realizar essa quest!!!!'})
 node1:addChildKeyword({'yes'}, Saffari, {premium = no,price = 0,enter = {x=1235, y=630, z=8}, exit = {x=1235, y=630, z=8}, minutes = 60})
 node1:addChildKeyword({'no'}, StdModule.say, {npcHandler = npcHandler, onlyFocus = true, text = 'Ok, then.', reset = true})
 npcHandler:addModule(FocusModule:new())

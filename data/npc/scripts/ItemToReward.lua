@@ -28,7 +28,9 @@ end]]
 ---------------------- [CONFIG] --------------------------- 
 
 local reward = { {2160, 1}, {2160, 3}, {2160, 4}, {2160, 5} }
-local remove = { {2394, 1}, {2394, 1}, {2394, 1}, {2394, 1} }
+-- START Ball System
+local remove = { {pokeballs.normal.empty, 1}, {pokeballs.normal.empty, 1}, {pokeballs.normal.empty, 1}, {pokeballs.normal.empty, 1} }
+-- END Ball System
 
 
 local level = 20

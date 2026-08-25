@@ -1,11 +1,13 @@
-local ballcatch = {                    --id normal, id da ball shiy
-[2394] = {cr = 14, on = 193, off = 192, ball = {11826, 11737}, send = 47, typeee = "normal", boost = "0"},  --alterado v1.9  \/
-[2391] = {cr = 18, on = 198, off = 197, ball = {11832, 11740}, send = 48, typeee = "great", boost = "0"},
-[2393] = {cr = 22, on = 202, off = 201, ball = {11835, 11743}, send = 46, typeee = "super", boost = "0"},
-[2392] = {cr = 27, on = 200, off = 199, ball = {11829, 11746}, send = 49, typeee = "ultra", boost = "0"},
-[12617] = {cr = 24, on = 204, off = 203, ball = {10975, 12621}, send = 35, typeee = "saffari", boost = "0"}, 
-[12832] = {cr = 100000, on = 23, off = 24, ball = {12826, 12829}, send = 181, typeee = "dark", boost = "50"},
+-- START Ball System
+local ballcatch = {
+[2395] = {cr = 14, on = 193, off = 192, ball = {pokeballs.normal.alive, pokeballs.shinypoke.alive}, send = 47, typeee = "normal", boost = "0"},
+[2396] = {cr = 18, on = 198, off = 197, ball = {pokeballs.great.alive, pokeballs.shinygreat.alive}, send = 48, typeee = "great", boost = "0"},
+[2397] = {cr = 22, on = 202, off = 201, ball = {pokeballs.super.alive, pokeballs.shinysuper.alive}, send = 46, typeee = "super", boost = "0"},
+[2398] = {cr = 27, on = 200, off = 199, ball = {pokeballs.ultra.alive, pokeballs.shinyultra.alive}, send = 49, typeee = "ultra", boost = "0"},
+[12617] = {cr = 24, on = 204, off = 203, ball = {pokeballs.saffari.alive, pokeballs.shinysaffari.alive}, send = 35, typeee = "saffari", boost = "0"},
+[12832] = {cr = 100000, on = 23, off = 24, ball = {pokeballs.dark.alive, pokeballs.shinydark.alive}, send = 181, typeee = "dark", boost = "50"},
 }
+-- END Ball System
 
 function onUse(cid, item, frompos, item3, topos)
 
@@ -31,10 +33,12 @@ local x = pokecatches[name]
 if not x then return true end
 
 local shinys = {"Shiny Bronzong"}
-if item.itemid == 12832 and isInArray(shinys, name) then
-   doPlayerSendCancel(cid, "Você não pode catar esse pokemon com a master ball!")
+-- START Ball System
+if item.itemid == pokeballs.dark.empty and isInArray(shinys, name) then
+   doPlayerSendCancel(cid, "VocÃª nÃ£o pode catar esse pokemon com a master ball!")
 return true
 end
+-- END Ball System
 	
 local storage = newpokedex[name].stoCatch 
 if getPlayerStorageValue(cid, storage) == -1 or not string.find(getPlayerStorageValue(cid, storage), ";") then  --alterado v1.9 
@@ -67,13 +71,15 @@ doRemoveItem(item.uid, 1)
 
 local d = getDistanceBetween(getThingPos(cid), topos)
 		
-if getPlayerStorageValue(cid, 98796) >= 1 and getPlayerItemCount(cid, 12617) <= 0 then  --alterado v1.9
+-- START Ball System
+if getPlayerStorageValue(cid, 98796) >= 1 and getPlayerItemCount(cid, pokeballs.saffari.empty) <= 0 then
    setPlayerStorageValue(cid, 98796, -1) 
    setPlayerStorageValue(cid, 98797, -1)                                              
    doTeleportThing(cid, SafariOut, false)
    doSendMagicEffect(getThingPos(cid), 21)
    doPlayerSendTextMessage(cid, 27, "You spend all your saffari balls, good luck in the next time...")
 end
+-- END Ball System
 
 addEvent(doSendPokeBall, d * 70 + 100 - (d * 14) , cid, catchinfo, false, false, typeee) 
 addEvent(doSendMagicEffect, (d * 70 + 100 - (d * 14)) - 100, topos, 3)

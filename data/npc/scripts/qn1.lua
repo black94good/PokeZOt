@@ -16,8 +16,10 @@ msg = string.lower(msg)
 ---------
 local configuration = {
 add_item = 2152,
-add_item2 = 2392,
-add_item3 = 2393,
+-- START Ball System
+add_item2 = pokeballs.ultra.empty,
+add_item3 = pokeballs.super.empty,
+-- END Ball System
 add_item4 = 2678,
 remove_item = 12334,  -- magikarp fin
 remove_item2 = 12161,  -- water gem
@@ -29,15 +31,15 @@ StoAdd = 52315,
 
 if (msgcontains(msg, 'Help') or msgcontains(msg, 'help')) then  
       if getPlayerStorageValue(cid, configuration.StoAdd) >= 1 then
-	  selfSay("Desculpa, não é possível você completar a quest mais de uma vez só!", cid)
+	  selfSay("Desculpa, nÃ£o Ã© possÃ­vel vocÃª completar a quest mais de uma vez sÃ³!", cid)
 	  return true
 	  end
-selfSay("Olá jogador, eu sou um grande fã de pokemons de aguas e eu estou precisando de alguns itens necessarios para minha coleção dos intens deles, intão eu preciso de 80 remains of magikarps, 50 water gem, 30 water pendant Você pode me ajudar? !", cid)
+selfSay("OlÃ¡ jogador, eu sou um grande fÃ£ de pokemons de aguas e eu estou precisando de alguns itens necessarios para minha coleÃ§Ã£o dos intens deles, intÃ£o eu preciso de 80 remains of magikarps, 50 water gem, 30 water pendant VocÃª pode me ajudar? !", cid)
 talkState[talkUser] = 1
 return true
 
 elseif (msgcontains(msg, 'yes') or msgcontains(msg, 'sim')) and talkState[talkUser] == 1 then
-selfSay("hum muito bom, falta pouco para você me ajudar, digite yes para completar minha quest !", cid)
+selfSay("hum muito bom, falta pouco para vocÃª me ajudar, digite yes para completar minha quest !", cid)
 talkState[talkUser] = 2
 
 elseif msgcontains(msg, 'yes') and talkState[talkUser] == 2 then

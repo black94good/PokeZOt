@@ -77,7 +77,10 @@ end
 local mypoke = pokes[name]
 local happy = 255
 
-local item = doCreateItemEx(2219)
+-- START Ball System
+local physicalBallType = getPhysicalPokemonBallType(btype, name)
+local item = doCreateItemEx(pokeballs[physicalBallType].on)
+-- END Ball System
 doItemSetAttribute(item, "poke", name)
 doItemSetAttribute(item, "hp", 1)
 if t[2] and tonumber(t[2]) > 0 and tonumber(t[2]) <= 50 then
@@ -90,11 +93,9 @@ if name == "Shiny Hitmonchan" or name == "Hitmonchan" then
 end
 doItemSetAttribute(item, "description", "Contains a "..name..".")
 doItemSetAttribute(item, "fakedesc", "Contains a "..name..".")
-local x = icons[getItemAttribute(item, "poke")]
-	    doPlayerAddItemEx(cid, item, true)		
-		doItemSetAttribute(item, "ball", "Icone")
-		doItemSetAttribute(item, "icon", "yes")
-		doItemSetAttribute(item, "morta", "no")
-	    doTransformItem(item, x.on)		
+-- START Ball System
+setPhysicalPokemonBall(item, name, physicalBallType, "on")
+doPlayerAddItemEx(cid, item, true)
+-- END Ball System
 return 1
 end

@@ -21,9 +21,26 @@ or getPlayerStorageValue(cid, 75846) >= 1 or getPlayerStorageValue(cid, 5700) >=
    return true                                                                                                                        
 end
 
+-- START Ball System
+local legacyEmptyBallTypes = {
+	[2394] = "normal",
+	[2391] = "great",
+	[2393] = "super",
+	[2392] = "ultra"
+}
+local legacyEmptyBallType = legacyEmptyBallTypes[item.itemid]
+if legacyEmptyBallType and not getItemAttribute(item.uid, "poke") then
+	doTransformItem(item.uid, pokeballs[legacyEmptyBallType].empty)
+	doPlayerSendCancel(cid, "Sua ball antiga foi atualizada. Use-a novamente para capturar o Pokemon.")
+	return true
+end
+-- END Ball System
+
 local ballName = getItemAttribute(item.uid, "poke")
 local btype = getPokeballType(item.itemid)
-local usando = pokeballs[btype].use
+-- START Ball System
+local usando = pokeballs[btype].inuse or pokeballs[btype].use
+-- END Ball System
 
 local effect = pokeballs[btype].effect
 	if not effect then
@@ -49,7 +66,9 @@ if item.itemid == usando then
     end
     if #getCreatureSummons(cid) <= 0 then
 		if isInArray(pokeballs[btype].all, item.itemid) then
-			doTransformItem(item.uid, pokeballs[btype].off)
+			-- START Ball System
+			setPhysicalPokemonBall(item.uid, ballName, btype, "dead")
+			-- END Ball System
 			doItemSetAttribute(item.uid, "hp", 0)
 			doPlayerSendCancel(cid, "This pokemon is fainted.")
 		    return true
@@ -68,7 +87,9 @@ if item.itemid == usando then
 	end
 	doReturnPokemon(cid, z, item, effect)
 
-elseif item.itemid == pokeballs[btype].on then
+-- START Ball System
+elseif item.itemid == (pokeballs[btype].alive or pokeballs[btype].on) then
+-- END Ball System
 
 	if item.uid ~= getPlayerSlotItem(cid, CONST_SLOT_FEET).uid then
 		doPlayerSendCancel(cid, "You must put your pokeball in the correct place!")
@@ -79,7 +100,9 @@ elseif item.itemid == pokeballs[btype].on then
 
 	if thishp <= 0 then
 		if isInArray(pokeballs[btype].all, item.itemid) then
-			doTransformItem(item.uid, pokeballs[btype].off)
+			-- START Ball System
+			setPhysicalPokemonBall(item.uid, ballName, btype, "dead")
+			-- END Ball System
 			doItemSetAttribute(item.uid, "hp", 0)
 			doPlayerSendCancel(cid, "This pokemon is fainted.")
 		    return true
@@ -193,7 +216,9 @@ end
 	doRegenerateWithY(getCreatureMaster(pk), pk)
 	doCureWithY(getCreatureMaster(pk), pk)
 
-	doTransformItem(item.uid, item.itemid+1)
+	-- START Ball System
+	setPhysicalPokemonBall(item.uid, pokemon, btype, "inuse")
+	-- END Ball System
 
 	local pokename = getPokeName(pk) --alterado v1.7 
 

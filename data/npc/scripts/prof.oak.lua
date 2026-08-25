@@ -14,13 +14,15 @@ end
 local talkUser = NPCHANDLER_CONVBEHAVIOR == CONVERSATION_DEFAULT and 0 or cid
 msg = msg:lower()
 
+-- START Ball System
 local reward_starter = {
 {12344, 1},
 {12348, 20},
 {12349, 15},
-{2394, 25},
-{2392, 2},
+{pokeballs.normal.empty, 25},
+{pokeballs.ultra.empty, 2},
 }
+-- END Ball System
 
 local places = {
 ["saffron"] = 1,

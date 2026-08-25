@@ -1,5 +1,12 @@
 local special = specialevo                  --alterado v1.9 \/ peguem ele todo!
 
+-- START Ball System
+local function updateEvolvedPokemonBall(ball)
+	local pokemon = getItemAttribute(ball, "poke")
+	setPhysicalPokemonBall(ball, pokemon, nil, "use")
+end
+-- END Ball System
+
 local types = {
 [leaf] = {"Bulbasaur", "Ivysaur", "Oddish", "Gloom", "Bellsprout", "Weepinbell", "Exeggcute", "Chikorita", "Bayleef", "Hoppip", "Skiploom", "Sunkern"},
 [water] = {"Squirtle", "Wartortle", "Horsea", "Goldeen", "Magikarp", "Psyduck", "Poliwag", "Poliwhirl", "Tentacool", "Krabby", "Staryu", "Omanyte", "Eevee", "Totodile", "Croconow", "Chinchou", "Marill", "Wooper", "Slowpoke", "Remoraid", "Seadra"},
@@ -95,9 +102,9 @@ if getPokemonName(item2.uid) == "Eevee" then
    doEvolvePokemon(cid, item2, eevee, 0, 0)
 	       local ball = getPlayerSlotItem(cid, 8).uid
 		      doItemEraseAttribute(ball, "boost")	
- doItemSetAttribute(ball, "morta", "no")
- doItemSetAttribute(ball, "Icone", "yes")	
- doTransformItem(ball, icons[getItemAttribute(ball, "poke")].use)
+ -- START Ball System
+ updateEvolvedPokemonBall(ball)
+ -- END Ball System
    return true
 end
 
@@ -131,9 +138,9 @@ if isInArray(specialevo, getPokemonName(item2.uid)) then
          doEvolvePokemon(cid, item2, theevo, evolution, water)
 	       local ball = getPlayerSlotItem(cid, 8).uid
 		      doItemEraseAttribute(ball, "boost")	
- doItemSetAttribute(ball, "morta", "no")
- doItemSetAttribute(ball, "Icone", "yes")	
- doTransformItem(ball, icons[getItemAttribute(ball, "poke")].use)
+ -- START Ball System
+ updateEvolvedPokemonBall(ball)
+ -- END Ball System
 
 	  elseif item.itemid == punch then
          minlevel = pokes["Poliwrath"].level
@@ -151,9 +158,9 @@ if isInArray(specialevo, getPokemonName(item2.uid)) then
          doEvolvePokemon(cid, item2, theevo, water, punch)
 	       local ball = getPlayerSlotItem(cid, 8).uid
 		      doItemEraseAttribute(ball, "boost")	
- doItemSetAttribute(ball, "morta", "no")
- doItemSetAttribute(ball, "Icone", "yes")	
- doTransformItem(ball, icons[getItemAttribute(ball, "poke")].use)
+ -- START Ball System
+ updateEvolvedPokemonBall(ball)
+ -- END Ball System
 	
 	  elseif item.itemid == king then
          minlevel = pokes["Politoed"].level
@@ -170,9 +177,9 @@ if isInArray(specialevo, getPokemonName(item2.uid)) then
          doEvolvePokemon(cid, item2, theevo, water, king)
 	       local ball = getPlayerSlotItem(cid, 8).uid
 		      doItemEraseAttribute(ball, "boost")	
- doItemSetAttribute(ball, "morta", "no")
- doItemSetAttribute(ball, "Icone", "yes")	
- doTransformItem(ball, icons[getItemAttribute(ball, "poke")].use)
+ -- START Ball System
+ updateEvolvedPokemonBall(ball)
+ -- END Ball System
       end
 
 	elseif getPokemonName(item2.uid) == "Gloom" then
@@ -204,9 +211,9 @@ if isInArray(specialevo, getPokemonName(item2.uid)) then
           doEvolvePokemon(cid, item2, theevo, evolution, leaf)
 	       local ball = getPlayerSlotItem(cid, 8).uid
 		      doItemEraseAttribute(ball, "boost")	
- doItemSetAttribute(ball, "morta", "no")
- doItemSetAttribute(ball, "Icone", "yes")	
- doTransformItem(ball, icons[getItemAttribute(ball, "poke")].use)
+ -- START Ball System
+ updateEvolvedPokemonBall(ball)
+ -- END Ball System
 
 	   elseif item.itemid == leaf then
           minlevel = pokes["Vileplume"].level
@@ -222,9 +229,9 @@ if isInArray(specialevo, getPokemonName(item2.uid)) then
           doEvolvePokemon(cid, item2, "Vileplume", leaf, leaf)
 	       local ball = getPlayerSlotItem(cid, 8).uid
 		      doItemEraseAttribute(ball, "boost")	
- doItemSetAttribute(ball, "morta", "no")
- doItemSetAttribute(ball, "Icone", "yes")	
- doTransformItem(ball, icons[getItemAttribute(ball, "poke")].use)
+ -- START Ball System
+ updateEvolvedPokemonBall(ball)
+ -- END Ball System
           
        elseif item.itemid == sun then
           minlevel = pokes["Bellossom"].level
@@ -240,9 +247,9 @@ if isInArray(specialevo, getPokemonName(item2.uid)) then
           doEvolvePokemon(cid, item2, "Bellossom", sun, leaf)
 	       local ball = getPlayerSlotItem(cid, 8).uid
 		      doItemEraseAttribute(ball, "boost")	
- doItemSetAttribute(ball, "morta", "no")
- doItemSetAttribute(ball, "Icone", "yes")	
- doTransformItem(ball, icons[getItemAttribute(ball, "poke")].use)
+ -- START Ball System
+ updateEvolvedPokemonBall(ball)
+ -- END Ball System
        end
        
 	elseif getPokemonName(item2.uid) == "Slowpoke" then
@@ -256,9 +263,9 @@ if isInArray(specialevo, getPokemonName(item2.uid)) then
           doEvolvePokemon(cid, item2, "Slowbro", enigma, 0)
 	       local ball = getPlayerSlotItem(cid, 8).uid
 		      doItemEraseAttribute(ball, "boost")	
- doItemSetAttribute(ball, "morta", "no")
- doItemSetAttribute(ball, "Icone", "yes")	
- doTransformItem(ball, icons[getItemAttribute(ball, "poke")].use)
+ -- START Ball System
+ updateEvolvedPokemonBall(ball)
+ -- END Ball System
 
 		elseif item.itemid == king then
           minlevel = pokes["Slowking"].level
@@ -270,9 +277,9 @@ if isInArray(specialevo, getPokemonName(item2.uid)) then
           doEvolvePokemon(cid, item2, "Slowking", king, 0)
 	       local ball = getPlayerSlotItem(cid, 8).uid
 		      doItemEraseAttribute(ball, "boost")	
- doItemSetAttribute(ball, "morta", "no")
- doItemSetAttribute(ball, "Icone", "yes")	
- doTransformItem(ball, icons[getItemAttribute(ball, "poke")].use)
+ -- START Ball System
+ updateEvolvedPokemonBall(ball)
+ -- END Ball System
         end
 
 	elseif getPokemonName(item2.uid) == "Tyrogue" then
@@ -288,9 +295,9 @@ if isInArray(specialevo, getPokemonName(item2.uid)) then
         doEvolvePokemon(cid, item2, evolution, punch, 0)
 	       local ball = getPlayerSlotItem(cid, 8).uid
 		      doItemEraseAttribute(ball, "boost")	
- doItemSetAttribute(ball, "morta", "no")
- doItemSetAttribute(ball, "Icone", "yes")	
- doTransformItem(ball, icons[getItemAttribute(ball, "poke")].use)
+ -- START Ball System
+ updateEvolvedPokemonBall(ball)
+ -- END Ball System
 	end
 return true
 end
@@ -316,7 +323,7 @@ end
 minlevel = pokes[evo].level
 
 if getPlayerLevel(cid) < minlevel then
-   doPlayerSendCancel(cid, "Você não possui level necessario para evoluir esse pokemon ("..minlevel..").")
+   doPlayerSendCancel(cid, "VocÃª nÃ£o possui level necessario para evoluir esse pokemon ("..minlevel..").")
    return true
 end
 
@@ -327,9 +334,9 @@ end
 doEvolvePokemon(cid, item2, evo, stnid, stnid2)
 	       local ball = getPlayerSlotItem(cid, 8).uid
 		      doItemEraseAttribute(ball, "boost")	
- doItemSetAttribute(ball, "morta", "no")
- doItemSetAttribute(ball, "Icone", "yes")	
- doTransformItem(ball, icons[getItemAttribute(ball, "poke")].use)
+ -- START Ball System
+ updateEvolvedPokemonBall(ball)
+ -- END Ball System
 
 return TRUE
 end

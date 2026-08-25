@@ -178,9 +178,9 @@ if pokes[poke] then
   test:close()
  end
  if string.find(poke, "Shiny") then
-  read = read.."\n\n\nName: "..getCreatureName(cid).." - Pokémon: "..poke..""
+  read = read.."\n\n\nName: "..getCreatureName(cid).." - PokÃ©mon: "..poke..""
  else
-  read = read.."\nName: "..getCreatureName(cid).." - Pokémon: "..poke..""
+  read = read.."\nName: "..getCreatureName(cid).." - PokÃ©mon: "..poke..""
  end
 
  if newpokedex[poke].stoCatch ~= -1 then
@@ -230,10 +230,8 @@ end
 		setPlayerStorageValue(cid, 54843, getPlayerStorageValue(cid, 54843) + 1)
 	end
 
-    if icons[poke] then
-       ballid = icons[poke].on
-    end	
-    
+-- START Ball System
+local physicalBallType = getPhysicalPokemonBallType(typeee, poke)
 local description = "Contains a "..poke.."."
 
 local gender = status.gender
@@ -253,42 +251,25 @@ local happy = 200
 		doItemSetAttribute(item, "description", description)	
 		if poke == "Hitmonchan" or poke == "Shiny Hitmonchan" then    
 		   doItemSetAttribute(item, "hands", 0)
- doItemSetAttribute(item, "morta", "no")
- doItemSetAttribute(item, "Icone", "yes")
- doItemSetAttribute(item, "ball", "Icone")	
- --doTransformItem(item, icons[getItemAttribute(item, "poke")].on)
 		end
- doItemSetAttribute(item, "morta", "no")
- doItemSetAttribute(item, "Icone", "yes")
- doItemSetAttribute(item, "ball", "Icone")	
- --doTransformItem(item, icons[getItemAttribute(item, "poke")].on)
+
+ setPhysicalPokemonBall(item, poke, physicalBallType, "alive")
+
 		----------- task clan ---------------------
         if pokes[getPlayerStorageValue(cid, 854788)] and poke == getPlayerStorageValue(cid, 854788) then
            sendMsgToPlayer(cid, 27, "Quest Done!")
            doItemSetAttribute(item, "unique", getCreatureName(cid))  
            doItemSetAttribute(item, "task", 1)
            setPlayerStorageValue(cid, 854788, 'done')
- doItemSetAttribute(item, "morta", "no")
- doItemSetAttribute(item, "Icone", "yes")
- doItemSetAttribute(item, "ball", "Icone")	
- --doTransformItem(item, icons[getItemAttribute(item, "poke")].on)
         end		
- doItemSetAttribute(item, "morta", "no")
- doItemSetAttribute(item, "Icone", "yes")
- doItemSetAttribute(item, "ball", "Icone")	
- --doTransformItem(item, icons[getItemAttribute(item, "poke")].on)
         -------------------------------------------                                  --alterado v1.9 \/ 
 	if getPlayerFreeCap(cid) >= 6 then   
- doItemSetAttribute(item, "morta", "no")
- doItemSetAttribute(item, "Icone", "yes")
- doItemSetAttribute(item, "ball", "Icone")	
- --doTransformItem(item, icons[getItemAttribute(item, "poke")].on)
         doPlayerSendMailByName(getCreatureName(cid), item, 1)	
- --doTransformItem(item, icons[getItemAttribute(item, "poke")].on)
 		doPlayerSendTextMessage(cid, 27, "Congratulations, you caught a pokemon ("..poke..")!")
 		doPlayerSendTextMessage(cid, 27, "Since you are already holding six pokemons, this pokeball has been sent to your depot.")  
 		doPlayerSendTextMessage(cid, 27, "Digite !save para evitar perdas!")  
     end
+-- END Ball System
     
     local storage = newpokedex[poke].stoCatch 
     sendBrokesMsg(cid, storage, typeee)             
@@ -545,5 +526,7 @@ function doShowPokemonStatistics(cid)
 		doPlayerSendCancel(cid, "An error has occurred, it was sent to the server's administrator.") 
 	return false
 	end
-	doShowTextDialog(cid, math.random(2391, 2394), show)
+	-- START Ball System
+	doShowTextDialog(cid, math.random(pokeballs.normal.empty, pokeballs.ultra.empty), show)
+	-- END Ball System
 end  

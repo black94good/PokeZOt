@@ -181,7 +181,7 @@ end
       setPlayerStorageValue(cid,30,0)	  
 			 doTeleportThing(cid, {x = 1172, y = 1366, z = 7}, false)
 			 doCreatureAddHealth(cid, getCreatureMaxHealth(cid))
-       doPlayerSendTextMessage(cid, 20, "Você morreu no Saffari por Favor volte mais tarde!")
+       doPlayerSendTextMessage(cid, 20, "VocÃª morreu no Saffari por Favor volte mais tarde!")
 	   return false
 	   elseif getPlayerStorageValue(cid, 20001) >= 1 then
 	  setPlayerStorageValue(cid,20001,0) 
@@ -207,7 +207,9 @@ local item = getPlayerSlotItem(cid, 8)
 local btype = getPokeballType(item.itemid)
       if #getCreatureSummons(cid) <= 0 then
 		if isInArray(pokeballs[btype].all, item.itemid) then
-			doTransformItem(item.uid, pokeballs[btype].off)
+			-- START Ball System
+			setPhysicalPokemonBall(item.uid, getItemAttribute(item.uid, "poke"), btype, "dead")
+			-- END Ball System
 			doItemSetAttribute(item.uid, "hp", 0)
 		end
       end
@@ -215,7 +217,7 @@ local btype = getPokeballType(item.itemid)
       ------------Edited Golden Arena------------------
       if getPlayerStorageValue(cid, 22545) == 1 then
          if getGlobalStorageValue(22550) == 1 then
-            doPlayerSendTextMessage(cid, 20, "Você foi o último sobrevivente da Golden Arena! Tome sua recompensa!")
+            doPlayerSendTextMessage(cid, 20, "VocÃª foi o Ãºltimo sobrevivente da Golden Arena! Tome sua recompensa!")
             doPlayerAddItem(cid, 2160, getPlayerStorageValue(cid, 22551)*30/4) 
             doPlayerAddExperience(cid, 1000, getPlayerStorageValue(cid, 22551)*30) 
             setPlayerStorageValue(cid, 22545, -1)
@@ -247,7 +249,7 @@ local btype = getPokeballType(item.itemid)
     end
 	doCreatureAddHealth(cid, -valor, 3, 180)
 	if not isPlayer(cid) then
-	addEvent(sendPlayerDmgMsg, 5, cid, "Você perdeu "..valor.." em pontos de vida por um attack de "..getSomeoneDescription(attacker)..".")
+	addEvent(sendPlayerDmgMsg, 5, cid, "VocÃª perdeu "..valor.." em pontos de vida por um attack de "..getSomeoneDescription(attacker)..".")
 	end
 return false
 end

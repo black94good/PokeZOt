@@ -37,6 +37,99 @@ function onPokeHealthChange(cid, zerar)
    doPlayerSendCancel(cid, '#ph#,'.. math.floor(hp) ..','.. math.floor(maxHp))
 end
 
+-- START Ball System
+local ballSystemTypeAliases = {
+   pokeball = "normal",
+   ultraball = "ultra",
+   superball = "super",
+   greatball = "great",
+   saffariball = "saffari",
+   darkball = "dark",
+   spokeball = "shinypoke",
+   sgreatball = "shinygreat",
+   ssuperball = "shinysuper",
+   sultraball = "shinyultra",
+   ssaffariball = "shinysaffari",
+   sdarkball = "shinydark",
+   shinynormal = "shinypoke"
+}
+
+local ballSystemShinyTypes = {
+   normal = "shinypoke",
+   great = "shinygreat",
+   super = "shinysuper",
+   ultra = "shinyultra",
+   saffari = "shinysaffari",
+   dark = "shinydark"
+}
+
+local ballSystemPhysicalTypes = {
+   normal = true,
+   great = true,
+   super = true,
+   ultra = true,
+   saffari = true,
+   dark = true,
+   shinypoke = true,
+   shinygreat = true,
+   shinysuper = true,
+   shinyultra = true,
+   shinysaffari = true,
+   shinydark = true
+}
+
+local ballSystemStateAliases = {
+   empty = "empty",
+   alive = "alive",
+   on = "alive",
+   inuse = "inuse",
+   use = "inuse",
+   dead = "dead",
+   off = "dead"
+}
+
+function getPhysicalPokemonBallType(ballType, pokemon)
+   local normalizedType = ballSystemTypeAliases[ballType] or ballType
+
+   if isShinyName(pokemon) and ballSystemShinyTypes[normalizedType] then
+      normalizedType = ballSystemShinyTypes[normalizedType]
+   end
+
+   if ballSystemPhysicalTypes[normalizedType] and pokeballs[normalizedType] then
+      return normalizedType
+   end
+
+   return isShinyName(pokemon) and "shinypoke" or "normal"
+end
+
+function setPhysicalPokemonBall(item, pokemon, ballType, state)
+   if not item or item <= 0 then return false end
+
+   local storedType = ballType or getItemAttribute(item, "ball")
+   local thing = getThing(item)
+
+   if not ballSystemPhysicalTypes[ballSystemTypeAliases[storedType] or storedType] and thing and thing.itemid then
+      local detectedType = getPokeballType(thing.itemid)
+      if ballSystemPhysicalTypes[detectedType] then
+         storedType = detectedType
+      end
+   end
+
+   local physicalType = getPhysicalPokemonBallType(storedType, pokemon)
+   local ballState = ballSystemStateAliases[state or "alive"] or "alive"
+   local ballConfig = pokeballs[physicalType]
+   local itemId = ballConfig[ballState] or ballConfig.alive or ballConfig.on
+
+   doTransformItem(item, itemId)
+   doItemSetAttribute(item, "ball", physicalType)
+   doItemSetAttribute(item, "ballstate", ballState)
+   doItemSetAttribute(item, "morta", ballState == "dead" and "yes" or "no")
+   doItemSetAttribute(item, "Icone", "no")
+   doItemSetAttribute(item, "icon", "no")
+   return physicalType
+end
+-- END Ball System
+
 function addPokeToPlayer(cid, pokemon, boost, gender, ball)             --alterado v1.9 \/ peguem ele todo...
 local genders = {
 ["male"] = 4,
@@ -52,14 +145,11 @@ local pokemon = doCorrectString(pokemon)
 if not pokes[pokemon] then return false end
 
    local GENDER = (gender and genders[gender]) and genders[gender] or getRandomGenderByName(pokemon)
-   local btype = (ball and pokeballs[ball]) and ball or isShinyName(pokemon) and "shinynormal" or "normal"
+   -- START Ball System
+   local btype = getPhysicalPokemonBallType(ball, pokemon)
    local happy = 250
-   
-   if icons[pokemon] then
-      id = icons[pokemon].on
-   else
-      id = pokeballs[btype].on
-   end
+   local id = pokeballs[btype].alive
+   -- END Ball System
 
    if (getPlayerFreeCap(cid) >= 6 and not isInArray({5, 6}, getPlayerGroupId(cid))) or not hasSpaceInContainer(getPlayerSlotItem(cid, 3).uid) then 
       item = doCreateItemEx(id)
@@ -76,7 +166,9 @@ if not pokes[pokemon] then return false end
    doItemSetAttribute(item, "description", "Contains a "..pokemon..".")
    doItemSetAttribute(item, "fakedesc", "Contains a "..pokemon..".") 
    doItemSetAttribute(item, "defeated", "no")
-   doItemSetAttribute(item, "ball", btype)
+   -- START Ball System
+   setPhysicalPokemonBall(item, pokemon, btype, "alive")
+   -- END Ball System
    if boost and tonumber(boost) and tonumber(boost) > 0 and tonumber(boost) <= 50 then
       doItemSetAttribute(item, "boost", boost)
    end
@@ -88,7 +180,9 @@ if not pokes[pokemon] then return false end
       doPlayerSendMailByName(getCreatureName(cid), item, 1)
       sendMsgToPlayer(cid, 27, "You are already holding six pokemons, so your new pokemon was sent to your depot.")
    end
-   doTransformItem(item, id)
+   -- START Ball System
+   -- A transformacao visual ja foi aplicada por setPhysicalPokemonBall.
+   -- END Ball System
 return true
 end 
 ---------------------------
@@ -344,7 +438,7 @@ end
 return false
 end
 
-function getThingFromPosWithProtect(pos)  --Pega uma creatura numa posiçao com proteçoes
+function getThingFromPosWithProtect(pos)  --Pega uma creatura numa posiÃ§ao com proteÃ§oes
 if hasTile(pos) then
    if isCreature(getRecorderCreature(pos)) then
       return getRecorderCreature(pos)
@@ -358,7 +452,7 @@ end
 return pid
 end
 
-function getTileThingWithProtect(pos)    --Pega um TILE com proteçoes
+function getTileThingWithProtect(pos)    --Pega um TILE com proteÃ§oes
 if hasTile(pos) then
 pos.stackpos = 0
    pid = getTileThingByPos(pos)
@@ -493,7 +587,7 @@ end
 end
 
 db.executeQuery("UPDATE `accounts` SET `premdays` = '"..days.."' WHERE `accounts`.`id` = ".. getPlayerAccountId(cid) ..";")
-doPlayerSendTextMessage(cid,25,"Você será kickado em 5 segundos.")    
+doPlayerSendTextMessage(cid,25,"VocÃª serÃ¡ kickado em 5 segundos.")    
 addEvent(removerPlayer, 5*1000, cid)     
 return TRUE
 end
@@ -862,7 +956,9 @@ function doReturnPokemon(cid, pokemon, pokeball, effect, hideeffects, blockevo)
 		end
 	end
 
-	doTransformItem(pokeball.uid, pokeball.itemid-1)
+	-- START Ball System
+	setPhysicalPokemonBall(pokeball.uid, pokename, nil, "alive")
+	-- END Ball System
 	doCreatureSay(cid, mbk, TALKTYPE_SAY)
 
 	doSendMagicEffect(getCreaturePosition(pokemon), effect)
@@ -919,7 +1015,9 @@ local ballName = getItemAttribute(item.uid, "poke")
 
 	if thishp <= 0 then
 		if isInArray(pokeballs[btype].all, item.itemid) then
-			doTransformItem(item.uid, pokeballs[btype].off)
+			-- START Ball System
+			setPhysicalPokemonBall(item.uid, getItemAttribute(item.uid, "poke"), btype, "dead")
+			-- END Ball System
 			doItemSetAttribute(item.uid, "hp", 0)
 			doPlayerSendCancel(cid, "This pokemon is fainted.")
 		    return true
@@ -1032,7 +1130,9 @@ end
 	adjustStatus(pk, item.uid, true, true, true)
 	doAddPokemonInOwnList(cid, pokemon)
 
-	doTransformItem(item.uid, item.itemid+1)
+	-- START Ball System
+	setPhysicalPokemonBall(item.uid, pokemon, btype, "inuse")
+	-- END Ball System
 
 	local pokename = getPokeName(pk) --alterado v1.7
 

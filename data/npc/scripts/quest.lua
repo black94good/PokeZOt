@@ -9,7 +9,9 @@ function Saffari(cid, message, keywords, parameters, node)
 if(not npcHandler:isFocused(cid)) then
 return false
 end
-local pokeball = {2391, 2392, 2393, 2394, 12617, 12832} -- whit this pokeballs you CANT enter in the quest.
+-- START Ball System
+local pokeball = {pokeballs.normal.empty, pokeballs.great.empty, pokeballs.super.empty, pokeballs.ultra.empty, pokeballs.saffari.empty, pokeballs.dark.empty}
+-- END Ball System
 for i = 1, #pokeball do
 if getPlayerItemCount(cid, pokeball[i]) >= 1 then
 npcHandler:say('Deposit your pokeballs on the DP!', cid)

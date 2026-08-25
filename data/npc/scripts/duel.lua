@@ -20,13 +20,15 @@ local cooldown_table = {}
 local min_pokemons_to_battle = 1-- change to whatever you want
 local number_of_pokemons = 0	-- don't change
 
+-- START Ball System
 local prizes = {
-[1] = {{itemid = 2393, count = 30}, {itemid = 2392, count = 20}},
-[2] = {{itemid = 2393, count = 40}, {itemid = 2392, count = 30}},
-[3] = {{itemid = 2393, count = 50}, {itemid = 2392, count = 40}},
-[4] = {{itemid = 2393, count = 60}, {itemid = 2392, count = 50}},
-[5] = {{itemid = 2393, count = 70}, {itemid = 2392, count = 60}},
-[6] = {{itemid = 2393, count = 80}, {itemid = 2392, count = 70}}}
+[1] = {{itemid = pokeballs.super.empty, count = 30}, {itemid = pokeballs.ultra.empty, count = 20}},
+[2] = {{itemid = pokeballs.super.empty, count = 40}, {itemid = pokeballs.ultra.empty, count = 30}},
+[3] = {{itemid = pokeballs.super.empty, count = 50}, {itemid = pokeballs.ultra.empty, count = 40}},
+[4] = {{itemid = pokeballs.super.empty, count = 60}, {itemid = pokeballs.ultra.empty, count = 50}},
+[5] = {{itemid = pokeballs.super.empty, count = 70}, {itemid = pokeballs.ultra.empty, count = 60}},
+[6] = {{itemid = pokeballs.super.empty, count = 80}, {itemid = pokeballs.ultra.empty, count = 70}}}
+-- END Ball System
 
 local pokemons = {
 {name = "Cloyster", optionalLevel = 200, sex = SEX_MALE, nick = "Crusher", ball = "super"},

@@ -1,13 +1,15 @@
 function onStepIn(cid, item, position, lastPosition, fromPosition, toPosition, actor)
 if isSummon(cid) or isMonster(cid) then return false end
-local uballs = getPlayerItemCount(cid, 2392)
-local pballs = getPlayerItemCount(cid, 2394)
-local gballs = getPlayerItemCount(cid, 2391)
-local sballs = getPlayerItemCount(cid, 2393)
-local safballs = getPlayerItemCount(cid, 2146)
-local dballs = getPlayerItemCount(cid, 12832)
+-- START Ball System
+local uballs = getPlayerItemCount(cid, pokeballs.ultra.empty)
+local pballs = getPlayerItemCount(cid, pokeballs.normal.empty)
+local gballs = getPlayerItemCount(cid, pokeballs.great.empty)
+local sballs = getPlayerItemCount(cid, pokeballs.super.empty)
+local safballs = getPlayerItemCount(cid, pokeballs.saffari.empty)
+local dballs = getPlayerItemCount(cid, pokeballs.dark.empty)
+-- END Ball System
 if uballs > 0 or pballs > 0 or sballs > 0 or gballs > 0 or safballs > 0 or dballs > 0 then
-doPlayerSendTextMessage(cid,22,"Você não pode entrar aqui com pokeballs!")
+doPlayerSendTextMessage(cid,22,"VocÃª nÃ£o pode entrar aqui com pokeballs!")
 doTeleportThing(cid, fromPosition, TRUE)
 end
 if item.actionid == 25708 and getPlayerLevel(cid) <= 119 then

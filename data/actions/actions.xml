@@ -35,14 +35,17 @@
 	<action itemid="14261" event="script" value="pokemon/boost stone.lua" allowfaruse="1"/>
 
 	-- ORDER
-	<action itemid="2391-2394;12617;12832" event="script" value="pokemon/catch.lua" allowfaruse="1"/>                   <!-- alterado v1.9 -->
+	<!-- START Ball System -->
+	<action itemid="2395-2398;12617;12832" event="script" value="pokemon/catch.lua" allowfaruse="1"/>
+	<!-- END Ball System -->
 	-- Catch
 	<action itemid="2550" event="script" value="pokemon/order.lua" allowfaruse="1" blockwalls="0"/> 	
 	
-	-- Icone System
-	<action itemid="11989" event="script" value="pokemon/icons.lua"/>
 	<action itemid="2589" event="script" value="pokemon/iconsDP.lua"/>
-	<action itemid="11826-11837;11737-11748;10975-10977;12621-12623;12826-12831;12861-13781;13797-13823;13836-13861;13902-13904;13919-13930;13933-13935;13937-13939;14020-14022;14015-14017;14033-14035;14038-14040;14043-14045;14086-14088;14091-14093;14096-14098;14101-14103;14106-14108;14111-14113;14116-14118;14121-14123;14126-14128;14136-14138;14141-14143;14157-14159;14163-14165;14173-14175;14081-14083;14190-14192;14178-14180;14193-14195;14199-14204;14223-14246;14262-14276;14287-14304;14340-14366;14491-14554;14578-14586;14593-14595;14598-14657" event="script" value="pokemon/goback.lua"/> -- CASSINO
+	<!-- START Ball System -->
+	<!-- O modo de icone foi desativado; a foto continua sendo exibida no slot legs. -->
+	<action itemid="2383-2394;11826-11837;11737-11748;10975-10977;12621-12623;12826-12831;12861-13781;13797-13823;13836-13861;13902-13904;13919-13930;13933-13935;13937-13939;14020-14022;14015-14017;14033-14035;14038-14040;14043-14045;14086-14088;14091-14093;14096-14098;14101-14103;14106-14108;14111-14113;14116-14118;14121-14123;14126-14128;14136-14138;14141-14143;14157-14159;14163-14165;14173-14175;14081-14083;14190-14192;14178-14180;14193-14195;14199-14204;14223-14246;14262-14276;14287-14304;14340-14366;14491-14554;14578-14586;14593-14595;14598-14657" event="script" value="pokemon/goback.lua"/>
+	<!-- END Ball System -->
 	<action itemid="2547" event="script" value="pokemon/coincase.lua"/>
 
 	-- Pc / Rank
@@ -88,7 +91,9 @@
 	<action itemid="10035" event="script" value="other/teleport.lua"/>
 	
 	<!-- Destroy -->
-	<action id="2321;2390-2398;2400-2404;2406-2409;2411-2417;2419;2421-2441;2443-2454;3961-3964;3966;4846;6101;6528;6553;7379-7392;7402-7437;7449;7451-7456;7744-7758;7763-7777;7854-7883;7958;8601-8602;8924-8932;10293" event="script" value="other/destroy.lua"/>
+	<!-- START Ball System -->
+	<action id="2321;2400-2404;2406-2409;2411-2417;2419;2421-2441;2443-2454;3961-3964;3966;4846;6101;6528;6553;7379-7392;7402-7437;7449;7451-7456;7744-7758;7763-7777;7854-7883;7958;8601-8602;8924-8932;10293" event="script" value="other/destroy.lua"/>
+	<!-- END Ball System -->
 	
 	<!-- Bread Creating -->
 	<action itemid="2692" event="script" value="other/createbread.lua"/>

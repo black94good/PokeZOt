@@ -1387,17 +1387,6 @@
 		<attribute key="weight" value="1900" />
 		<attribute key="description" value="It is a volume of The Mystic Secrets of Tibia." />
 	</item>
-	<item id="1988" article="a" name="badge case">
-		<attribute key="weight" value="0" />
-        <attribute key="description" value="This is a small container to keep your earned badges from gym leaders." />
-		<attribute key="containerSize" value="8" />
-	</item>
-	<item id="1987" article="a" name="pokemon trainer backpack">
-		<attribute key="weight" value="0" />
-		<attribute key="containerSize" value="32" />
-        <attribute key="description" value="This is the backpack you use to carry your pokemons and items." />
-		<attribute key="slotType" value="backpack" />
-	</item>
 	<item id="1989" article="a" name="basket">
 		<attribute key="weight" value="0" />
 		<attribute key="containerSize" value="5" />
@@ -1819,11 +1808,6 @@
 	</item>
 	<item id="2119" article="a" name="rocking horse">
 		<attribute key="rotateTo" value="2116" />
-	</item>
-	<item id="2120" article="a" name="pokerope">
-		<attribute key="weight" value="0" />
-        <attribute key="description" value="Use this tool to get out of hole." />
-		<attribute key="slotType" value="head" />
 	</item>
 	<item id="2121" article="a" name="wedding ring">
 		<attribute key="weight" value="40" />
@@ -2917,108 +2901,6 @@
 		<attribute key="weaponType" value="axe" />
 		<attribute key="slotType" value="two-handed" />
 	</item>
-	<item id="2382" article="a" name="pokedex">
-		<attribute key="weight" value="0" />
-        <attribute key="description" value="This is an advanced device that can register pokemon information and store it. You can use this on a pokemon or on a player, to discover or get the stored information." />
-	</item>
-	<item id="2383" article="a" name="spike sword">
-		<attribute key="weight" value="5000" />
-		<attribute key="defense" value="21" />
-		<attribute key="attack" value="24" />
-		<attribute key="weaponType" value="sword" />
-		<attribute key="extradef" value="2" />
-	</item>
-	<item id="2384" article="a" name="rapier">
-		<attribute key="weight" value="1500" />
-		<attribute key="defense" value="8" />
-		<attribute key="attack" value="10" />
-		<attribute key="weaponType" value="sword" />
-		<attribute key="extradef" value="1" />
-	</item>
-	<item id="2385" article="a" name="sabre">
-		<attribute key="weight" value="2500" />
-		<attribute key="defense" value="10" />
-		<attribute key="attack" value="12" />
-		<attribute key="weaponType" value="sword" />
-		<attribute key="extradef" value="1" />
-	</item>
-	<item id="2386" article="an" name="axe">
-		<attribute key="weight" value="4000" />
-		<attribute key="defense" value="6" />
-		<attribute key="attack" value="12" />
-		<attribute key="weaponType" value="axe" />
-	</item>
-	<item id="2387" article="a" name="double axe">
-		<attribute key="weight" value="7000" />
-		<attribute key="defense" value="12" />
-		<attribute key="attack" value="35" />
-		<attribute key="weaponType" value="axe" />
-		<attribute key="slotType" value="two-handed" />
-	</item>
-	<item id="2388" article="a" name="hatchet">
-		<attribute key="weight" value="3500" />
-		<attribute key="defense" value="8" />
-		<attribute key="attack" value="15" />
-		<attribute key="weaponType" value="axe" />
-	</item>
-	<item id="2389" article="a" name="spear" plural="spears">
-		<attribute key="weight" value="2000" />
-		<attribute key="attack" value="25" />
-		<attribute key="weaponType" value="distance" />
-		<attribute key="shootType" value="spear" />
-		<attribute key="range" value="5" />
-		<attribute key="breakChance" value="3" />
-		<attribute key="ammoAction" value="moveback" />
-	</item>
-	<item id="2390" article="a" name="magic longsword">
-		<attribute key="description" value="It is the magic Cyclopmania Sword." />
-		<attribute key="weight" value="4300" />
-		<attribute key="defense" value="40" />
-		<attribute key="attack" value="55" />
-		<attribute key="weaponType" value="sword" />
-		<attribute key="slotType" value="two-handed" />
-	</item>
-	<item id="2391" article="a" name="great ball">
-		<attribute key="weight" value="0" />
-		<attribute key="description" value="This is a pokeball used to catch fainted pokemon. It has a 3x catch rate." />
-	</item>
-	<item id="2392" article="a" name="ultra ball">
-		<attribute key="weight" value="0" />
-		<attribute key="description" value="This is pokeball used to catch fainted pokemon. It has a 8x catch rate." />
-	</item>
-	<item id="2393" article="a" name="super ball">
-		<attribute key="weight" value="0" />
-		<attribute key="description" value="This is pokeball used to catch fainted pokemon. It has a 5x catch rate." />
-	</item>
-	<item id="2394" article="a" name="normal ball">
-		<attribute key="weight" value="0" />
-		<attribute key="description" value="This is a pokeball used to catch fainted pokemon. It has a 1x catch rate." />
-	</item>
-	<item id="2395" article="a" name="portrait">
-		<attribute key="weight" value="0" />
-        <attribute key="slotType" value="legs" />
-	</item>
-	<item id="2396" article="an" name="ice rapier">
-		<attribute key="description" value="A deadly but fragile weapon." />
-		<attribute key="weight" value="1500" />
-		<attribute key="attack" value="60" />
-		<attribute key="defense" value="1" />
-		<attribute key="weaponType" value="sword" />
-		<attribute key="elementIce" value="18" />
-		<attribute key="charges" value="1" />
-	</item>
-	<item id="2397" article="a" name="longsword">
-		<attribute key="weight" value="4200" />
-		<attribute key="defense" value="14" />
-		<attribute key="attack" value="17" />
-		<attribute key="weaponType" value="sword" />
-	</item>
-	<item id="2398" article="a" name="mace">
-		<attribute key="weight" value="2800" />
-		<attribute key="defense" value="11" />
-		<attribute key="attack" value="16" />
-		<attribute key="weaponType" value="club" />
-	</item>
 	<item id="2399" article="a" name="throwing star" plural="throwing stars">
 		<attribute key="weight" value="200" />
 		<attribute key="attack" value="30" />
@@ -3910,21 +3792,11 @@
 		<attribute key="shootType" value="burstarrow" />
 		<attribute key="ammoAction" value="removecount" />
 	</item>
-	<item id="2547" article="your" name="coin case">
-		<attribute key="weight" value="0" />
-		<attribute key="slotType" value="ammo" />
-		<attribute key="description" value="This is the case to keep your casino coins. You can use those coins to play at the casino and some other places!" />
-	</item>
 	<item id="2548" article="a" name="pitch fork">
 		<attribute key="weight" value="2500" />
 	</item>
 	<item id="2549" article="a" name="rake">
 		<attribute key="weight" value="1500" />
-	</item>
-	<item id="2550" article="the" name="order button">
-		<attribute key="weight" value="0" />
-        <attribute key="description" value="Use this to give orders to your pokemon." />
-		<attribute key="slotType" value="body" />
 	</item>
 	<item id="2551" article="a" name="broom">
 		<attribute key="weight" value="1100" />
@@ -4004,11 +3876,6 @@
 	</item>
 	<item id="2579" article="an" name="open trap">
 		<attribute key="weight" value="2100" />
-	</item>
-	<item id="2580" article="a" name="pokerod">
-		<attribute key="weight" value="0" />
-        <attribute key="description" value="Use this tool to fish some pokemons inside water." />
-		<attribute key="slotType" value="necklace" />
 	</item>
 	<item id="2581" article="a" name="telescope">
 		<attribute key="rotateTo" value="2583" />
@@ -31030,6 +30897,122 @@ Abra e Ganhe um Pokemon Mega Surpresa, so abra com menos de 6 Pokes na bolsa." /
 		<attribute key="weight" value="250" />
 		<attribute key="description" value="Tier 7: Aumenta o boost do seu pokémon em 30." />
 	</item>>
+
+
+	<!-- POKE LONE -->
+	<!-- Inventario -->
+	<item id="1987" article="a" name="pokemon trainer backpack">
+		<attribute key="weight" value="0" />
+		<attribute key="containerSize" value="32" />
+        <attribute key="description" value="This is the backpack you use to carry your pokemons and items." />
+		<attribute key="slotType" value="backpack" />
+	</item>
+	<item id="1988" article="a" name="badge case">
+		<attribute key="weight" value="0" />
+        <attribute key="description" value="This is a small container to keep your earned badges from gym leaders." />
+		<attribute key="containerSize" value="8" />
+	</item>
+	<item id="2120" article="a" name="pokerope">
+		<attribute key="weight" value="0" />
+        <attribute key="description" value="Use this tool to get out of hole." />
+		<attribute key="slotType" value="head" />
+	</item>
+	<item id="2382" article="a" name="pokedex">
+		<attribute key="weight" value="0" />
+        <attribute key="description" value="This is an advanced device that can register pokemon information and store it. You can use this on a pokemon or on a player, to discover or get the stored information." />
+	</item>
+	<item id="11138" article="a" name="portrait"> <!--Limpa-->
+		<attribute key="weight" value="0" />
+        <attribute key="slotType" value="legs" />
+	</item>
+	<item id="2547" article="your" name="coin case">
+		<attribute key="weight" value="0" />
+		<attribute key="slotType" value="ammo" />
+		<attribute key="description" value="This is the case to keep your casino coins. You can use those coins to play at the casino and some other places!" />
+	</item>
+	<item id="2550" article="the" name="order button">
+		<attribute key="weight" value="0" />
+        <attribute key="description" value="Use this to give orders to your pokemon." />
+		<attribute key="slotType" value="body" />
+	</item>
+	<item id="2580" article="a" name="pokerod">
+		<attribute key="weight" value="0" />
+        <attribute key="description" value="Use this tool to fish some pokemons inside water." />
+		<attribute key="slotType" value="necklace" />
+	</item>
+
+	<!-- START Ball System -->
+	<!--  Ball C/Poke Vivo -->
+	<item id="2383" article="a" name="Poke Ball">
+		<attribute key="weight" value="15" />
+		<attribute key="slotType" value="feet" />
+	</item>
+	<item id="2385" article="a" name="Great Ball">
+		<attribute key="weight" value="15" />
+		<attribute key="slotType" value="feet" />
+	</item>
+	<item id="2387" article="a" name="Premier Ball">
+		<attribute key="weight" value="15" />
+		<attribute key="slotType" value="feet" />
+	</item>
+	<item id="2389" article="a" name="Ultra Ball">
+		<attribute key="weight" value="15" />
+		<attribute key="slotType" value="feet" />
+	</item>
 	
+	<!--  Ball C/Poke em Uso -->
+	<item id="2384" article="a" name="Poke Ball">
+		<attribute key="weight" value="15" />
+		<attribute key="slotType" value="feet" />
+	</item>
+	<item id="2386" article="a" name="Great Ball">
+		<attribute key="weight" value="15" />
+		<attribute key="slotType" value="feet" />
+	</item>
+	<item id="2388" article="a" name="Premier Ball">
+		<attribute key="weight" value="15" />
+		<attribute key="slotType" value="feet" />
+	</item>
+	<item id="2390" article="a" name="Ultra Ball">
+		<attribute key="weight" value="15" />
+		<attribute key="slotType" value="feet" />
+	</item>
+
+	<!--  Ball C/Poke Dead -->
+	<item id="2391" article="a" name="Poke Ball">
+		<attribute key="weight" value="15" />
+		<attribute key="slotType" value="feet" />
+	</item>
+	<item id="2392" article="a" name="Great Ball">
+		<attribute key="weight" value="15" />
+		<attribute key="slotType" value="feet" />
+	</item>
+	<item id="2393" article="a" name="Premier Ball">
+		<attribute key="weight" value="15" />
+		<attribute key="slotType" value="feet" />
+	</item>
+	<item id="2394" article="a" name="Ultra Ball">
+		<attribute key="weight" value="15" />
+		<attribute key="slotType" value="feet" />
+	</item>
+
+	<!--  Ball Vazia -->
+	<item id="2395" article="a" name="Poke Ball" plural="Poke Balls">
+		<attribute key="weight" value="10" />
+		<attribute key="description" value="This is a pokeball used to catch fainted pokemon. It has a 1x catch rate." />
+	</item>
+	<item id="2396" article="a" name="Great Ball" plural="Great Balls">
+		<attribute key="weight" value="10" />
+		<attribute key="description" value="This is a pokeball used to catch fainted pokemon. It has a 3x catch rate." />
+	</item>
+	<item id="2397" article="a" name="Premier Ball" plural="Premier Balls">
+		<attribute key="weight" value="10" />
+		<attribute key="description" value="This is pokeball used to catch fainted pokemon. It has a 5x catch rate." />
+	</item>
+	<item id="2398" article="a" name="Ultra Ball" plural="Ultra Balls">
+		<attribute key="weight" value="10" />
+		<attribute key="description" value="This is pokeball used to catch fainted pokemon. It has a 8x catch rate." />
+	</item>
+	<!-- END Ball System -->
 	
 </items>

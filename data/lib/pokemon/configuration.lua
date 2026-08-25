@@ -1,12 +1,12 @@
 	useOTClient = true  -- coloque false caso n for usar o OTClient!!!  --alterado v1.7
 
 useKpdoDlls = true -- coloque true pra usar as barras de cooldown.
-intervalToRegrowBushAndStones = 15 -- this also affects dig (in seconds) / isso afeta dig tambÈm (em segundos)
+intervalToRegrowBushAndStones = 15 -- this also affects dig (in seconds) / isso afeta dig tamb√©m (em segundos)
 nurseHealsOnlyInPZ = true -- true = precisa estar em pz pra falar com a nurse
 accountManagerOutfit = {lookType = 304, lookHead = 1, lookBody = 1, lookLegs = 1, lookFeet = 1}
 accountManagerRandomPokemonOutfit = true -- se true, quando o acc manager logar, vai ter uma outfit de pokemon aleatoria
-reloadHighscoresWhenUsingPc = true -- talvez dÍ lag, lembrando que tem uma opÁ„o no config.lua que indica o intervalo do update das highscores
-backupPos = {x = 4, y = 3, z = 10} -- alguma pos para criar monstros quando tentar sair do fly/ride/surf em lugares que n„o s„o muito espaÁosos
+reloadHighscoresWhenUsingPc = true -- talvez d√™ lag, lembrando que tem uma op√ß√£o no config.lua que indica o intervalo do update das highscores
+backupPos = {x = 4, y = 3, z = 10} -- alguma pos para criar monstros quando tentar sair do fly/ride/surf em lugares que n√£o s√£o muito espa√ßosos
 nurseHealsPokemonOut = true
 maximumBoost = 50
 boost_rate = 3.5
@@ -2029,7 +2029,7 @@ movestable = {
 	      move9 = {name = "Draco Meteor", level = 165, cd = 60, dist = 1, target = 0, f = 150, t = "dragon"},
           move10 = {name = "Scary Face", level = 150, cd = 45, dist = 1, target = 0, f = 0, t = "ghost"},		  
 		 },		 
-		 ------------- [ ConfiguraÁ„o dos novo 9 shiny's ] --
+		 ------------- [ Configura√ß√£o dos novo 9 shiny's ] --
 ["Shiny Mr. Mime"] =   {move1 = {name = "Doubleslap", level = 100, cd = 10, dist = 1, target = 1, f = 25, t = "normal"},
           	  move2 = {name = "Psywave", level = 100, cd = 15, dist = 1, target = 0, f = 75, t = "psychic"},
           	  move3 = {name = "Magical Leaf", level = 100, cd = 15, dist = 10, target = 1, f = 35, t = "grass"},
@@ -5509,18 +5509,20 @@ surfs = {
 
 --------
 pokeballs = {
-["normal"] =      {effect = 188, on = 11826, use = 11827, off = 11828, all = {11826, 11827, 11828}},
-["ultra"] =       {effect = 188, on = 11829, use = 11830, off = 11831, all = {11829, 11830, 11831}},
-["super"] =       {effect = 190, on = 11835, use = 11836, off = 11837, all = {11835, 11836, 11837}},
-["great"] =       {effect = 189, on = 11832, use = 11833, off = 11834, all = {11832, 11833, 11834}},
-["saffari"] =     {effect = 195, on = 10975, use = 10976, off = 10977, all = {10975, 10976, 10977}},    --alterado v1.9
-["dark"] =        {effect = 196, on = 12826, use = 12827, off = 12828, all = {12826, 12827, 12828}},
-["shinypoke"] = {effect = 188, on = 11737, use = 11738, off = 11739, all = {11737, 11738, 11739}},
-["shinygreat"] =  {effect = 189, on = 11740, use = 11741, off = 11742, all = {11740, 11741, 11742}},
-["shinysuper"] =  {effect = 190, on = 11743, use = 11744, off = 11745, all = {11743, 11744, 11745}},
-["shinyultra"] =  {effect = 188, on = 11746, use = 11747, off = 11748, all = {11746, 11747, 11748}},
-["shinysaffari"] = {effect = 195, on = 12621, use = 12622, off = 12623, all = {12621, 12622, 12623}},   --alterado v1.9
-["shinydark"] =   {effect = 196, on = 12829, use = 12830, off = 12831, all = {12829, 12830, 12831}},
+-- START Ball System
+["normal"] =      {effect = 188, empty = 2395, alive = 2383, inuse = 2384, dead = 2391, on = 2383, use = 2384, off = 2391, all = {2383, 2384, 2391, 11826, 11827, 11828}},
+["great"] =       {effect = 189, empty = 2396, alive = 2385, inuse = 2386, dead = 2392, on = 2385, use = 2386, off = 2392, all = {2385, 2386, 2392, 11832, 11833, 11834}},
+["super"] =       {effect = 190, empty = 2397, alive = 2387, inuse = 2388, dead = 2393, on = 2387, use = 2388, off = 2393, all = {2387, 2388, 2393, 11835, 11836, 11837}},
+["ultra"] =       {effect = 188, empty = 2398, alive = 2389, inuse = 2390, dead = 2394, on = 2389, use = 2390, off = 2394, all = {2389, 2390, 2394, 11829, 11830, 11831}},
+["saffari"] =     {effect = 195, empty = 12617, alive = 10975, inuse = 10976, dead = 10977, on = 10975, use = 10976, off = 10977, all = {10975, 10976, 10977}},
+["dark"] =        {effect = 196, empty = 12832, alive = 12826, inuse = 12827, dead = 12828, on = 12826, use = 12827, off = 12828, all = {12826, 12827, 12828}},
+["shinypoke"] =   {effect = 188, empty = 2395, alive = 2383, inuse = 2384, dead = 2391, on = 2383, use = 2384, off = 2391, all = {2383, 2384, 2391, 11737, 11738, 11739}},
+["shinygreat"] =  {effect = 189, empty = 2396, alive = 2385, inuse = 2386, dead = 2392, on = 2385, use = 2386, off = 2392, all = {2385, 2386, 2392, 11740, 11741, 11742}},
+["shinysuper"] =  {effect = 190, empty = 2397, alive = 2387, inuse = 2388, dead = 2393, on = 2387, use = 2388, off = 2393, all = {2387, 2388, 2393, 11743, 11744, 11745}},
+["shinyultra"] =  {effect = 188, empty = 2398, alive = 2389, inuse = 2390, dead = 2394, on = 2389, use = 2390, off = 2394, all = {2389, 2390, 2394, 11746, 11747, 11748}},
+["shinysaffari"] = {effect = 195, empty = 12617, alive = 10975, inuse = 10976, dead = 10977, on = 10975, use = 10976, off = 10977, all = {10975, 10976, 10977}},
+["shinydark"] =   {effect = 196, empty = 12832, alive = 12826, inuse = 12827, dead = 12828, on = 12826, use = 12827, off = 12828, all = {12826, 12827, 12828}},
+-- END Ball System
 ["gengar"] =      {effect = 188, on = 12861, use = 12862, off = 12863, all = {12861, 12862, 12863}},
 ["abra"] =      {effect = 188, on = 12864, use = 12865, off = 12866, all = {12864, 12865, 12866}},
 ["aerodactyl"] =      {effect = 188, on = 12867, use = 12868, off = 12869, all = {12867, 12868, 12869}},
@@ -5782,7 +5784,7 @@ pokeballs = {
 ["shiny zubat"] =      {effect = 188, on = 13611, use = 13612, off = 13613, all = {13611, 13612, 13613}},
 ["shuckle"] =      {effect = 188, on = 13614, use = 13615, off = 13616, all = {13614, 13615, 13616}},
 ["skarmory"] =      {effect = 188, on = 13617, use = 13618, off = 13619, all = {13617, 13618, 13619}},
-["Skiploom"] =      {effect = 188, on = 13620, use = 13621, off = 13622, all = {13620, 13621, 13622}}, -------\/ diferenÁa  nos numeros devido ao erro com o icon do golbat
+["Skiploom"] =      {effect = 188, on = 13620, use = 13621, off = 13622, all = {13620, 13621, 13622}}, -------\/ diferen√ßa  nos numeros devido ao erro com o icon do golbat
 ["slowbro"] =      {effect = 188, on = 13626, use = 13627, off = 13628, all = {13626, 13627, 13628}},
 ["slowking"] =      {effect = 188, on = 13629, use = 13630, off = 13631, all = {13629, 13630, 13631}},
 ["slowpoke"] =      {effect = 188, on = 13632, use = 13633, off = 13634, all = {13632, 13633, 13634}},
@@ -5990,7 +5992,7 @@ pokeballs = {
 }
 --------
 icons = {
-["Gengar"] = { on = 12861, off = 12863, use = 12862 }, -- AtenÁ„o!!!
+["Gengar"] = { on = 12861, off = 12863, use = 12862 }, -- Aten√ß√£o!!!
 ["Abra"] =   { on = 12864, off = 12866, use = 12865 },
 ["Aerodactyl"] =   { on = 12867, off = 12869, use = 12868 },
 ["Aipom"] =   { on = 12870, off = 12872, use = 12871 },
@@ -6462,7 +6464,7 @@ effectiveness = {
 -- defense = defense por level
 -- agility = speed base dos pokes
 -- specialattack = special attack que ganha por level
--- exp = exp que d· a cada level que tem (somada a exp base, no xml do poke)                 
+-- exp = exp que d√° a cada level que tem (somada a exp base, no xml do poke)                 
 -- vitality = vida que o poke ganha pra cada vitality que tem
 
 pokes = {          --alterado v1.8 \/\/ toda a tabela, recebeu um novo 'atributo', wildLvl...
@@ -10326,7 +10328,7 @@ pokesPrice = {
 ["Dragonair"] =  65000,
 ["Dragonite"] =  125000,
  
--- Segunda GeraÁ„o
+-- Segunda Gera√ß√£o
 
 ["Chikorita"] = 3000,
 ["Bayleef"] = 8000,

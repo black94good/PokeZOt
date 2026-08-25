@@ -24,27 +24,31 @@ end
 function onCreatureSay(cid, type, msg)
 msg = string.lower(msg)
 if (msgcontains(msg, 'hi') and (focus == 0)) and getDistanceToCreature(cid) < 3 then
-   selfSay('Olá a entrada no Saffari custará 1k vc aceita??')
+   selfSay('OlÃ¡ a entrada no Saffari custarÃ¡ 1k vc aceita??')
    focus = cid
    talk_start = os.clock()
 elseif (msgcontains(msg, 'yes') ) then
-   if getPlayerItemCount(cid,2391) >= 1 or getPlayerItemCount(cid,2394) >= 1 or getPlayerItemCount(cid,2392) >= 1 or getPlayerItemCount(cid,2393) >= 1 then
-      selfSay("Você não pode entrar no Saffari com nenhuma outra ball exceto a Saffari!! Cya")
+   -- START Ball System
+   if getPlayerItemCount(cid, pokeballs.normal.empty) >= 1 or getPlayerItemCount(cid, pokeballs.great.empty) >= 1 or getPlayerItemCount(cid, pokeballs.super.empty) >= 1 or getPlayerItemCount(cid, pokeballs.ultra.empty) >= 1 or getPlayerItemCount(cid, pokeballs.dark.empty) >= 1 then
+   -- END Ball System
+      selfSay("VocÃª nÃ£o pode entrar no Saffari com nenhuma outra ball exceto a Saffari!! Cya")
       focus = 0
       talk_start = 0
    elseif getPlayerStorageValue(cid, 98796) >= 1 or getPlayerStorageValue(cid, 98797) >= 1 then
-      selfSay("Você já está na saffari zone!")
+      selfSay("VocÃª jÃ¡ estÃ¡ na saffari zone!")
       focus = 0
       talk_start = 0
    elseif doPlayerRemoveMoney(cid, 100000) then --1000dl --alterado v1.9
       setPlayerStorageValue(cid, 98796, 1)
       setPlayerStorageValue(cid, 98797, 1)
-      doPlayerAddItem(cid, 12617, 70)  --alterado v1.9
+      -- START Ball System
+      doPlayerAddItem(cid, pokeballs.saffari.empty, 70)
+      -- END Ball System
       doTeleportThing(cid, SafariEnter)
       doSendMagicEffect(getThingPos(cid), 21)
       talk_start = os.clock()
    else
-      selfSay("Você não tem dinheiro suficiente")   --alterado v1.9
+      selfSay("VocÃª nÃ£o tem dinheiro suficiente")   --alterado v1.9
       focus = 0
       talk_start = 0
    end

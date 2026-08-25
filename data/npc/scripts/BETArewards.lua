@@ -15,12 +15,14 @@ if(not npcHandler:isFocused(cid)) then
 return false
 end
 
+-- START Ball System
 premio = {      --id box / qntdade / id balls
-[-1] = {premio = {11638, {10, 2391}}, level = 20}, --box +1
-[0] = {premio = {11639, {15, 2392}}, level = 50}, --box +2
-[1] = {premio = {11640, {35, 2392}}, level = 90}, --box +3
-[2] = {premio = {11641, {50, 2392}}, level = 150}  --box +4
+[-1] = {premio = {11638, {10, pokeballs.great.empty}}, level = 20}, --box +1
+[0] = {premio = {11639, {15, pokeballs.ultra.empty}}, level = 50}, --box +2
+[1] = {premio = {11640, {35, pokeballs.ultra.empty}}, level = 90}, --box +3
+[2] = {premio = {11641, {50, pokeballs.ultra.empty}}, level = 150}  --box +4
 }
+-- END Ball System
 
 if msgcontains(string.lower(msg), 'rewards') or msgcontains(string.lower(msg), 'reward') then
     if premio[getPlayerStorageValue(cid, 85499)] then

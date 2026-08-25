@@ -391,7 +391,7 @@ local slot = getPlayerSlotItem(cid, 8)
 if slot.itemid > 0 and isPokeball(slot.itemid) then
    if getItemAttribute(slot.uid, "poke") == poke and getItemAttribute(slot.uid, "task") and getItemAttribute(slot.uid, "task") >= 1 then
       doRemoveItem(slot.uid, 1)
-      doTransformItem(getPlayerSlotItem(cid, CONST_SLOT_LEGS).uid, 2395)
+      doTransformItem(getPlayerSlotItem(cid, CONST_SLOT_LEGS).uid, 11138)
       return true
    end
 end

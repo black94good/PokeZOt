@@ -53,7 +53,9 @@ function iniciais(cid)
 
             local btype = "normal"
             addPokeToPlayer(cid, poke, 200, nil, btype)
-            doPlayerAddItem(cid, 2392, 100)
+            -- START Ball System
+            doPlayerAddItem(cid, pokeballs.ultra.empty, 100)
+            -- END Ball System
             doPlayerAddItem(cid, 12344, 100)
             setPlayerStorageValue(cid, 10000, 1)
             return true

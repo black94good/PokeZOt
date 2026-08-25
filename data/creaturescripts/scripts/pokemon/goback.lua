@@ -52,7 +52,9 @@ function onLogout(cid)
 		   doItemSetAttribute(thisitem.uid, "hp", (getCreatureHealth(summon) / getCreatureMaxHealth(summon)))
         end                                                          
         setPlayerStorageValue(cid, 212124, 0)
-        doTransformItem(thisitem.uid, pokeballs[btype].on)
+        -- START Ball System
+        setPhysicalPokemonBall(thisitem.uid, ballName, btype, "alive")
+        -- END Ball System
 		doSendMagicEffect(getThingPos(summon), pokeballs[btype].effect)
 		doRemoveCreature(summon)
 	end
@@ -106,7 +108,9 @@ function onDeath(cid, deathList)
         end
 
 		doSendMagicEffect(getThingPos(cid), pokeballs[btype].effect)
-        doTransformItem(thisball.uid, pokeballs[btype].off)
+        -- START Ball System
+        setPhysicalPokemonBall(thisball.uid, ballName, btype, "dead")
+        -- END Ball System
 
 		doPlayerSendTextMessage(owner, 22, "Your pokemon fainted.")
 

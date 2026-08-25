@@ -21,7 +21,9 @@ function creatureSayCallback(cid, type, msg)
    }
    local rewards = {
       {id = 2152, qt = 80}, --money
-	  {id = 2392, qt = 55}, -- ultra ball
+	  -- START Ball System
+	  {id = pokeballs.ultra.empty, qt = 55}, -- ultra ball
+	  -- END Ball System
       {id = 11452, qt = 1}, --engima stone
    }
    local stoFinish = 92110

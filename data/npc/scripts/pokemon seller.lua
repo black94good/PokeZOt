@@ -152,7 +152,7 @@ local pokePrice = {
 ["Dragonair"] =  65000,
 ["Dragonite"] =  125000,
  
--- Segunda Geração
+-- Segunda Geraï¿½ï¿½o
 
 ["Chikorita"] = 3000,
 ["Bayleef"] = 8000,
@@ -336,7 +336,7 @@ function sellPokemon(cid, name, price)
              selfSay("Wow! Thanks for this wonderful "..name.."! Take yours "..price.." dollars. Would you like to sell another pokemon?")
              doPlayerAddMoney(cid, (price * 100) + precocertos)
 			 doRemoveItem(getPlayerSlotItem(cid, 8).uid, 1)              --alterado v1.6
-             doTransformItem(getPlayerSlotItem(cid, CONST_SLOT_LEGS).uid, 2395)
+             doTransformItem(getPlayerSlotItem(cid, CONST_SLOT_LEGS).uid, 11138)
              return true
           end
        end
