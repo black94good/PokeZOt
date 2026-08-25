@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<npc name="Mucryxx  " speed="50">
+
+	<health now="6630" max="6630"/>
+
+	<look type="520" head="114" body="0" legs="95" feet="78"/>
+
+	<parameters>
+
+
+	</parameters>
+
+</npc>

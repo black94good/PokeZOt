@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Henrique Helder" script="default.lua" walkinterval="0" floorchange="0" speed="0">
+<health now="150" max="150"/>
+<look type="1419" head="10" body="15" legs="20" feet="25"/>
+<parameters>
+<parameter key="message_greet" value="Olá |PLAYERNAME|! Vendo Helds Itens Tier 1 por 500k e Tier 2 por 700k e Tier 3 por 1.5kk, fale  {trade} para comprar nossos produtos!"/>
+<parameter key="message_farewell" value="Até Já!"/>
+<parameter key="message_idletimeout" value="Volte Sempre!"/>
+<parameter key="message_walkaway" value="Tabom Tchau!"/>
+<parameter key="module_shop" value="1"/>
+<parameter key="shop_buyable" value= "X-Boost T1,13990,50000000;
+X-Boost T2,13991,70000000;
+X-Boost T3,13992,150000000;
+X-Defense T1,13976,50000000;
+X-Defense T2,13977,70000000;
+X-Defense T3,13978,150000000;
+Y-Cure T1,13983,50000000;
+Y-Cure T2,13984,70000000;
+Y-Cure T3,13985,150000000;
+X-Return T1,13969,50000000;
+X-Return T2,13970,70000000;
+X-Return T3,13971,150000000;
+X-Attack T1,13948,50000000;
+X-Attack T2,13949,70000000;
+X-Attack T3,13950,150000000;
+Y-Regeneration T1,13941,50000000;
+Y-Regeneration T2,13942,70000000;
+Y-Regeneration T3,13943,150000000;"/>
+<parameter key="shop_sellable" value= "X-Boost T1,13990,30000000;
+X-Boost T2,13991,50000000;
+X-Boost T3,13992,100000000;
+X-Defense T1,13976,30000000;
+X-Defense T2,13977,50000000;
+X-Defense T3,13978,100000000;
+Y-Cure T1,13983,30000000;
+Y-Cure T2,13984,50000000;
+Y-Cure T3,13985,100000000;
+X-Return T1,13969,30000000;
+X-Return T2,13970,50000000;
+X-Return T3,13971,100000000;
+X-Attack T1,13948,30000000;
+X-Attack T2,13949,50000000;
+X-Attack T3,13950,100000000;
+Y-Regeneration T1,13941,30000000;
+Y-Regeneration T2,13942,50000000;
+Y-Regeneration T3,13943,100000000;"/>
+</parameters>
+</npc>

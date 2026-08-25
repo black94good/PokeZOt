@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monster name="Ash Snorlax" nameDescription="an ash snorlax" race="normal" experience="1212" speed="230" manacost="0">
+    <health now="310" max="310"/>
+    <look type="402" head="80" body="95" legs="95" feet="113" corpse="11965"/>
+    <targetchange interval="10000" chance="0"/>
+    <strategy attack="100" defense="0"/>
+    <flags>
+        <flag summonable="1"/>
+        <flag attackable="1"/>
+        <flag hostile="1"/>
+        <flag illusionable="1"/>
+        <flag convinceable="1"/>
+        <flag pushable="1"/>
+        <flag canpushitems="0"/>
+        <flag hungerdelay="10"/>
+        <flag canpushcreatures="0"/>
+        <flag targetdistance="1"/>
+        <flag staticattack="97"/>
+        <flag runonhealth="0"/>
+        <flag hungerdelay="1"/>
+    </flags>
+    <attacks>
+        <attack name="melee" interval="2000" chance="100" range="1" min="-50" max="-100"/>
+        <attack name="Scratch" interval="275" chance="5" range="1"/>
+        <attack name="Bite" interval="285" chance="3" range="1"/>
+        <attack name="Mega Punch" interval="300" chance="5" range="1"/>
+        <attack name="Headbutt" interval="296" chance="5" range="1"/>
+        <attack name="Body Slam" interval="293" chance="3" range="1"/>
+        <attack name="Dizzy Punch" interval="228" chance="4" range="1"/>
+        <attack name="Crusher Stomp" interval="372" chance="9" range="8"/>
+        <attack name="Rest" interval="3300" chance="3" range="8"/>
+        <attack name="Hyper Beam" interval="390" chance="8" range="8"/>
+    </attacks>
+    <defenses armor="0" defense="0"/>
+    <voices interval="5000" chance="10">
+        <voice sentence="SNORLAX!"/>
+    </voices>
+    <loot>
+        <item id="12173" chance="40000" count="1" countmax="1"/>
+        <item id="12214" chance="30000" countmax="1"/>
+        <item id="12222" chance="40000" count="1" countmax="1"/>
+        <item id="12218" chance="30000" countmax="1"/>
+        <item id="12215" chance="30000" count="1" countmax="1"/>
+        <item id="11453" chance="4000" count="1" countmax="1"/>
+    </loot>
+    <script>
+        <event name="Spawn"/>
+    </script>
+</monster>

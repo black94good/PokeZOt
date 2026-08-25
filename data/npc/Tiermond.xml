@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Tier Donater" script="data/npc/scripts/tiermond.lua" walkinterval="3000" floorchange="0" access="5" >
+<health now="150" max="150"/>
+<look type="606" head="0" body="25" legs="114" feet="0"/>
+<parameters>
+<parameter key="message_greet" value="Bem Vindo ao Shop! Aqui voce pode comprar {X-Attack T7}(15 Diamond)  ou  {X-Defense T7}(15 Diamond)  ou  {X-Boost T7}(15 Diamond)  ou  {X-Return T7}(30 Diamond)  ou  {Y-Regeneration T7}(20 Diamond)  ou  {Y-Cure T7}(20 Diamond)."/>
+<parameter key="message_farewell" value="Tchau! VOlte Sempre."/>
+</parameters>
+</npc>

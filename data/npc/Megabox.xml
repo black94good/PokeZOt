@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<npc name="Aventureiro Da Mega Boxs" script="data/npc/scripts/megabox.lua" walkinterval="3000" floorchange="0">
+	<health now="100" max="100"/>
+	<look type="531" head="0" body="38" legs="114" feet="94" addons="0"/>
+	<parameters>
+		<parameter key="message_greet" value="Ola |PLAYERNAME|, Eu posso Te levar a {Megabox} Quest, se você me der um iten raro chamado Mega Cupom, que somente pode ser obtido em uma quest, que se localiza depois da B15."/>
+		<parameter key="message_farewell" value="Adeus!"/>
+		<parameter key="message_walkaway" value="Que bons ventos o levem!"/>
+	</parameters>
+</npc> 

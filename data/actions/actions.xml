@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+
+
+
+<!-- Quests -->		
+	<action actionid="40000-42190" event="script" value="Quests/Quests Itens.lua"/>
+	<action actionid="7500-7800" event="script" value="Quests/Quests Pokes.lua"/>
+	<action itemid="17062;11638-11641;14207-14217;14574-14577;22049-22052;17894-17902;8110" event="script" value="Quests/Boxes.lua"/>
+
+
+
+
+
+<!-- POTIONS / ANTIDOTE -->
+	<action itemid="12343;12345-12348" event="script" value="pokemon/potions/potion.lua" allowfaruse="1" blockwalls="1"/>
+	<action itemid="12349" event="script" value="pokemon/potions/medicine.lua" allowfaruse="1" blockwalls="1"/>
+	<action itemid="12344" event="script" value="pokemon/potions/revive.lua" allowfaruse="1" blockwalls="1"/>
+
+<!-- Sistemas básicos -->
+	--- Bike
+    <action itemid="12420" event="script" value="pokemon/bike.lua"/>
+
+	--- LOJA DE ROUPAS 
+	<action itemid="2382" event="script" value="pokemon/pokedex.lua" allowfaruse="1" blockwalls="1"/>
+	<action itemid="7385" event="script" value="pokemon/pokeinfo.lua"/>
+
+	--- LOJA DE ROUPAS 
+	<action itemid="3896;3897;3867;3868" event="script" value="pokemon/roupas.lua"/>
+
+	-- Helds
+	<action itemid="19095;19099;13941-13947;13948-13954;13969-13975;13976-13982;13983-13989;13990-13996" event="script" value="pokemon/HeldSystem.lua"/>
+
+	-- Boost Stone
+	<action itemid="14261" event="script" value="pokemon/boost stone.lua" allowfaruse="1"/>
+
+	-- ORDER
+	<action itemid="2391-2394;12617;12832" event="script" value="pokemon/catch.lua" allowfaruse="1"/>                   <!-- alterado v1.9 -->
+	-- Catch
+	<action itemid="2550" event="script" value="pokemon/order.lua" allowfaruse="1" blockwalls="0"/> 	
+	
+	-- Icone System
+	<action itemid="11989" event="script" value="pokemon/icons.lua"/>
+	<action itemid="2589" event="script" value="pokemon/iconsDP.lua"/>
+	<action itemid="11826-11837;11737-11748;10975-10977;12621-12623;12826-12831;12861-13781;13797-13823;13836-13861;13902-13904;13919-13930;13933-13935;13937-13939;14020-14022;14015-14017;14033-14035;14038-14040;14043-14045;14086-14088;14091-14093;14096-14098;14101-14103;14106-14108;14111-14113;14116-14118;14121-14123;14126-14128;14136-14138;14141-14143;14157-14159;14163-14165;14173-14175;14081-14083;14190-14192;14178-14180;14193-14195;14199-14204;14223-14246;14262-14276;14287-14304;14340-14366;14491-14554;14578-14586;14593-14595;14598-14657" event="script" value="pokemon/goback.lua"/> -- CASSINO
+	<action itemid="2547" event="script" value="pokemon/coincase.lua"/>
+
+	-- Pc / Rank
+	<action itemid="11462-11469;14565-14566" event="script" value="pokemon/computer.lua"/>
+
+	-- BOOST MACHINE
+	<action itemid="12352-12357" event="script" value="pokemon/boost.lua"/>
+
+
+
+	-- PEDRAS DE EVO
+	<action itemid="11441-11454;12232;12242;12244;12417;12419;12401-12414;14571" event="script" value="pokemon/evolution.lua" allowfaruse="1"/>
+
+
+
+	<!--	<action uniqueid="35411" event="script" value="other/constructionhat.lua"/> -->
+	<action itemid="7503" event="script" value="other/constructionkits.lua"/>
+	<action itemid="7700" event="script" value="other/constructionkits.lua"/>
+	
+	<!-- Bed construction kits -->
+	<action fromid="7904" toid="7907" event="script" value="other/furniturebeds.lua"/>
+	
+	<!-- Music, instruments -->
+	<action fromid="2070" toid="2085" event="script" value="other/music.lua"/>
+	<action itemid="2095" event="script" value="other/music.lua"/>
+	<action itemid="2332" event="script" value="other/music.lua"/>
+	<action itemid="2364" event="script" value="other/music.lua"/>
+	<action fromid="2367" toid="2374" event="script" value="other/music.lua"/>
+	<action fromid="3951" toid="3953" event="script" value="other/music.lua"/>
+	<action itemid="3957" event="script" value="other/music.lua"/>
+	<action itemid="5786" event="script" value="other/music.lua"/>
+	<action itemid="6572" event="script" value="other/music.lua"/>
+	
+	<!-- Teleport (stairs, ladders) -->
+	<action itemid="430" event="script" value="other/teleport.lua"/>
+	<action itemid="1368" event="script" value="other/teleport.lua"/>
+	<action itemid="1369" event="script" value="other/teleport.lua"/>
+	<action itemid="1386" event="script" value="other/teleport.lua"/>
+	<action itemid="3678" event="script" value="other/teleport.lua"/>
+	<action itemid="5543" event="script" value="other/teleport.lua"/>
+	<action itemid="8580" event="script" value="other/teleport.lua"/>
+	<action itemid="8599" event="script" value="other/teleport.lua"/>
+	<action itemid="10035" event="script" value="other/teleport.lua"/>
+	
+	<!-- Destroy -->
+	<action id="2321;2390-2398;2400-2404;2406-2409;2411-2417;2419;2421-2441;2443-2454;3961-3964;3966;4846;6101;6528;6553;7379-7392;7402-7437;7449;7451-7456;7744-7758;7763-7777;7854-7883;7958;8601-8602;8924-8932;10293" event="script" value="other/destroy.lua"/>
+	
+	<!-- Bread Creating -->
+	<action itemid="2692" event="script" value="other/createbread.lua"/>
+	<action itemid="2694" event="script" value="other/createbread.lua"/>
+	
+	<!-- Windows -->
+	<action fromid="5303" toid="5305" event="script" value="other/windows.lua"/>
+	<action fromid="6436" toid="6473" event="script" value="other/windows.lua"/>
+	<action fromid="6788" toid="6791" event="script" value="other/windows.lua"/>
+	<action fromid="7025" toid="7032" event="script" value="other/windows.lua"/>
+	<action fromid="10264" toid="10267" event="script" value="other/windows.lua"/>
+	<action fromid="10488" toid="10491" event="script" value="other/windows.lua"/>
+	
+	<!-- Doors -->
+	<action fromid="1209" toid="1214" event="script" value="other/doors.lua"/>
+	<action fromid="1219" toid="1262" event="script" value="other/doors.lua"/>
+	<action fromid="1539" toid="1542" event="script" value="other/doors.lua"/>
+	<action fromid="2086" toid="2092" event="script" value="other/doors.lua"/>
+	<action fromid="3535" toid="3552" event="script" value="other/doors.lua"/>
+	<action fromid="4913" toid="4918" event="script" value="other/doors.lua"/>
+	<action fromid="5082" toid="5085" event="script" value="other/doors.lua"/>
+	<action fromid="5098" toid="5145" event="script" value="other/doors.lua"/>
+	<action fromid="5278" toid="5295" event="script" value="other/doors.lua"/>
+	<action fromid="5515" toid="5518" event="script" value="other/doors.lua"/>
+	<action fromid="5732" toid="5737" event="script" value="other/doors.lua"/>
+	<action fromid="5745" toid="5749" event="script" value="other/doors.lua"/>
+	<action fromid="6192" toid="6209" event="script" value="other/doors.lua"/>
+	<action fromid="6249" toid="6266" event="script" value="other/doors.lua"/>
+	<action fromid="6795" toid="6802" event="script" value="other/doors.lua"/>
+	<action fromid="6891" toid="6908" event="script" value="other/doors.lua"/>
+	<action fromid="7033" toid="7050" event="script" value="other/doors.lua"/>
+	<action fromid="7054" toid="7057" event="script" value="other/doors.lua"/>
+	<action fromid="8541" toid="8558" event="script" value="other/doors.lua"/>
+	<action fromid="9165" toid="9184" event="script" value="other/doors.lua"/>
+	<action fromid="9267" toid="9284" event="script" value="other/doors.lua"/>
+	<action itemid="10032" event="script" value="other/doors.lua"/>
+	<action itemid="10091" event="script" value="other/doors.lua"/>
+	<action fromid="10268" toid="10285" event="script" value="other/doors.lua"/>
+	<action fromid="10468" toid="10486" event="script" value="other/doors.lua"/>
+	<action fromid="10774" toid="10776" event="script" value="other/doors.lua"/>
+	<action fromid="10779" toid="10785" event="script" value="other/doors.lua"/>
+	<action fromid="10788" toid="10791" event="script" value="other/doors.lua"/>
+	<action fromid="15872" toid="15879" event="script" value="other/doors.lua"/>
+	<action itemid="25601;25602;25609;25611;25673;25679;25670;25672;25069;25070;25071;25072;25073;25074;25911;25912;25902;25903" event="script" value="other/doors.lua"/>
+
+
+	<!-- Decay To -->
+	<action fromid="2041" toid="2042" event="script" value="other/decayto.lua"/>
+	<action fromid="2044" toid="2045" event="script" value="other/decayto.lua"/>
+	<action fromid="2047" toid="2048" event="script" value="other/decayto.lua"/>
+	<action fromid="2050" toid="2055" event="script" value="other/decayto.lua"/>
+	<action fromid="5812" toid="5813" event="script" value="other/decayto.lua"/>
+	<action itemid="7183" event="script" value="other/decayto.lua"/>
+	<action itemid="9006" event="script" value="other/decayto.lua"/>
+	<action fromid="9976" toid="9979" event="script" value="other/decayto.lua"/>
+	
+	<!-- Other -->
+	<action itemid="2114" event="script" value="other/piggybank.lua"/>
+	<action fromid="6570" toid="6571" event="script" value="other/surprisebag.lua"/>
+	<action fromid="5792" toid="5797" event="script" value="other/dice.lua"/>
+	<action itemid="6576" event="script" value="other/fireworksrocket.lua"/>
+	<action itemid="6578" event="script" value="other/partyhat.lua"/>
+	<action itemid="2785" event="script" value="other/blueberrybush.lua"/>
+	<action itemid="2579" event="script" value="other/trap.lua"/>
+	
+	<action itemid="5791" event="script" value="other/stuffeddragon.lua"/>
+	<action itemid="6566" event="script" value="other/stuffeddragon.lua"/>
+
+
+	<!-- Tools -->
+	<action itemid="2420" event="script" value="tools/machete.lua"/>
+	<action itemid="2442" event="script" value="tools/machete.lua"/>
+	<action itemid="2554" event="script" value="tools/shovel.lua"/>
+	<action itemid="5710" event="script" value="tools/shovel.lua"/>
+	<action itemid="2120" event="script" value="tools/rope.lua"/>
+	<action itemid="7731" event="script" value="tools/rope.lua"/>
+	<action itemid="2553" event="script" value="tools/pick.lua"/>
+	<action itemid="5908" event="script" value="tools/obsidian_knife.lua"/>
+	<action itemid="5942" event="script" value="tools/blessed_wooden_stake.lua"/>
+
+
+  </actions>

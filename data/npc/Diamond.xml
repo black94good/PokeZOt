@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc name="Shop Donater" script="data/npc/scripts/diamond.lua" walkinterval="3000" floorchange="0" access="5" >
+<health now="150" max="150"/>
+<look type="606" head="0" body="25" legs="114" feet="0"/>
+<parameters>
+<parameter key="message_greet" value="Bem Vindo ao Shop |PLAYERNAME|! Aqui voce pode comprar 100 {Rare candy}(5 Diamond)  ou  {Master Ball}(20 Diamond)  ou  {Shiny Poke Box 1}(10 Diamond)  ou  {Shiny Poke Box 2}(15 Diamond)  ou  {Shiny Poke Box 3}(25 Diamond)  ou  {Bike}(5 Diamond)  ou  {Cupom}(5 Diamond) ou  {Mega Box}(50 Diamond)."/>
+<parameter key="message_farewell" value="Tchau! VOlte Sempre."/>
+</parameters>
+</npc>

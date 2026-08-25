@@ -1,0 +1,633 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<monsters>
+
+		<monster name="Evolution" file="pokemon/System/Evolution.xml"/>
+
+		<monster name="aHunter" file="pokemon/System/aHunter.xml"/>
+		<monster name="aHunterFemale" file="pokemon/System/aHunterFemale.xml"/>
+		<monster name="aClone" file="pokemon/System/aClone.xml"/>
+
+		<monster name="aRocket" file="pokemon/System/aRocket.xml"/>
+		<monster name="aPolice" file="pokemon/System/aPolice.xml"/>
+		<monster name="aRocketFemale" file="pokemon/System/aRocketFemale.xml"/>
+		<monster name="aPoliceFemale" file="pokemon/System/aPoliceFemale.xml"/>
+
+		<monster name="aCommanderRocket" file="pokemon/System/aCommanderRocket.xml"/>
+		<monster name="aCommanderOfficer" file="pokemon/System/aCommanderOfficer.xml"/>
+		<monster name="aCommanderRocketFemale" file="pokemon/System/aCommanderRocketFemale.xml"/>
+		<monster name="aCommanderOfficerFemale" file="pokemon/System/aCommanderOfficerFemale.xml"/>
+
+<!-- Rank 5  -->
+             <monster name="Seavell Blastoise" file="pokemon/rank 5/seavell blastoise.xml"/>
+             <monster name="Seavell Jynx" file="pokemon/rank 5/seavell jynx.xml"/>
+             <monster name="Seavell Gyarados" file="pokemon/rank 5/seavell gyarados.xml"/>
+             <monster name="Seavell Lapras" file="pokemon/rank 5/seavell lapras.xml"/>
+             <monster name="Seavell Tentacruel" file="pokemon/rank 5/seavell tentacruel.xml"/>
+             <monster name="Seavell Shiny Seadra" file="pokemon/rank 5/seavell shiny seadra.xml"/>
+             <monster name="Seavell Shiny Blastoise" file="pokemon/rank 5/seavell shiny blastoise.xml"/>
+             <monster name="Seavell Shiny Tentacruel" file="pokemon/rank 5/seavell shiny tentacruel.xml"/>
+             <monster name="Volcanic Charizard" file="pokemon/rank 5/volcanic charizard.xml"/>
+             <monster name="Volcanic Magmar" file="pokemon/rank 5/volcanic magmar.xml"/>
+             <monster name="Volcanic Shiny Arcanine" file="pokemon/rank 5/volcanic shiny charizard.xml"/>
+             <monster name="Volcanic Shiny Charizard" file="pokemon/rank 5/volcanic shiny charizard.xml"/>
+             <monster name="Volcanic Typhlosion" file="pokemon/rank 5/volcanic typhlosion.xml"/>
+             <monster name="Naturia Scyther" file="pokemon/rank 5/naturia scyther.xml"/>
+             <monster name="Naturia Venusaur" file="pokemon/rank 5/naturia venusaur.xml"/>
+             <monster name="Naturia Shiny Venusaur" file="pokemon/rank 5/naturia shiny venusaur.xml"/>
+             <monster name="Naturia Shiny Scyther" file="pokemon/rank 5/naturia shiny scyther.xml"/>
+             <monster name="Naturia Shiny Tangela" file="pokemon/rank 5/naturia shiny tangela.xml"/>
+             <monster name="Malefic Misdreavus" file="pokemon/rank 5/malefic misdreavus.xml"/>
+             <monster name="Malefic Umbreon" file="pokemon/rank 5/malefic umbreon.xml"/>
+             <monster name="Malefic Gengar" file="pokemon/rank 5/malefic gengar.xml"/>
+             <monster name="Malefic Shiny Gengar" file="pokemon/rank 5/malefic shiny gengar.xml"/>
+             <monster name="Malefic Shiny Muk" file="pokemon/rank 5/malefic shiny muk.xml"/>
+             <monster name="Raibolt Raichu" file="pokemon/rank 5/raibolt raichu.xml"/>
+             <monster name="Raibolt Electabuzz" file="pokemon/rank 5/raibolt electabuzz.xml"/>
+             <monster name="Raibolt Shiny Raichu" file="pokemon/rank 5/raibolt shiny raichu.xml"/>
+             <monster name="Raibolt Shiny Electabuzz" file="pokemon/rank 5/raibolt shiny electabuzz.xml"/>
+             <monster name="Raibolt Shiny Jolteon" file="pokemon/rank 5/raibolt shiny jolteon.xml"/>
+             <monster name="Psycraft Slowking" file="pokemon/rank 5/psycraft slowking.xml"/>
+             <monster name="Psycraft Alakazam" file="pokemon/rank 5/psycraft alakazam.xml"/>
+             <monster name="Psycraft Shiny Hypno" file="pokemon/rank 5/psycraft shiny hypno.xml"/>
+             <monster name="Psycraft Shiny Abra" file="pokemon/rank 5/psycraft shiny abra.xml"/>
+             <monster name="Psycraft Shiny Alakazam" file="pokemon/rank 5/psycraft shiny alakazam.xml"/>
+             <monster name="Orebound Golem" file="pokemon/rank 5/orebound golem.xml"/>
+             <monster name="Orebound Aerodactyl" file="pokemon/rank 5/orebound aerodactyl.xml"/>
+             <monster name="Orebound Shiny Marowak" file="pokemon/rank 5/orebound shiny marowak.xml"/>
+             <monster name="Orebound Shiny Golem" file="pokemon/rank 5/orebound shiny golem.xml"/>
+             <monster name="Orebound Golden Rhydon" file="pokemon/rank 5/orebound golden rhydon.xml"/>
+             <monster name="Wingeon Dragonite" file="pokemon/rank 5/wingeon dragonite.xml"/>
+             <monster name="Wingeon Shiny Farfetch'd" file="pokemon/rank 5/wingeon shiny farfetch'd.xml"/>
+             <monster name="Wingeon Shiny Pidgeot" file="pokemon/rank 5/wingeon shiny pidgeot.xml"/>
+             <monster name="Wingeon Shiny Fearow" file="pokemon/rank 5/wingeon shiny fearow.xml"/>
+             <monster name="Wingeon Shiny Dragonite" file="pokemon/rank 5/wingeon shiny dragonite.xml"/>
+             <monster name="Gardestriker Shiny Hitmonlee" file="pokemon/rank 5/gardestriker shiny hitmonlee.xml"/>
+             <monster name="Gardestriker Shiny Hitmonchan" file="pokemon/rank 5/gardestriker shiny hitmonchan.xml"/>
+             <monster name="Gardestriker Shiny Hitmontop" file="pokemon/rank 5/gardestriker shiny hitmontop.xml"/>
+             <monster name="Gardestriker Shiny Snorlax" file="pokemon/rank 5/gardestriker shiny snorlax.xml"/>
+             <monster name="Gardestriker Ursaring" file="pokemon/rank 5/gardestriker ursaring.xml"/>
+
+
+
+<!-- pokemon geracao 1 -->
+             <monster name="Bulbasaur" file="pokemon/geracao 1/Bulbasaur.xml"/>
+             <monster name="Ivysaur" file="pokemon/geracao 1/Ivysaur.xml"/>
+             <monster name="Venusaur" file="pokemon/geracao 1/Venusaur.xml"/>
+             <monster name="Charmander" file="pokemon/geracao 1/Charmander.xml"/>
+             <monster name="Charmeleon" file="pokemon/geracao 1/Charmeleon.xml"/>
+             <monster name="Charizard" file="pokemon/geracao 1/Charizard.xml"/>
+             <monster name="Squirtle" file="pokemon/geracao 1/Squirtle.xml"/>
+             <monster name="Wartortle" file="pokemon/geracao 1/Wartortle.xml"/>
+             <monster name="Blastoise" file="pokemon/geracao 1/Blastoise.xml"/>
+             <monster name="Caterpie" file="pokemon/geracao 1/Caterpie.xml"/>
+             <monster name="Metapod" file="pokemon/geracao 1/Metapod.xml"/>
+             <monster name="Butterfree" file="pokemon/geracao 1/Butterfree.xml"/>
+             <monster name="Weedle" file="pokemon/geracao 1/Weedle.xml"/>
+             <monster name="Kakuna" file="pokemon/geracao 1/Kakuna.xml"/>
+             <monster name="Beedrill" file="pokemon/geracao 1/Beedrill.xml"/>
+             <monster name="Pidgey" file="pokemon/geracao 1/Pidgey.xml"/>
+             <monster name="Pidgeotto" file="pokemon/geracao 1/Pidgeotto.xml"/>
+             <monster name="Pidgeot" file="pokemon/geracao 1/Pidgeot.xml"/>
+             <monster name="Rattata" file="pokemon/geracao 1/Rattata.xml"/>
+             <monster name="Raticate" file="pokemon/geracao 1/Raticate.xml"/>
+             <monster name="Spearow" file="pokemon/geracao 1/Spearow.xml"/>
+             <monster name="Fearow" file="pokemon/geracao 1/Fearow.xml"/>
+             <monster name="Ekans" file="pokemon/geracao 1/Ekans.xml"/>
+             <monster name="Arbok" file="pokemon/geracao 1/Arbok.xml"/>
+             <monster name="Pikachu" file="pokemon/geracao 1/Pikachu.xml"/>
+             <monster name="Raichu" file="pokemon/geracao 1/Raichu.xml"/>
+             <monster name="Sandshrew" file="pokemon/geracao 1/Sandshrew.xml"/>
+             <monster name="Sandslash" file="pokemon/geracao 1/Sandslash.xml"/>
+             <monster name="Nidoran Female" file="pokemon/geracao 1/Nidoran Female.xml"/>
+             <monster name="Nidorina" file="pokemon/geracao 1/Nidorina.xml"/>
+             <monster name="Nidoqueen" file="pokemon/geracao 1/Nidoqueen.xml"/>
+             <monster name="Nidoran Male" file="pokemon/geracao 1/Nidoran Male.xml"/>
+             <monster name="Nidorino" file="pokemon/geracao 1/Nidorino.xml"/>
+             <monster name="Nidoking" file="pokemon/geracao 1/Nidoking.xml"/>
+             <monster name="Clefairy" file="pokemon/geracao 1/Clefairy.xml"/>
+             <monster name="Clefable" file="pokemon/geracao 1/Clefable.xml"/>
+             <monster name="Vulpix" file="pokemon/geracao 1/Vulpix.xml"/>
+             <monster name="Ninetales" file="pokemon/geracao 1/Ninetales.xml"/>
+             <monster name="Jigglypuff" file="pokemon/geracao 1/Jigglypuff.xml"/>
+             <monster name="Wigglytuff" file="pokemon/geracao 1/Wigglytuff.xml"/>
+             <monster name="Zubat" file="pokemon/geracao 1/Zubat.xml"/>
+             <monster name="Golbat" file="pokemon/geracao 1/Golbat.xml"/>
+             <monster name="Oddish" file="pokemon/geracao 1/Oddish.xml"/>
+             <monster name="Gloom" file="pokemon/geracao 1/Gloom.xml"/>
+             <monster name="Vileplume" file="pokemon/geracao 1/Vileplume.xml"/>
+             <monster name="Paras" file="pokemon/geracao 1/Paras.xml"/>
+             <monster name="Parasect" file="pokemon/geracao 1/Parasect.xml"/>
+             <monster name="Venonat" file="pokemon/geracao 1/Venonat.xml"/>
+             <monster name="Venomoth" file="pokemon/geracao 1/Venomoth.xml"/>
+             <monster name="Diglett" file="pokemon/geracao 1/Diglett.xml"/>
+             <monster name="Dugtrio" file="pokemon/geracao 1/Dugtrio.xml"/>
+             <monster name="Meowth" file="pokemon/geracao 1/Meowth.xml"/>
+             <monster name="Persian" file="pokemon/geracao 1/Persian.xml"/>
+             <monster name="Psyduck" file="pokemon/geracao 1/Psyduck.xml"/>
+             <monster name="Golduck" file="pokemon/geracao 1/Golduck.xml"/>
+             <monster name="Mankey" file="pokemon/geracao 1/Mankey.xml"/>
+             <monster name="Primeape" file="pokemon/geracao 1/Primeape.xml"/>
+             <monster name="Growlithe" file="pokemon/geracao 1/Growlithe.xml"/>
+             <monster name="Arcanine" file="pokemon/geracao 1/Arcanine.xml"/>
+             <monster name="Poliwag" file="pokemon/geracao 1/Poliwag.xml"/>
+             <monster name="Poliwhirl" file="pokemon/geracao 1/Poliwhirl.xml"/>
+             <monster name="Poliwrath" file="pokemon/geracao 1/Poliwrath.xml"/>
+             <monster name="Abra" file="pokemon/geracao 1/Abra.xml"/>
+             <monster name="Kadabra" file="pokemon/geracao 1/Kadabra.xml"/>
+             <monster name="Alakazam" file="pokemon/geracao 1/Alakazam.xml"/>
+             <monster name="Machop" file="pokemon/geracao 1/Machop.xml"/>
+             <monster name="Machoke" file="pokemon/geracao 1/Machoke.xml"/>
+             <monster name="Machamp" file="pokemon/geracao 1/Machamp.xml"/>
+             <monster name="Bellsprout" file="pokemon/geracao 1/Bellsprout.xml"/>
+             <monster name="Weepinbell" file="pokemon/geracao 1/Weepinbell.xml"/>
+             <monster name="Victreebel" file="pokemon/geracao 1/Victreebel.xml"/>
+             <monster name="Tentacool" file="pokemon/geracao 1/Tentacool.xml"/>
+             <monster name="Tentacruel" file="pokemon/geracao 1/Tentacruel.xml"/>
+             <monster name="Geodude" file="pokemon/geracao 1/Geodude.xml"/>
+             <monster name="Graveler" file="pokemon/geracao 1/Graveler.xml"/>
+             <monster name="Golem" file="pokemon/geracao 1/Golem.xml"/>
+             <monster name="Ponyta" file="pokemon/geracao 1/Ponyta.xml"/>
+             <monster name="Rapidash" file="pokemon/geracao 1/Rapidash.xml"/>
+             <monster name="Slowpoke" file="pokemon/geracao 1/Slowpoke.xml"/>
+             <monster name="Slowbro" file="pokemon/geracao 1/Slowbro.xml"/>
+             <monster name="Magnemite" file="pokemon/geracao 1/Magnemite.xml"/>
+             <monster name="Magneton" file="pokemon/geracao 1/Magneton.xml"/>
+             <monster name="Farfetch'd" file="pokemon/geracao 1/Farfetch'd.xml"/>
+             <monster name="Doduo" file="pokemon/geracao 1/Doduo.xml"/>
+             <monster name="Dodrio" file="pokemon/geracao 1/Dodrio.xml"/>
+             <monster name="Seel" file="pokemon/geracao 1/Seel.xml"/>
+             <monster name="Dewgong" file="pokemon/geracao 1/Dewgong.xml"/>
+             <monster name="Grimer" file="pokemon/geracao 1/Grimer.xml"/>
+             <monster name="Muk" file="pokemon/geracao 1/Muk.xml"/>
+             <monster name="Shellder" file="pokemon/geracao 1/Shellder.xml"/>
+             <monster name="Cloyster" file="pokemon/geracao 1/Cloyster.xml"/>
+             <monster name="Gastly" file="pokemon/geracao 1/Gastly.xml"/>
+             <monster name="Haunter" file="pokemon/geracao 1/Haunter.xml"/>
+             <monster name="Gengar" file="pokemon/geracao 1/Gengar.xml"/>
+             <monster name="Onix" file="pokemon/geracao 1/Onix.xml"/>
+             <monster name="Drowzee" file="pokemon/geracao 1/Drowzee.xml"/>
+             <monster name="Hypno" file="pokemon/geracao 1/Hypno.xml"/>
+             <monster name="Krabby" file="pokemon/geracao 1/Krabby.xml"/>
+             <monster name="Kingler" file="pokemon/geracao 1/Kingler.xml"/>
+             <monster name="Voltorb" file="pokemon/geracao 1/Voltorb.xml"/>
+             <monster name="Electrode" file="pokemon/geracao 1/Electrode.xml"/>
+             <monster name="Exeggcute" file="pokemon/geracao 1/Exeggcute.xml"/>
+             <monster name="Exeggutor" file="pokemon/geracao 1/Exeggutor.xml"/>
+             <monster name="Cubone" file="pokemon/geracao 1/Cubone.xml"/>
+             <monster name="Marowak" file="pokemon/geracao 1/Marowak.xml"/>
+             <monster name="Hitmonlee" file="pokemon/geracao 1/Hitmonlee.xml"/>
+             <monster name="Hitmonchan" file="pokemon/geracao 1/Hitmonchan.xml"/>
+             <monster name="Lickitung" file="pokemon/geracao 1/Lickitung.xml"/>
+             <monster name="Koffing" file="pokemon/geracao 1/Koffing.xml"/>
+             <monster name="Weezing" file="pokemon/geracao 1/Weezing.xml"/>
+             <monster name="Rhyhorn" file="pokemon/geracao 1/Rhyhorn.xml"/>
+             <monster name="Rhydon" file="pokemon/geracao 1/Rhydon.xml"/>
+             <monster name="Chansey" file="pokemon/geracao 1/Chansey.xml"/>
+             <monster name="Tangela" file="pokemon/geracao 1/Tangela.xml"/>
+             <monster name="Kangaskhan" file="pokemon/geracao 1/Kangaskhan.xml"/>
+             <monster name="Horsea" file="pokemon/geracao 1/Horsea.xml"/>
+             <monster name="Seadra" file="pokemon/geracao 1/Seadra.xml"/>
+             <monster name="Goldeen" file="pokemon/geracao 1/Goldeen.xml"/>
+             <monster name="Seaking" file="pokemon/geracao 1/Seaking.xml"/>
+             <monster name="Staryu" file="pokemon/geracao 1/Staryu.xml"/>
+             <monster name="Starmie" file="pokemon/geracao 1/Starmie.xml"/>
+             <monster name="Mr. Mime" file="pokemon/geracao 1/Mr. Mime.xml"/>
+             <monster name="Scyther" file="pokemon/geracao 1/Scyther.xml"/>
+             <monster name="Jynx" file="pokemon/geracao 1/Jynx.xml"/>
+             <monster name="Electabuzz" file="pokemon/geracao 1/Electabuzz.xml"/>
+             <monster name="Magmar" file="pokemon/geracao 1/Magmar.xml"/>
+             <monster name="Pinsir" file="pokemon/geracao 1/Pinsir.xml"/>
+             <monster name="Tauros" file="pokemon/geracao 1/Tauros.xml"/>
+             <monster name="Magikarp" file="pokemon/geracao 1/Magikarp.xml"/>
+             <monster name="Gyarados" file="pokemon/geracao 1/Gyarados.xml"/>
+             <monster name="Lapras" file="pokemon/geracao 1/Lapras.xml"/>
+             <monster name="Ditto" file="pokemon/geracao 1/Ditto.xml"/>
+             <monster name="Eevee" file="pokemon/geracao 1/Eevee.xml"/>
+             <monster name="Vaporeon" file="pokemon/geracao 1/Vaporeon.xml"/>
+			 <monster name="Jolteon" file="pokemon/geracao 1/Jolteon.xml"/>
+             <monster name="Flareon" file="pokemon/geracao 1/Flareon.xml"/>
+             <monster name="Porygon" file="pokemon/geracao 1/Porygon.xml"/>
+             <monster name="Omanyte" file="pokemon/geracao 1/Omanyte.xml"/>
+             <monster name="Omastar" file="pokemon/geracao 1/Omastar.xml"/>
+             <monster name="Kabuto" file="pokemon/geracao 1/Kabuto.xml"/>
+             <monster name="Kabutops" file="pokemon/geracao 1/Kabutops.xml"/>
+             <monster name="Aerodactyl" file="pokemon/geracao 1/Aerodactyl.xml"/>
+             <monster name="Snorlax" file="pokemon/geracao 1/Snorlax.xml"/>
+             <monster name="Articuno" file="pokemon/geracao 1/Articuno.xml"/>
+             <monster name="Zapdos" file="pokemon/geracao 1/Zapdos.xml"/>
+             <monster name="Moltres" file="pokemon/geracao 1/Moltres.xml"/>
+             <monster name="Dratini" file="pokemon/geracao 1/Dratini.xml"/>
+             <monster name="Dragonair" file="pokemon/geracao 1/Dragonair.xml"/>
+             <monster name="Dragonite" file="pokemon/geracao 1/Dragonite.xml"/>
+             <monster name="Mewtwo" file="pokemon/geracao 1/Mewtwo.xml"/>
+             <monster name="Mew" file="pokemon/geracao 1/Mew.xml"/>
+             <monster name="Giant Magikarp" file="pokemon/geracao 1/Giant Magikarp.xml"/>
+<!-- fim -->
+
+<!-- Shiny geracao 1 -->
+		 <monster name="Shiny Venusaur" file="pokemon/Shiny/Shiny Venusaur.xml"/>
+		 <monster name="Shiny Charizard" file="pokemon/Shiny/Shiny Charizard.xml"/>
+		 <monster name="Shiny Blastoise" file="pokemon/Shiny/Shiny Blastoise.xml"/>
+		 <monster name="Shiny Butterfree" file="pokemon/Shiny/Shiny Butterfree.xml"/>
+		 <monster name="Shiny Beedrill" file="pokemon/Shiny/Shiny Beedrill.xml"/>
+		 <monster name="Shiny Pidgeot" file="pokemon/Shiny/Shiny Pidgeot.xml"/>
+		 <monster name="Shiny Rattata" file="pokemon/Shiny/Shiny Rattata.xml"/>
+		 <monster name="Shiny Raticate" file="pokemon/Shiny/Shiny Raticate.xml"/>
+		 <monster name="Shiny Fearow" file="pokemon/Shiny/Shiny Fearow.xml"/>
+		 <monster name="Shiny Raichu" file="pokemon/Shiny/Shiny Raichu.xml"/>
+		 <monster name="Shiny Nidoking" file="pokemon/Shiny/Shiny Nidoking.xml"/>
+		 <monster name="Shiny Zubat" file="pokemon/Shiny/Shiny Zubat.xml"/>
+		 <monster name="Shiny Golbat" file="pokemon/Shiny/Shiny Golbat.xml"/>
+		 <monster name="Shiny Oddish" file="pokemon/Shiny/Shiny Oddish.xml"/>
+		 <monster name="Shiny Vileplume" file="pokemon/Shiny/Shiny Vileplume.xml"/>
+		 <monster name="Shiny Paras" file="pokemon/Shiny/Shiny Paras.xml"/>
+		 <monster name="Shiny Parasect" file="pokemon/Shiny/Shiny Parasect.xml"/>
+		 <monster name="Shiny Venonat" file="pokemon/Shiny/Shiny Venonat.xml"/>
+		 <monster name="Shiny Venomoth" file="pokemon/Shiny/Shiny Venomoth.xml"/>
+		 <monster name="Shiny Growlithe" file="pokemon/Shiny/Shiny Growlithe.xml"/>
+		 <monster name="Shiny Arcanine" file="pokemon/Shiny/Shiny Arcanine.xml"/>
+		 <monster name="Shiny Abra" file="pokemon/Shiny/Shiny Abra.xml"/>
+		 <monster name="Shiny Alakazam" file="pokemon/Shiny/Shiny Alakazam.xml"/>
+		 <monster name="Shiny Tentacool" file="pokemon/Shiny/Shiny Tentacool.xml"/>
+		 <monster name="Shiny Tentacruel" file="pokemon/Shiny/Shiny Tentacruel.xml"/>
+		 <monster name="Shiny Golem" file="pokemon/Shiny/Shiny Golem.xml"/>
+		 <monster name="Shiny Farfetch'd" file="pokemon/Shiny/Shiny Farfetch'd.xml"/>
+		 <monster name="Shiny Grimer" file="pokemon/Shiny/Shiny Grimer.xml"/>
+		 <monster name="Shiny Muk" file="pokemon/Shiny/Shiny Muk.xml"/>
+		 <monster name="Shiny Gengar" file="pokemon/Shiny/Shiny Gengar.xml"/>
+		 <monster name="Shiny Onix" file="pokemon/Shiny/Shiny Onix.xml"/>
+		 <monster name="Shiny Hypno" file="pokemon/Shiny/Shiny Hypno.xml"/>
+		 <monster name="Shiny Krabby" file="pokemon/Shiny/Shiny Krabby.xml"/>
+		 <monster name="Shiny Kingler" file="pokemon/Shiny/Shiny Kingler.xml"/>
+		 <monster name="Shiny Voltorb" file="pokemon/Shiny/Shiny Voltorb.xml"/>
+		 <monster name="Shiny Electrode" file="pokemon/Shiny/Shiny Electrode.xml"/>
+		 <monster name="Shiny Cubone" file="pokemon/Shiny/Shiny Cubone.xml"/>
+		 <monster name="Shiny Marowak" file="pokemon/Shiny/Shiny Marowak.xml"/>
+		 <monster name="Shiny Hitmonlee" file="pokemon/Shiny/Shiny Hitmonlee.xml"/>
+		 <monster name="Shiny Hitmonchan" file="pokemon/Shiny/Shiny Hitmonchan.xml"/>
+		 <monster name="Shiny Hitmontop" file="pokemon/Shiny/Shiny Hitmontop.xml"/>
+		 <monster name="Shiny Tangela" file="pokemon/Shiny/Shiny Tangela.xml"/>
+		 <monster name="Shiny Horsea" file="pokemon/Shiny/Shiny Horsea.xml"/>
+		 <monster name="Shiny Seadra" file="pokemon/Shiny/Shiny Seadra.xml"/>
+		 <monster name="Shiny Scyther" file="pokemon/Shiny/Shiny Scyther.xml"/>
+		 <monster name="Shiny Jynx" file="pokemon/Shiny/Shiny Jynx.xml"/>
+		 <monster name="Shiny Electabuzz" file="pokemon/Shiny/Shiny Electabuzz.xml"/>
+		 <monster name="Shiny Electivire" file="pokemon/Shiny/Shiny Electivire.xml"/>
+		 <monster name="Shiny Pinsir" file="pokemon/Shiny/Shiny Pinsir.xml"/>
+		 <monster name="Shiny Magikarp" file="pokemon/Shiny/Shiny Magikarp.xml"/>
+		 <monster name="Shiny Gyarados" file="pokemon/Shiny/Shiny Gyarados.xml"/>
+		 <monster name="Shiny Vaporeon" file="pokemon/Shiny/Shiny Vaporeon.xml"/>
+		 <monster name="Shiny Jolteon" file="pokemon/Shiny/Shiny Jolteon.xml"/>
+		 <monster name="Shiny Flareon" file="pokemon/Shiny/Shiny Flareon.xml"/>
+		 <monster name="Shiny Snorlax" file="pokemon/Shiny/Shiny Snorlax.xml"/>
+		 <monster name="Shiny Dratini" file="pokemon/Shiny/Shiny Dratini.xml"/>
+		 <monster name="Shiny Dragonair" file="pokemon/Shiny/Shiny Dragonair.xml"/>
+		 <monster name="Shiny Dragonite" file="pokemon/Shiny/Shiny Dragonite.xml"/>
+		 <monster name="Shiny Mr. Mime" file="pokemon/Shiny/Shiny Mr. mime.xml"/>
+		 <monster name="Shiny Espeon" file="pokemon/Shiny/Shiny Espeon.xml"/>
+		 <monster name="Shiny Umbreon" file="pokemon/Shiny/Shiny Umbreon.xml"/>
+		 <monster name="Shiny Ninetales" file="pokemon/Shiny/Shiny Ninetales.xml"/>
+		 <monster name="Shiny Ariados" file="pokemon/Shiny/Shiny Ariados.xml"/>
+		 <monster name="Shiny Rhydon" file="pokemon/Shiny/Shiny Rhydon.xml"/>
+		 <monster name="Shiny Dodrio" file="pokemon/Shiny/Shiny Dodrio.xml"/>
+		 <monster name="Shiny Politoed" file="pokemon/Shiny/Shiny Politoed.xml"/>
+		 <monster name="Shiny Magneton" file="pokemon/Shiny/Shiny Magneton.xml"/>
+		 <monster name="Shiny Stantler" file="pokemon/Shiny/Shiny Stantler.xml"/>
+		 <monster name="Shiny Weezing" file="pokemon/Shiny/Shiny Weezing.xml"/>
+		 <monster name="Shiny Sandslash" file="pokemon/Shiny/Shiny Sandslash.xml"/>
+		 <monster name="Shiny Crobat" file="pokemon/Shiny/Shiny Crobat.xml"/>
+		 <monster name="Shiny Magmar" file="pokemon/Shiny/Shiny Magmar.xml"/>
+		 <monster name="Shiny Magmortar" file="pokemon/Shiny/Shiny Magmortar.xml"/>
+		 <monster name="Shiny Giant Magikarp" file="pokemon/Shiny/Shiny Giant Magikarp.xml"/>
+		 <monster name="Shiny Ampharos" file="pokemon/Shiny/Shiny Ampharos.xml"/>
+		 <monster name="Shiny Feraligatr" file="pokemon/Shiny/Shiny Feraligatr.xml"/>
+		 <monster name="Shiny Larvitar" file="pokemon/Shiny/Shiny Larvitar.xml"/>
+		 <monster name="Shiny Machamp" file="pokemon/Shiny/Shiny Machamp.xml"/>
+		 <monster name="Shiny Meganium" file="pokemon/Shiny/Shiny Meganium.xml"/>
+		 <monster name="Shiny Pupitar" file="pokemon/Shiny/Shiny Pupitar.xml"/>
+		 <monster name="Shiny Tyranitar" file="pokemon/Shiny/Shiny Tyranitar.xml"/>
+		 <monster name="Shiny Tauros" file="pokemon/Shiny/Shiny Tauros.xml"/>
+		 <monster name="Shiny Typhlosion" file="pokemon/Shiny/Shiny Typhlosion.xml"/>
+		 <monster name="Shiny Xatu" file="pokemon/Shiny/Shiny Xatu.xml"/>
+		 <monster name="Shiny Kingdra" file="pokemon/Shiny/Shiny Kingdra.xml"/>
+		 
+		 <monster name="Shiny Magcargo" file="pokemon/Shiny/Shiny Magcargo.xml"/>
+		 <monster name="Shiny Lanturn" file="pokemon/Shiny/Shiny Lanturn.xml"/>
+
+<!-- fim -->
+
+<!-- Outland -->
+
+	     <monster name="Magnet Electabuzz" file="pokemon/outland/Magnet Electabuzz.xml"/>
+	     <monster name="Elder Tyranitar" file="pokemon/outland/Elder Tyranitar.xml"/>
+	     <monster name="Hard Golem" file="pokemon/outland/Hard Golem.xml"/>
+	     <monster name="Iron Steelix" file="pokemon/outland/Iron Steelix.xml"/>
+	     <monster name="Brute Rhydon" file="pokemon/outland/Brute Rhydon.xml"/>
+	     <monster name="Brave Charizard" file="pokemon/outland/Brave Charizard.xml"/>
+	     <monster name="Enraged Typhlosion" file="pokemon/outland/Enraged Typhlosion.xml"/>
+	     <monster name="Capoeira Hitmontop" file="pokemon/outland/Capoeira Hitmontop.xml"/>
+	     <monster name="Boxer Hitmonchan" file="pokemon/outland/Boxer Hitmonchan.xml"/>
+	     <monster name="Taekwondo Hitmonlee" file="pokemon/outland/Taekwondo Hitmonlee.xml"/>
+	     <monster name="Dragon Machamp" file="pokemon/outland/Dragon Machamp.xml"/>
+	     <monster name="Undefted Machamp" file="pokemon/outland/Undefted Machamp.xml"/>
+	     <monster name="Elder Charizard" file="pokemon/outland/Elder Charizard.xml"/>
+	     <monster name="Lava Magmar" file="pokemon/outland/Lava Magmar.xml"/>
+	     <monster name="Elder Arcanine" file="pokemon/outland/Elder Arcanine.xml"/>
+	     <monster name="Wardog Arcanine" file="pokemon/outland/Wardog Arcanine.xml"/>
+	     <monster name="Furious Mantine" file="pokemon/outland/Furios Mantine.xml"/>
+	     <monster name="War Gyarados" file="pokemon/outland/War Gyarados.xml"/>
+	     <monster name="Brave Blastoise" file="pokemon/outland/Brave Blastoise.xml"/>
+	     <monster name="Brave Venusaur" file="pokemon/outland/Brave Venusaur.xml"/>
+	     <monster name="Ancient Meganium" file="pokemon/outland/Ancient Meganium.xml"/>
+	     <monster name="Elder Pinsir" file="pokemon/outland/Elder Pinsir.xml"/>
+	     <monster name="Elder Tangela" file="pokemon/outland/Elder Tangela.xml"/>
+	     <monster name="Tribal Feraligatr" file="pokemon/outland/Tribal Feraligatr.xml"/>
+             <monster name="Charged Raichu" file="pokemon/Outland/Charged Raichu.xml"/>
+             <monster name="Furious Ampharos" file="pokemon/Outland/Furios Ampharos.xml"/>
+             <monster name="Elder Raichu" file="pokemon/Outland/Elder Raichu.xml"/>
+             <monster name="Tribal Xatu" file="pokemon/Outland/Tribal Xatu.xml"/>
+             <monster name="Ancient Alakazam" file="pokemon/Outland/Ancient Alakazam.xml"/>
+             <monster name="Master Alakazam" file="pokemon/Outland/Master Alakazam.xml"/>
+             <monster name="Enigmatic Girafarig" file="pokemon/Outland/Enigmatic Girafarig.xml"/>
+             <monster name="Ancient Scyther" file="pokemon/Outland/Ancient Scyther.xml"/>
+             <monster name="War Heracross" file="pokemon/Outland/War Heracross.xml"/>
+             <monster name="Furious Scyther" file="pokemon/Outland/Furious Scyther.xml"/>
+             <monster name="Elder Electabuzz" file="pokemon/Outland/Elder Electabuzz.xml"/>
+             <monster name="Metal Scizor" file="pokemon/Outland/Metal Scizor.xml"/>           
+             <monster name="Brave Nidoqueen" file="pokemon/Outland/Brave Nidoqueen.xml"/>
+             <monster name="Brave Nidoking" file="pokemon/Outland/Brave Nidoking.xml"/>
+             <monster name="Dark Crobat" file="pokemon/Outland/Dark Crobat.xml"/>
+             <monster name="War Muk" file="pokemon/Outland/War Muk.xml"/>
+             <monster name="Elder Muk" file="pokemon/Outland/Elder Muk.xml"/>
+             <monster name="Scary Gengar" file="pokemon/Outland/Scary Gengar.xml"/>
+             <monster name="Elder Gengar" file="pokemon/Outland/Elder Gengar.xml"/>
+             <monster name="Banshee Misdreavus" file="pokemon/Outland/Banshee Misdreavus.xml"/>
+             <monster name="Master Abra" file="pokemon/Outland/Master Abra.xml"/>
+             <monster name="Furious Murkrow" file="pokemon/Outland/Furios Murkrow.xml"/>
+             <monster name="Ancient Snorlax" file="pokemon/Outland/Ancient Snorlax.xml"/>
+             <monster name="Gordo Snorlax" file="pokemon/Outland/Gordo Snorlax.xml"/>
+             <monster name="War Granbull" file="pokemon/Outland/War Granbull.xml"/>
+             <monster name="Master Stantler" file="pokemon/Outland/Master Stantler.xml"/>
+             <monster name="Brute Ursaring" file="pokemon/Outland/Brute Ursaring.xml"/>
+             <monster name="Singer Wigglytuff" file="pokemon/Outland/Singer Wigglytuff.xml"/>
+             <monster name="War Farfetch'd" file="pokemon/Outland/War Farfetch'd.xml"/>
+             <monster name="Aviator Pidgeot" file="pokemon/Outland/Aviator Pidgeot.xml"/>
+             <monster name="Metal Skarmory" file="pokemon/Outland/Metal Skarmory.xml"/>
+             <monster name="Brave Noctowl" file="pokemon/Outland/Brave Noctowl.xml"/>
+             <monster name="Elder Pidgeot" file="pokemon/Outland/Elder Pidgeot.xml"/>
+             <monster name="Brute Farfetch'd" file="pokemon/Outland/Brute Farfetch'd.xml"/>
+             <monster name="Ancient Dragonite" file="pokemon/Outland/Ancient Dragonite.xml"/>
+             <monster name="Milch-Miltank" file="pokemon/Outland/Milch-Miltank.xml"/>
+             <monster name="Ancient Kingdra" file="pokemon/Outland/Ancient Kingdra.xml"/>
+             <monster name="Psy Jynx" file="pokemon/Outland/Psy Jynx.xml"/>
+             <monster name="Elder Jynx" file="pokemon/Outland/Elder Jynx.xml"/>
+             <monster name="Evil Cloyster" file="pokemon/Outland/Evil Cloyster.xml"/>
+             <monster name="Freezing Dewgong" file="pokemon/Outland/Freezing Dewgong.xml"/>
+             <monster name="Ancient Onix" file="pokemon/Outland/Ancient Onix.xml"/>
+             <monster name="Furious Sandslash" file="pokemon/Outland/Furious Sandslash.xml"/>
+             <monster name="Roll Donphan" file="pokemon/Outland/Roll Donphan.xml"/>
+             <monster name="Bone Marowak" file="pokemon/Outland/Bone Marowak.xml"/>
+             <monster name="Octopus Octillery" file="pokemon/Outland/Octopus Octillery.xml"/>
+             <monster name="Moon Clefable" file="pokemon/Outland/Moon Clefable.xml"/>
+             <monster name="Heavy Piloswine" file="pokemon/Outland/Heavy Piloswine.xml"/>
+             <monster name="Elder Blastoise" file="pokemon/Outland/Elder Blastoise.xml"/>
+             <monster name="Elder Tentacruel" file="pokemon/Outland/Elder Tentacruel.xml"/>
+             <monster name="Elder Marowak" file="pokemon/Outland/Elder Marowak.xml"/>
+<!-- fim -->
+
+<!-- pokemon geracao 2 -->
+             <monster name="Chikorita" file="pokemon/geracao 2/Chikorita.xml"/>
+             <monster name="Bayleef" file="pokemon/geracao 2/Bayleef.xml"/>
+             <monster name="Meganium" file="pokemon/geracao 2/Meganium.xml"/>
+             <monster name="Cyndaquil" file="pokemon/geracao 2/Cyndaquil.xml"/>
+             <monster name="Quilava" file="pokemon/geracao 2/Quilava.xml"/>
+             <monster name="Typhlosion" file="pokemon/geracao 2/Typhlosion.xml"/>
+             <monster name="Totodile" file="pokemon/geracao 2/Totodile.xml"/>
+             <monster name="Croconaw" file="pokemon/geracao 2/Croconaw.xml"/>
+             <monster name="Feraligatr" file="pokemon/geracao 2/Feraligatr.xml"/>
+             <monster name="Sentret" file="pokemon/geracao 2/Sentret.xml"/>
+             <monster name="Furret" file="pokemon/geracao 2/Furret.xml"/>
+             <monster name="Hoothoot" file="pokemon/geracao 2/Hoothoot.xml"/>
+             <monster name="Noctowl" file="pokemon/geracao 2/Noctowl.xml"/>
+             <monster name="Ledyba" file="pokemon/geracao 2/Ledyba.xml"/>
+             <monster name="Ledian" file="pokemon/geracao 2/Ledian.xml"/>
+             <monster name="Spinarak" file="pokemon/geracao 2/Spinarak.xml"/>
+             <monster name="Ariados" file="pokemon/geracao 2/Ariados.xml"/>
+             <monster name="Crobat" file="pokemon/geracao 2/Crobat.xml"/>
+             <monster name="Chinchou" file="pokemon/geracao 2/Chinchou.xml"/>
+             <monster name="Lanturn" file="pokemon/geracao 2/Lanturn.xml"/>
+             <monster name="Pichu" file="pokemon/geracao 2/Pichu.xml"/>
+             <monster name="Cleffa" file="pokemon/geracao 2/Cleffa.xml"/>
+             <monster name="Igglybuff" file="pokemon/geracao 2/Igglybuff.xml"/>
+             <monster name="Togepi" file="pokemon/geracao 2/Togepi.xml"/>
+             <monster name="Togetic" file="pokemon/geracao 2/Togetic.xml"/>
+             <monster name="Natu" file="pokemon/geracao 2/Natu.xml"/>
+             <monster name="Xatu" file="pokemon/geracao 2/Xatu.xml"/>
+             <monster name="Mareep" file="pokemon/geracao 2/Mareep.xml"/>
+             <monster name="Flaaffy" file="pokemon/geracao 2/Flaaffy.xml"/>
+             <monster name="Ampharos" file="pokemon/geracao 2/Ampharos.xml"/>
+             <monster name="Bellossom" file="pokemon/geracao 2/Bellossom.xml"/>
+             <monster name="Marill" file="pokemon/geracao 2/Marill.xml"/>
+             <monster name="Azumarill" file="pokemon/geracao 2/Azumarill.xml"/>
+             <monster name="Sudowoodo" file="pokemon/geracao 2/Sudowoodo.xml"/>
+             <monster name="Politoed" file="pokemon/geracao 2/Politoed.xml"/>
+             <monster name="Hoppip" file="pokemon/geracao 2/Hoppip.xml"/>
+             <monster name="Skiploom" file="pokemon/geracao 2/Skiploom.xml"/>
+             <monster name="Jumpluff" file="pokemon/geracao 2/Jumpluff.xml"/>
+             <monster name="Aipom" file="pokemon/geracao 2/Aipom.xml"/>
+             <monster name="Sunkern" file="pokemon/geracao 2/Sunkern.xml"/>
+             <monster name="Sunflora" file="pokemon/geracao 2/Sunflora.xml"/>
+             <monster name="Yanma" file="pokemon/geracao 2/Yanma.xml"/>
+             <monster name="Wooper" file="pokemon/geracao 2/Wooper.xml"/>
+             <monster name="Quagsire" file="pokemon/geracao 2/Quagsire.xml"/>
+             <monster name="Espeon" file="pokemon/geracao 2/Espeon.xml"/>
+             <monster name="Umbreon" file="pokemon/geracao 2/Umbreon.xml"/>
+             <monster name="Murkrow" file="pokemon/geracao 2/Murkrow.xml"/>
+             <monster name="Slowking" file="pokemon/geracao 2/Slowking.xml"/>
+             <monster name="Misdreavus" file="pokemon/geracao 2/Misdreavus.xml"/>
+             <monster name="Unown" file="pokemon/geracao 2/Unown.xml"/>
+             <monster name="Wobbuffet" file="pokemon/geracao 2/Wobbuffet.xml"/>
+             <monster name="Girafarig" file="pokemon/geracao 2/Girafarig.xml"/>
+             <monster name="Pineco" file="pokemon/geracao 2/Pineco.xml"/>
+             <monster name="Forretress" file="pokemon/geracao 2/Forretress.xml"/>
+             <monster name="Dunsparce" file="pokemon/geracao 2/Dunsparce.xml"/>
+             <monster name="Gligar" file="pokemon/geracao 2/Gligar.xml"/>
+             <monster name="Steelix" file="pokemon/geracao 2/Steelix.xml"/>
+             <monster name="Snubbull" file="pokemon/geracao 2/Snubbull.xml"/>
+             <monster name="Granbull" file="pokemon/geracao 2/Granbull.xml"/>
+             <monster name="Qwilfish" file="pokemon/geracao 2/Qwilfish.xml"/>
+             <monster name="Scizor" file="pokemon/geracao 2/Scizor.xml"/>
+             <monster name="Shuckle" file="pokemon/geracao 2/Shuckle.xml"/>
+             <monster name="Heracross" file="pokemon/geracao 2/Heracross.xml"/>
+             <monster name="Sneasel" file="pokemon/geracao 2/Sneasel.xml"/>
+             <monster name="Teddiursa" file="pokemon/geracao 2/Teddiursa.xml"/>
+             <monster name="Ursaring" file="pokemon/geracao 2/Ursaring.xml"/>
+             <monster name="Slugma" file="pokemon/geracao 2/Slugma.xml"/>
+             <monster name="Magcargo" file="pokemon/geracao 2/Magcargo.xml"/>
+             <monster name="Swinub" file="pokemon/geracao 2/Swinub.xml"/>
+             <monster name="Piloswine" file="pokemon/geracao 2/Piloswine.xml"/>
+             <monster name="Corsola" file="pokemon/geracao 2/Corsola.xml"/>
+             <monster name="Remoraid" file="pokemon/geracao 2/Remoraid.xml"/>
+             <monster name="Octillery" file="pokemon/geracao 2/Octillery.xml"/>
+             <monster name="Delibird" file="pokemon/geracao 2/Delibird.xml"/>
+             <monster name="Mantine" file="pokemon/geracao 2/Mantine.xml"/>
+             <monster name="Skarmory" file="pokemon/geracao 2/Skarmory.xml"/>
+             <monster name="Houndour" file="pokemon/geracao 2/Houndour.xml"/>
+             <monster name="Houndoom" file="pokemon/geracao 2/Houndoom.xml"/>
+             <monster name="Kingdra" file="pokemon/geracao 2/Kingdra.xml"/>
+             <monster name="Phanpy" file="pokemon/geracao 2/Phanpy.xml"/>
+             <monster name="Donphan" file="pokemon/geracao 2/Donphan.xml"/>
+             <monster name="Porygon2" file="pokemon/geracao 2/Porygon2.xml"/>
+             <monster name="Stantler" file="pokemon/geracao 2/Stantler.xml"/>
+             <monster name="Smeargle" file="pokemon/geracao 2/Smeargle.xml"/>
+             <monster name="Tyrogue" file="pokemon/geracao 2/Tyrogue.xml"/>
+             <monster name="Hitmontop" file="pokemon/geracao 2/Hitmontop.xml"/>
+             <monster name="Smoochum" file="pokemon/geracao 2/Smoochum.xml"/>
+             <monster name="Elekid" file="pokemon/geracao 2/Elekid.xml"/>
+             <monster name="Magby" file="pokemon/geracao 2/Magby.xml"/>
+             <monster name="Miltank" file="pokemon/geracao 2/Miltank.xml"/>
+             <monster name="Blissey" file="pokemon/geracao 2/Blissey.xml"/>
+             <monster name="Raikou" file="pokemon/geracao 2/Raikou.xml"/>
+             <monster name="Entei" file="pokemon/geracao 2/Entei.xml"/>
+             <monster name="Suicune" file="pokemon/geracao 2/Suicune.xml"/>
+             <monster name="Larvitar" file="pokemon/geracao 2/Larvitar.xml"/>
+             <monster name="Pupitar" file="pokemon/geracao 2/Pupitar.xml"/>
+             <monster name="Tyranitar" file="pokemon/geracao 2/Tyranitar.xml"/>
+             <monster name="Lugia" file="pokemon/geracao 2/Lugia.xml"/>
+             <monster name="Ho-oh" file="pokemon/geracao 2/Ho-oh.xml"/>
+             <monster name="Celebi" file="pokemon/geracao 2/Celebi.xml"/>
+<!-- fim -->
+                                       <!-- 3 geraçao Novos -->
+             <monster name="Electivire" file="pokemon/geracao 3/Electivire.xml"/>
+             <monster name="Magmortar" file="pokemon/geracao 3/Magmortar.xml"/>
+             <monster name="Shiny Mantine" file="pokemon/geracao 3/Shiny Mantine.xml"/>
+             <monster name="Salamence" file="pokemon/geracao 3/Salamence.xml"/>
+             <monster name="Shiny Salamence" file="pokemon/geracao 3/Shiny Salamence.xml"/>
+             <monster name="Magnezone" file="pokemon/geracao 3/Magnezone.xml"/>
+             <monster name="Milotic" file="pokemon/geracao 3/Milotic.xml"/>
+			 <monster name="Tropius" file="pokemon/geracao 3/Tropius.xml"/>
+			 <monster name="Absol" file="pokemon/geracao 3/Absol.xml"/>
+			 <monster name="Wailord" file="pokemon/geracao 3/Wailord.xml"/>
+			 <monster name="Beldum" file="pokemon/geracao 3/Beldum.xml"/>
+			 <monster name="Metang" file="pokemon/geracao 3/Metang.xml"/>
+			 <monster name="Metagross" file="pokemon/geracao 3/Metagross.xml"/>
+			 <monster name="Treecko" file="pokemon/geracao 3/Treecko.xml"/>
+			 <monster name="Mudkip" file="pokemon/geracao 3/Mudkip.xml"/>
+			 <monster name="Torchic" file="pokemon/geracao 3/Torchic.xml"/>
+		     <monster name="Grovyle" file="pokemon/geracao 3/Grovyle.xml"/>
+			 <monster name="Combusken" file="pokemon/geracao 3/Combusken.xml"/>
+			 <monster name="Marshtomp" file="pokemon/geracao 3/Marshtomp.xml"/>
+			 <monster name="Sceptile" file="pokemon/geracao 3/Sceptile.xml"/>
+			 <monster name="Blaziken" file="pokemon/geracao 3/Blaziken.xml"/>
+			 <monster name="Swampert" file="pokemon/geracao 3/Swampert.xml"/>
+             <monster name="Shiny Blaziken" file="pokemon/geracao 3/Shiny Blaziken.xml"/>
+             <monster name="Shiny Armaldo" file="pokemon/geracao 3/Shiny Armaldo.xml"/>
+             <monster name="Shiny Rhyperior" file="pokemon/geracao 3/Shiny Rhyperior.xml"/>
+             <monster name="Shiny Tangrowth" file="pokemon/geracao 3/Shiny Tangrowth.xml"/>
+             <monster name="Armaldo" file="pokemon/geracao 3/Armaldo.xml"/>
+             <monster name="Rhyperior" file="pokemon/geracao 3/Rhyperior.xml"/>
+             <monster name="Tangrowth" file="pokemon/geracao 3/Tangrowth.xml"/>
+
+             <monster name="Gardevoir" file="pokemon/geracao 3/Gardevoir.xml"/>
+             <monster name="Kirlia" file="pokemon/geracao 3/Kirlia.xml"/>
+             <monster name="Ralts" file="pokemon/geracao 3/Ralts.xml"/>
+             <monster name="Shiny Gardevoir" file="pokemon/geracao 3/Shiny Gardevoir.xml"/>
+             <monster name="Shiny Ralts" file="pokemon/geracao 3/Shiny Ralts.xml"/>
+
+             <monster name="Makuhita" file="pokemon/geracao 3/Makuhita.xml"/>
+             <monster name="Hariyama" file="pokemon/geracao 3/Hariyama.xml"/>
+             <monster name="Sableye" file="pokemon/geracao 3/Sableye.xml"/>
+             <monster name="Shiny Makuhita" file="pokemon/geracao 3/Shiny Makuhita.xml"/>
+             <monster name="Shiny Hariyama" file="pokemon/geracao 3/Shiny Hariyama.xml"/>
+             <monster name="Shiny Sableye" file="pokemon/geracao 3/Shiny Sableye.xml"/>
+             <monster name="Shiny Wobbuffet" file="pokemon/geracao 3/Shiny Wobbuffet.xml"/>
+
+             <monster name="Poochyena" file="pokemon/geracao 3/Poochyena.xml"/>
+             <monster name="Mightyena" file="pokemon/geracao 3/Mightyena.xml"/>
+             <monster name="Lombre" file="pokemon/geracao 3/Lombre.xml"/>
+             <monster name="Ludicolo" file="pokemon/geracao 3/Ludicolo.xml"/>
+             <monster name="Seedot" file="pokemon/geracao 3/Seedot.xml"/>
+             <monster name="Nuzleaf" file="pokemon/geracao 3/Nuzleaf.xml"/>
+             <monster name="Shiftry" file="pokemon/geracao 3/Shiftry.xml"/>
+             <monster name="Shiny Mightyena" file="pokemon/geracao 3/Shiny Mightyena.xml"/>
+             <monster name="Shiny Ludicolo" file="pokemon/geracao 3/Shiny Ludicolo.xml"/>
+             <monster name="Shiny Lapras" file="pokemon/geracao 3/Shiny Lapras.xml"/>
+             <monster name="Shiny Kabutops" file="pokemon/geracao 3/Shiny Kabutops.xml"/>
+             <monster name="Shiny Steelix" file="pokemon/geracao 3/Shiny Steelix.xml"/>
+             <monster name="Shiny Misdreavus" file="pokemon/geracao 3/Shiny Misdreavus.xml"/>
+             <monster name="Shiny Slowking" file="pokemon/geracao 3/Shiny Slowking.xml"/>
+             <monster name="Shiny Ursaring" file="pokemon/geracao 3/Shiny Ursaring.xml"/>
+
+             <monster name="Shiny Scizor" file="pokemon/geracao 3/Shiny Scizor.xml"/>
+             <monster name="Shiny Milotic" file="pokemon/geracao 3/Shiny Milotic.xml"/>
+             <monster name="Bronzong" file="pokemon/geracao 3/Bronzong.xml"/>
+             <monster name="Shiny Bronzong" file="pokemon/geracao 3/Shiny Bronzong.xml"/>
+
+
+             <monster name="Boost Rhyperior" file="pokemon/Pokequest/Boost Rhyperior.xml"/>
+             <monster name="Boost Tangrowth" file="pokemon/Pokequest/Boost Tangrowth.xml"/>
+             <monster name="Boost Gardevoir" file="pokemon/Pokequest/Boost Gardevoir.xml"/>
+             <monster name="Boost Sableye" file="pokemon/Pokequest/Boost Sableye.xml"/>
+             <monster name="Boost Shiny Gardevoir" file="pokemon/Pokequest/Boost Shiny Gardevoir.xml"/>
+             <monster name="Boost Shiny Sableye" file="pokemon/Pokequest/Boost Shiny Sableye.xml"/>
+             <monster name="Boost Shiny Rhyperior" file="pokemon/Pokequest/Boost Shiny Rhyperior.xml"/>
+             <monster name="Boost Shiny Tangrowth" file="pokemon/Pokequest/Boost Shiny Tangrowth.xml"/>
+
+             <monster name="Meditite" file="pokemon/geracao 3/Meditite.xml"/>
+             <monster name="Medicham" file="pokemon/geracao 3/Medicham.xml"/>
+             <monster name="Trapinch" file="pokemon/geracao 3/Trapinch.xml"/>
+             <monster name="Vibrava" file="pokemon/geracao 3/Vibrava.xml"/>
+             <monster name="Flygon" file="pokemon/geracao 3/Flygon.xml"/>
+             <monster name="Taillow" file="pokemon/geracao 3/Taillow.xml"/>
+             <monster name="Swellow" file="pokemon/geracao 3/Swellow.xml"/>
+             <monster name="Shiny Swellow" file="pokemon/geracao 3/Shiny Swellow.xml"/>
+             <monster name="Shiny Flygon" file="pokemon/geracao 3/Shiny Flygon.xml"/>
+
+             <monster name="Mega Alakazam" file="pokemon/Mega/Mega Alakazam.xml"/>
+             <monster name="Mega Ampharos" file="pokemon/Mega/Mega Ampharos.xml"/>
+             <monster name="Mega Blastoise" file="pokemon/Mega/Mega Blastoise.xml"/>
+             <monster name="Mega Blaziken" file="pokemon/Mega/Mega Blaziken.xml"/>
+             <monster name="Mega Charizardx" file="pokemon/Mega/Mega Charizardx.xml"/>
+             <monster name="Mega Charizardy" file="pokemon/Mega/Mega Charizardy.xml"/>
+             <monster name="Mega Gardevoir" file="pokemon/Mega/Mega Gardevoir.xml"/>
+             <monster name="Mega Gengar" file="pokemon/Mega/Mega Gengar.xml"/>
+             <monster name="Mega Gyarados" file="pokemon/Mega/Mega Gyarados.xml"/>
+             <monster name="Mega Metagross" file="pokemon/Mega/Mega Metagross.xml"/>
+             <monster name="Mega Steelix" file="pokemon/Mega/Mega Steelix.xml"/>
+             <monster name="Mega Tyranitar" file="pokemon/Mega/Mega Tyranitar.xml"/>
+             <monster name="Mega Swampert" file="pokemon/Mega/Mega Swampert.xml"/>
+
+             <monster name="Giant Magneton" file="pokemon/Giga/Giant Magneton.xml"/>
+             <monster name="Giant Poliwrath" file="pokemon/Giga/Giant Poliwrath.xml"/>
+             <monster name="Giant Primeape" file="pokemon/Giga/Giant Primeape.xml"/>
+             <monster name="Giant Victreebel" file="pokemon/Giga/Giant Victreebel.xml"/>
+
+
+
+<!-- Shredder Team -->
+			 <monster name="ScytherTeam" file="pokemon/Shredder Team/Scyther.xml"/>
+			 <monster name="Shiny ScytherTeam" file="pokemon/Shredder Team/Shiny Scyther.xml"/>
+			 <monster name="ScizorTeam" file="pokemon/Shredder Team/Scizor.xml"/>
+			 <monster name="Shiny ScizorTeam" file="pokemon/Shredder Team/Shiny Scizor.xml"/>
+			 <monster name="XatuTeam" file="pokemon/Shredder Team/Xatu.xml"/>
+			 <monster name="YanmaTeam" file="pokemon/Shredder Team/Yanma.xml"/>
+			 <monster name="Shiny XatuTeam" file="pokemon/Shredder Team/Shiny Xatu.xml"/>
+			 <monster name="MisdreavusTeam" file="pokemon/Shredder Team/Misdreavus.xml"/>
+			 <monster name="Shiny StantlerTeam" file="pokemon/Shredder Team/Shiny Stantler.xml"/>
+			 <monster name="StantlerTeam" file="pokemon/Shredder Team/Stantler.xml"/>
+<!-- fim -->
+
+<!-- [Control] -->
+		<monster name="Gengar cm" file="pokemon/Control/CMGengar.xml"/>
+		<monster name="Alakazam cm" file="pokemon/Control/CMAlakazam.xml"/>
+		<monster name="Haunter cm" file="pokemon/Control/CMHaunter.xml"/>
+		<monster name="Slowking cm" file="pokemon/Control/CMSlowking.xml"/>
+		<monster name="Tentacruel cm" file="pokemon/Control/CMTentacruel.xml"/>
+		<!-- [Shinys] -->
+		<monster name="Shiny Alakazam cm" file="pokemon/Control/CMShiny Alakazam.xml"/>
+		<monster name="Shiny Gengar cm" file="pokemon/Control/CMShiny Gengar.xml"/>
+		<monster name="Shiny Tentacruel cm" file="pokemon/Control/CMShiny Tentacruel.xml"/>
+<!-- fim -->
+
+
+ </monsters>
