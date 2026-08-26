@@ -84,7 +84,9 @@ end
 local deathtexts = {"Oh no! POKENAME, come back!", "Come back, POKENAME!", "That's enough, POKENAME!", "You did well, POKENAME!",
 		    "You need to rest, POKENAME!", "Nice job, POKENAME!", "POKENAME, you are too hurt!"}
 
-function onDeath(cid, deathList)
+-- START Pokemon PvP Frag Fix
+function onDeath(cid, corpse, deathList)
+-- END Pokemon PvP Frag Fix
 
 	local owner = getCreatureMaster(cid)
 
@@ -104,6 +106,10 @@ function onDeath(cid, deathList)
         
 	local thisball = getPlayerSlotItem(owner, 8)
 	local ballName = getItemAttribute(thisball.uid, "poke")
+
+	-- START Pokemon PvP Frag System
+	handlePokemonPvpDeath(owner, cid, deathList, thisball.uid)
+	-- END Pokemon PvP Frag System
 	
     btype = getPokeballType(thisball.itemid)
 

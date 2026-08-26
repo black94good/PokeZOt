@@ -50,6 +50,13 @@ local effect = pokeballs[btype].effect
 unLock(item.uid) --alterado v1.8
 
 if item.itemid == usando then                           
+	-- START Pokemon PvP System
+	local canReturn, remainingSeconds = canReturnPokemonAfterPvp(cid)
+	if #getCreatureSummons(cid) > 0 and not canReturn then
+		doPlayerSendCancel(cid, "Aguarde "..remainingSeconds.." segundo(s) sem atacar para recolher ou trocar seu Pokemon.")
+		return true
+	end
+	-- END Pokemon PvP System
 
 	if getPlayerStorageValue(cid, 990) == 1 then -- GYM
 		doPlayerSendCancel(cid, "You can't return your pokemon during gym battles.")

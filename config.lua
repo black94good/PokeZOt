@@ -54,7 +54,26 @@ autoBanishUnknownBytes = false
 worldType = "pvp"
 protectionLevel = 9000
 pvpTileIgnoreLevelAndVocationProtection = true
-pzLocked = 5 * 1000
+
+-- START Pokemon PvP System
+pokemonPvpEnabled = true
+pokemonPvpMinLevel = 30
+pokemonPvpRequireButton = true
+pokemonPvpMaxLevelDifference = 10
+pokemonPvpReturnDelay = 10
+pokemonPvpWhiteSkullTime = 10 * 60
+pokemonPvpDailyFragsToRed = 3
+pokemonPvpWeeklyFragsToRed = 5
+pokemonPvpMonthlyFragsToRed = 10
+pokemonPvpDailyFragsToBlack = 6
+pokemonPvpWeeklyFragsToBlack = 10
+pokemonPvpMonthlyFragsToBlack = 20
+pokemonPvpWhiteExpLossPercent = 5
+pokemonPvpRedExpLossPercent = 10
+pokemonPvpBlackExpLossPercent = 20
+pzLocked = 60 * 1000
+-- END Pokemon PvP System
+
 huntingDuration = 60 * 1000
 criticalHitChance = 7
 criticalHitMultiplier = 1

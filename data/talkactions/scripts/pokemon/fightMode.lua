@@ -1,3 +1,4 @@
+-- START Pokemon PvP System
 function onSay(cid, words, param, channel)
 
 if useOTClient then
@@ -8,3 +9,4 @@ end
 
 return true
 end
+-- END Pokemon PvP System

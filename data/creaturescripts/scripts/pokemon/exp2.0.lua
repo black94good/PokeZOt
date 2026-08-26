@@ -100,6 +100,12 @@ local valor = value
 end
 --------------------------------------------------
 if isPlayer(attacker) then
+	-- START Pokemon PvP Frag System
+	if isSummon(cid) and isPlayer(getCreatureMaster(cid)) and getCreatureMaster(cid) ~= attacker then
+		if canAttackOther(attacker, cid) == "Cant" then return false end
+		markPokemonPvpAttack(attacker, cid)
+	end
+	-- END Pokemon PvP Frag System
 
 	local valor = value
 	if valor > getCreatureHealth(cid) then
@@ -381,6 +387,9 @@ local valor = value
 		if canAttackOther(cid, attacker) == "Cant" then
            return false
         end
+		-- START Pokemon PvP Frag System
+		markPokemonPvpAttack(attacker, cid)
+		-- END Pokemon PvP Frag System
 	end
 
 	valor = valor * multiplier

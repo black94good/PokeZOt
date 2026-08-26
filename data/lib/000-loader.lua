@@ -37,6 +37,9 @@ local libraries = {
 	"pokemon/gym.lua",
 	"systems/hisoka functions.lua",
 	"pokemon/level system.lua",
+	-- START Pokemon PvP System
+	"pokemon/pvp system.lua",
+	-- END Pokemon PvP System
 	"pokemon/level tables.lua",
 	"pokemon/moves.lua",
 	"pokemon/newStatusSyst.lua",

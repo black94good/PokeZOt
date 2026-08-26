@@ -3699,8 +3699,11 @@ void Player::onEndCondition(ConditionType_t type)
 		clearAttacked();
 
 		pzLocked = false;
-		if(skull < SKULL_RED)
+		// START Pokemon PvP Frag System
+		// White PK do Pokemon PvP possui seu proprio prazo persistente.
+		if(skull < SKULL_RED && (skull != SKULL_WHITE || skullEnd <= time(NULL)))
 			setSkull(SKULL_NONE);
+		// END Pokemon PvP Frag System
 
 		g_game.updateCreatureSkull(this);
 	}
@@ -3758,6 +3761,12 @@ void Player::onAttackedCreature(Creature* target)
 
 	addInFightTicks();
 	Player* targetPlayer = target->getPlayer();
+	// START Pokemon PvP System
+	// Some Pokemon spells use the trainer as caster and the enemy summon as
+	// target. Attribute that aggression to the summon owner as well.
+	if(!targetPlayer && target->isPlayerSummon())
+		targetPlayer = target->getPlayerMaster();
+	// END Pokemon PvP System
 	if(!targetPlayer)
 		return;
 
@@ -3778,7 +3787,9 @@ void Player::onAttackedCreature(Creature* target)
 		sendIcons();
 	}
 
-	if(getZone() != target->getZone())
+	// START Pokemon PvP System
+	if(getZone() != targetPlayer->getZone())
+	// END Pokemon PvP System
 		return;
 
 	if(skull == SKULL_NONE)
@@ -3796,7 +3807,13 @@ void Player::onAttackedCreature(Creature* target)
 void Player::onSummonAttackedCreature(Creature* summon, Creature* target)
 {
 	Creature::onSummonAttackedCreature(summon, target);
-	onAttackedCreature(target);
+	// START Pokemon PvP System
+	// Agressao contra summon de jogador deve aplicar as regras ao treinador.
+	if(target && target->isPlayerSummon() && target->getPlayerMaster())
+		onAttackedCreature(target->getPlayerMaster());
+	else
+		onAttackedCreature(target);
+	// END Pokemon PvP System
 }
 
 void Player::onAttacked()
@@ -3827,6 +3844,12 @@ void Player::onPlacedCreature()
 
 void Player::onAttackedCreatureDrain(Creature* target, int32_t points)
 {
+	// START Pokemon PvP System
+	// Algumas spells usam o treinador como caster e o summon inimigo como alvo.
+	if(points > 0 && target && target->isPlayerSummon() && target->getPlayerMaster())
+		onAttackedCreature(target->getPlayerMaster());
+	// END Pokemon PvP System
+
 	Creature::onAttackedCreatureDrain(target, points);
 	if(party && target && (!target->getMaster() || !target->getMaster()->getPlayer())
 		&& target->getMonster() && target->getMonster()->isHostile()) //we have fulfilled a requirement for shared experience
@@ -3839,6 +3862,12 @@ void Player::onAttackedCreatureDrain(Creature* target, int32_t points)
 
 void Player::onSummonAttackedCreatureDrain(Creature* summon, Creature* target, int32_t points)
 {
+	// START Pokemon PvP System
+	// O dano real do Pokemon abre o PvP entre os dois treinadores.
+	if(points > 0 && target && target->isPlayerSummon() && target->getPlayerMaster())
+		onAttackedCreature(target->getPlayerMaster());
+	// END Pokemon PvP System
+
 	Creature::onSummonAttackedCreatureDrain(summon, target, points);
 
 	char buffer[100];

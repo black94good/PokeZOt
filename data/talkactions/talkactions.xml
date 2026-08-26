@@ -20,7 +20,12 @@
 <talkaction words="!bug" event="script" value="cp.lua"/>
 
 
-<talkaction words="#f#ightmode" event="script" value="pokemon/fightMode.lua"/>
+	<!-- START Pokemon PvP System -->
+	<talkaction words="#f#ightmode" hide="yes" event="script" value="pokemon/fightMode.lua"/>
+	<!-- END Pokemon PvP System -->
+	<!-- START Pokemon PvP Frag System -->
+	<talkaction words="!frags" event="script" value="pokemon/pvpstatus.lua"/>
+	<!-- END Pokemon PvP Frag System -->
 
 
 	<talkaction words="!buyvip" event="script" value="buyvip.lua"/>

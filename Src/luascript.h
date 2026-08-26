@@ -470,6 +470,9 @@ class LuaScriptInterface
 		static int32_t luaGetPlayerAccess(lua_State* L);
 		static int32_t luaGetPlayerGhostAccess(lua_State* L);
 		static int32_t luaGetPlayerLevel(lua_State* L);
+		// START Pokemon PvP System
+		static int32_t luaIsPlayerPvpEnabled(lua_State* L);
+		// END Pokemon PvP System
 		static int32_t luaGetPlayerExperience(lua_State* L);
 		static int32_t luaGetPlayerMagLevel(lua_State* L);
 		static int32_t luaGetPlayerSpentMana(lua_State* L);

@@ -527,12 +527,69 @@ end
 return pid
 end
 
+-- START Pokemon PvP System
+function isPokemonPvpButtonActive(cid)
+   local clientState = tonumber(getPlayerStorageValue(cid, 248759))
+   if clientState == 1 then return true end
+   if clientState == 2 then return false end
+
+   if type(isPlayerPvpEnabled) == "function" then
+      return isPlayerPvpEnabled(cid)
+   end
+   return false
+end
+
+local function getActivePvpPokemon(creature, master)
+   if isSummon(creature) and isPlayer(getCreatureMaster(creature)) then
+      return creature
+   end
+
+   if isPlayer(master) then
+      local summons = getCreatureSummons(master)
+      if summons and #summons > 0 and isCreature(summons[1]) then
+         return summons[1]
+      end
+   end
+   return 0
+end
+
+local function getPvpPokemonLevel(pokemon)
+   local storedLevel = tonumber(getPlayerStorageValue(pokemon, 1000)) or 0
+   if storedLevel > 0 then return storedLevel end
+   return tonumber(getPokemonLevel(pokemon)) or 0
+end
+
+function canPokemonPvpByLevel(cid, pid)
+   if not isCreature(cid) or not isCreature(pid) then return true end
+
+   local master1 = isSummon(cid) and getCreatureMaster(cid) or cid
+   local master2 = isSummon(pid) and getCreatureMaster(pid) or pid
+   if not isPlayer(master1) or not isPlayer(master2) or master1 == master2 then
+      return true
+   end
+
+   local attackerPokemon = getActivePvpPokemon(cid, master1)
+   local targetPokemon = getActivePvpPokemon(pid, master2)
+   if attackerPokemon == 0 or targetPokemon == 0 then return true end
+
+   local attackerLevel = getPvpPokemonLevel(attackerPokemon)
+   local targetLevel = getPvpPokemonLevel(targetPokemon)
+   if attackerLevel <= 0 or targetLevel <= 0 then return true end
+
+   local maximumDifference = tonumber(getConfigValue("pokemonPvpMaxLevelDifference")) or 10
+   return math.abs(attackerLevel - targetLevel) <= maximumDifference, attackerLevel, targetLevel
+end
+
 function canAttackOther(cid, pid)         --Function q verifica se um poke/player pode atacar outro poke/player
 
 if not isCreature(cid) or not isCreature(pid) then return "Cant" end
 
 local master1 = isSummon(cid) and getCreatureMaster(cid) or cid
 local master2 = isSummon(pid) and getCreatureMaster(pid) or pid
+
+   if not canPokemonPvpByLevel(cid, pid) then
+      return "Cant"
+   end
    
    ----             
    if getPlayerStorageValue(master1, 6598754) >= 5 and getPlayerStorageValue(master2, 6598754) >= 5 then
@@ -554,12 +611,40 @@ local master2 = isSummon(pid) and getCreatureMaster(pid) or pid
       return "Can"
    end
    ----
+   -- PvP aberto entre Pokemons de jogadores. A source aplica skull e PZ lock.
+   if isPlayer(master1) and isPlayer(master2) and master1 ~= master2 then
+      if getConfigValue("pokemonPvpEnabled") == false then
+         return "Cant"
+      end
+
+      local minLevel = tonumber(getConfigValue("pokemonPvpMinLevel")) or 30
+      if getPlayerLevel(master1) < minLevel or getPlayerLevel(master2) < minLevel then
+         return "Cant"
+      end
+
+      local party1 = getPlayerParty(master1)
+      local party2 = getPlayerParty(master2)
+      if party1 and party2 and party1 == party2 then
+         return "Cant"
+      end
+
+      local targetSkull = getCreatureSkullType(master2)
+      local targetIsPk = isInArray({SKULL_WHITE, SKULL_RED, SKULL_BLACK}, targetSkull)
+      if getConfigValue("pokemonPvpRequireButton") ~= false and
+         not targetIsPk and not isPokemonPvpButtonActive(master1) then
+         return "Cant"
+      end
+
+      return "Can"
+   end
+   ----
    if ehMonstro(cid) and ehMonstro(pid) then 
       return "Can"
    end
 
 return "Cant"
 end
+-- END Pokemon PvP System
    
       
 function stopNow(cid, time)   
@@ -961,6 +1046,15 @@ function doBodyPush(cid, target, go, pos)
 end
 
 function doReturnPokemon(cid, pokemon, pokeball, effect, hideeffects, blockevo)
+
+    -- START Pokemon PvP System
+    -- Protecao central para goback, pokebar e qualquer outro sistema de troca.
+    local canReturn, remainingSeconds = canReturnPokemonAfterPvp(cid)
+    if isPlayer(cid) and isCreature(pokemon) and not canReturn then
+       doPlayerSendCancel(cid, "Aguarde "..remainingSeconds.." segundo(s) sem atacar para recolher ou trocar seu Pokemon.")
+       return false
+    end
+    -- END Pokemon PvP System
 
     --////////////////////////////////////////////////////////////////////////////////////////--
 	checkDuel(cid)                                                                      --alterado v1.6 duel system

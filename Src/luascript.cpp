@@ -1426,6 +1426,11 @@ void LuaScriptInterface::registerFunctions()
 	//getPlayerLevel(cid)
 	lua_register(m_luaState, "getPlayerLevel", LuaScriptInterface::luaGetPlayerLevel);
 
+	// START Pokemon PvP System
+	//isPlayerPvpEnabled(cid) - secure/PvP button sent by the client
+	lua_register(m_luaState, "isPlayerPvpEnabled", LuaScriptInterface::luaIsPlayerPvpEnabled);
+	// END Pokemon PvP System
+
 	//getPlayerExperience(cid)
 	lua_register(m_luaState, "getPlayerExperience", LuaScriptInterface::luaGetPlayerExperience);
 
@@ -2680,6 +2685,24 @@ int32_t LuaScriptInterface::luaGetPlayerLevel(lua_State* L)
 {
 	return internalGetPlayerInfo(L, PlayerInfoLevel);
 }
+
+// START Pokemon PvP System
+int32_t LuaScriptInterface::luaIsPlayerPvpEnabled(lua_State* L)
+{
+	//isPlayerPvpEnabled(cid)
+	uint32_t cid = popNumber(L);
+	ScriptEnviroment* env = getEnv();
+	if(Player* player = env->getPlayerByUID(cid))
+		lua_pushboolean(L, player->getSecureMode() == SECUREMODE_OFF);
+	else
+	{
+		errorEx(getError(LUA_ERROR_PLAYER_NOT_FOUND));
+		lua_pushboolean(L, false);
+	}
+
+	return 1;
+}
+// END Pokemon PvP System
 
 int32_t LuaScriptInterface::luaGetPlayerExperience(lua_State* L)
 {
