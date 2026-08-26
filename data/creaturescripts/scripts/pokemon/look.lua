@@ -88,12 +88,19 @@ local yhelds = {
 
 -- START Ball Look System
 local function getBallGenderDescription(gender)
+	-- START Pokemon Level and Gender System
+	gender = normalizePokemonGender(gender)
+	-- END Pokemon Level and Gender System
    if gender == SEX_MALE then return "Masculino" end
    if gender == SEX_FEMALE then return "Feminino" end
    return "Sem sexo"
 end
 
 local function getBallLookDetails(cid, thing, pokename)
+   -- START Pokemon Level and Gender System
+   local level, experience = initializePokemonBallProgress(thing.uid, pokename)
+   local experiencePercent = getBallExperiencePercent(thing.uid)
+   -- END Pokemon Level and Gender System
    local hpRate = tonumber(getItemAttribute(thing.uid, "hp")) or 1
    local isDead = getItemAttribute(thing.uid, "morta") == "yes"
       or getItemAttribute(thing.uid, "ballstate") == "dead"
@@ -116,7 +123,9 @@ local function getBallLookDetails(cid, thing, pokename)
       local pokemonInfo = pokes[pokename]
       local boost = tonumber(getItemAttribute(thing.uid, "boost")) or 0
       if pokemonInfo and pokemonInfo.vitality then
-         maxHp = math.floor(HPperVITsummon * pokemonInfo.vitality * (getPlayerLevel(cid) + boost))
+         -- START Pokemon Level and Gender System
+         maxHp = math.floor(HPperVITsummon * pokemonInfo.vitality * (level + boost))
+         -- END Pokemon Level and Gender System
       else
          maxHp = 0
       end
@@ -133,11 +142,6 @@ local function getBallLookDetails(cid, thing, pokename)
    local capturedAt = tonumber(getItemAttribute(thing.uid, "capturedAt"))
    local capturedDate = capturedAt and os.date("%d/%m/%Y %H:%M:%S", capturedAt) or "Não registrada"
    local capturedBy = getItemAttribute(thing.uid, "capturedBy") or "Não registrado"
-   local experience = tonumber(getItemAttribute(thing.uid, "pokeExperience"))
-      or tonumber(getItemAttribute(thing.uid, "experience"))
-      or tonumber(getItemAttribute(thing.uid, "exp"))
-      or 0
-
    return {
       capturedDate = capturedDate,
       capturedBy = capturedBy,
@@ -145,7 +149,11 @@ local function getBallLookDetails(cid, thing, pokename)
       status = isDead and "Morto" or "Vivo",
       currentHp = currentHp,
       maxHp = math.floor(maxHp),
-      experience = math.floor(experience)
+      -- START Pokemon Level and Gender System
+      level = level,
+      experience = math.floor(experience),
+      experiencePercent = experiencePercent
+      -- END Pokemon Level and Gender System
    }
 end
 -- END Ball Look System
@@ -196,7 +204,10 @@ end
       table.insert(str, "\nCapturado por: "..ballDetails.capturedBy..".")
       table.insert(str, "\nStatus: "..ballDetails.status..".")
       table.insert(str, "\nHP: "..ballDetails.currentHp.." / "..ballDetails.maxHp..".")
-      table.insert(str, "\nExperiência: "..ballDetails.experience..".")
+      -- START Pokemon Level and Gender System
+      table.insert(str, "\nLevel: "..ballDetails.level.." / "..(pokemonMaxLevel or 100)..".")
+      table.insert(str, "\nExperiência: "..ballDetails.experience.." ("..ballDetails.experiencePercent.."%).")
+      -- END Pokemon Level and Gender System
       -- END Ball Look System
       doPlayerSendTextMessage(cid, MESSAGE_INFO_DESCR, table.concat(str))
       return false
@@ -306,11 +317,18 @@ elseif isSummon(thing.uid) and not isPlayer(thing.uid) then  --summons
    local boostlevel = getItemAttribute(getPlayerSlotItem(getCreatureMaster(thing.uid), 8).uid, "boost") or 0
    if getCreatureMaster(thing.uid) == cid then
       local myball = getPlayerSlotItem(cid, 8).uid
+	  -- START Pokemon Level and Gender System
+	  local summonLevel = getPokemonLevel(thing.uid)
+	  local summonGender = getBallGenderDescription(getItemAttribute(myball, "gender"))
+	  -- END Pokemon Level and Gender System
       table.insert(str, "You see your "..string.lower(getCreatureName(thing.uid))..".")
       if boostlevel > 0 then
          table.insert(str, "\nBoost level: +"..boostlevel..".")
       end
       table.insert(str, "\nHit points: "..getCreatureHealth(thing.uid).."/"..getCreatureMaxHealth(thing.uid)..".")
+	  -- START Pokemon Level and Gender System
+	  table.insert(str, "\nLevel: "..summonLevel..". Sexo: "..summonGender..".")
+	  -- END Pokemon Level and Gender System
       table.insert(str, "\n"..getPokemonHappinessDescription(thing.uid))
       doPlayerSendTextMessage(cid, MESSAGE_INFO_DESCR, table.concat(str))
    else

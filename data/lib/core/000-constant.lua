@@ -1,5 +1,7 @@
-SEX_MALE = 4
-SEX_FEMALE = 3
+-- START Pokemon Level and Gender System
+SEX_MALE = 7
+SEX_FEMALE = 8
+-- END Pokemon Level and Gender System
 SEX_GENDERLESS = 0
 
 NORTH = 0
@@ -665,7 +667,12 @@ SKULL_GREEN = 2
 SKULL_WHITE = 3
 SKULL_RED = 4
 SKULL_BLACK = 5
-SKULL_LAST = SKULL_BLACK
+-- START Pokemon Level and Gender System
+SKULL_ORANGE = 6
+SKULL_MALE = 7
+SKULL_FEMALE = 8
+SKULL_LAST = SKULL_FEMALE
+-- END Pokemon Level and Gender System
 
 SHIELD_NONE = 0
 SHIELD_WHITEYELLOW = 1

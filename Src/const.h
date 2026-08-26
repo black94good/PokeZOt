@@ -1845,7 +1845,12 @@
 		SKULL_WHITE = 3,
 		SKULL_RED = 4,
 		SKULL_BLACK = 5,
-		SKULL_LAST = SKULL_BLACK
+		// START Pokemon Level and Gender System
+		SKULL_ORANGE = 6,
+		SKULL_MALE = 7,
+		SKULL_FEMALE = 8,
+		SKULL_LAST = SKULL_FEMALE
+		// END Pokemon Level and Gender System
 	};
 	
 	enum PartyShields_t

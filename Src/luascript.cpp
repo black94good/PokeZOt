@@ -3243,6 +3243,7 @@ int32_t LuaScriptInterface::luaDoCreatureSetNick(lua_State* L)
     Creature* creature = env->getCreatureByUID(popNumber(L));
     if(creature)
     {
+        // START Pokemon Level and Gender System
         // Pokemon levels are calculated by the existing Lua level system and
         // stored on the creature under key 1000. Keep the API 0.x unchanged:
         // scripts still send only the nickname and the core appends the level.
@@ -3258,6 +3259,7 @@ int32_t LuaScriptInterface::luaDoCreatureSetNick(lua_State* L)
                 displayNick += levelSuffix.str();
             }
         }
+        // END Pokemon Level and Gender System
 
         SpectatorVec list;
         g_game.getSpectators(list, creature->getPosition());  

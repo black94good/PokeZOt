@@ -10,21 +10,27 @@ LINKOBJ  = obj-console//actions.o obj-console//allocator.o obj-console//baseeven
 LIBS =  -L"lib" -L"C:/Users/freds/Downloads/StiansRepackDev-Cpp_v2/Stian's Repack Dev-Cpp v2/lib/gcc/mingw32/3.4.5/include" -O1 -lboost_system -lgmp -llua5.1 -lmysql -lboost_regex -lsqlite3 -lwsock32 -lxml2 -lmysql -lws2_32 -s -lboost_filesystem -lboost_thread  
 INCS =  -I"include" 
 CXXINCS =  -I"include" 
-BIN  = TheForgottenServer-console.exe
+# START PokeZ Executable Branding System
+BIN  = PokeZ.exe
+# END PokeZ Executable Branding System
 CXXFLAGS = $(CXXINCS) -D__USE_MYSQL__ -D__USE_SQLITE__ -D__ENABLE_SERVER_DIAGNOSTIC__ -D__CONSOLE__   -fexpensive-optimizations -O1
 CFLAGS = $(INCS)   -fexpensive-optimizations -O1
 RM = rm -f
 
 .PHONY: all all-before all-after clean clean-custom
 
-all: all-before TheForgottenServer-console.exe all-after
+# START PokeZ Executable Branding System
+all: all-before $(BIN) all-after
+# END PokeZ Executable Branding System
 
 
 clean: clean-custom
 	${RM} $(OBJ) $(BIN)
 
+# START PokeZ Executable Branding System
 $(BIN): $(OBJ)
-	$(CPP) $(LINKOBJ) -o "TheForgottenServer-console.exe" $(LIBS)
+	$(CPP) $(LINKOBJ) -o "$(BIN)" $(LIBS)
+# END PokeZ Executable Branding System
 
 obj-console//actions.o: ../actions.cpp
 	$(CPP) -c ../actions.cpp -o obj-console//actions.o $(CXXFLAGS)

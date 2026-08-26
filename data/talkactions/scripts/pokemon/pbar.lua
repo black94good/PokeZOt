@@ -42,9 +42,9 @@ local item = getPlayerSlotItem(cid, CONST_SLOT_FEET)
 
 
 
-if not getItemAttribute(item.uid, "pokeLevel") then
-    doItemSetAttribute(item.uid, "pokeLevel", 1)
-end
+-- START Pokemon Level and Gender System
+initializePokemonBallProgress(item.uid, getItemAttribute(item.uid, "poke"))
+-- END Pokemon Level and Gender System
 
 
 

@@ -13,25 +13,34 @@ local function getPokemonPortrait(pokemon)
 	return nil
 end
 
-function onEquip(cid, item, slot)
-	if not cid or item.uid <= 0 then return true end
+local function refreshEquippedPokemonPortrait(cid)
+	if not isCreature(cid) then return true end
 
-	local pokemon = getItemAttribute(item.uid, "poke")
-	if not pokemon then return true end
-
-	if getItemAttribute(item.uid, "Icone") == "yes" or getItemAttribute(item.uid, "icon") == "yes" then
-		local ballState = getItemAttribute(item.uid, "morta") == "yes" and "dead" or "alive"
-		setPhysicalPokemonBall(item.uid, pokemon, nil, ballState)
+	local equippedBall = getPlayerSlotItem(cid, CONST_SLOT_FEET)
+	local pokemon = equippedBall.uid > 0 and getItemAttribute(equippedBall.uid, "poke") or nil
+	if pokemon and (getItemAttribute(equippedBall.uid, "Icone") == "yes" or getItemAttribute(equippedBall.uid, "icon") == "yes") then
+		local ballState = getItemAttribute(equippedBall.uid, "morta") == "yes" and "dead" or "alive"
+		setPhysicalPokemonBall(equippedBall.uid, pokemon, nil, ballState)
 	end
 
 	local legsItem = getPlayerSlotItem(cid, CONST_SLOT_LEGS)
 	if legsItem.uid <= 0 then return true end
 
-	local portraitId = getPokemonPortrait(pokemon)
-	if portraitId then
+	local portraitId = pokemon and getPokemonPortrait(pokemon) or DEFAULT_POKEMON_PORTRAIT
+	if portraitId and legsItem.itemid ~= portraitId then
 		doTransformItem(legsItem.uid, portraitId)
 	end
 
+	return true
+end
+
+function onEquip(cid, item, slot)
+	if not cid or item.uid <= 0 then return true end
+	if not getItemAttribute(item.uid, "poke") then return true end
+
+	-- O core 0.3.6 ainda esta concluindo a movimentacao do inventario neste
+	-- callback. Atualizar o retrato depois evita invalidar ponteiros de slots.
+	addEvent(refreshEquippedPokemonPortrait, 20, cid)
 	return true
 end
 
@@ -39,11 +48,7 @@ function onDeEquip(cid, item, slot)
 	if not cid or item.uid <= 0 then return true end
 	if not getItemAttribute(item.uid, "poke") then return true end
 
-	local legsItem = getPlayerSlotItem(cid, CONST_SLOT_LEGS)
-	if legsItem.uid > 0 then
-		doTransformItem(legsItem.uid, DEFAULT_POKEMON_PORTRAIT)
-	end
-
+	addEvent(refreshEquippedPokemonPortrait, 20, cid)
 	return true
 end
 -- END Ball System

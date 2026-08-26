@@ -5,7 +5,9 @@
 
 #include "../gui_resources.rc"
 
-A ICON MOVEABLE PURE LOADONCALL DISCARDABLE "TheForgottenServer-console.ico"
+// START PokeZ Executable Branding System
+A ICON MOVEABLE PURE LOADONCALL DISCARDABLE "PokeZ.ico"
+// END PokeZ Executable Branding System
 
 //
 // TO CHANGE VERSION INFORMATION, EDIT PROJECT OPTIONS...
@@ -21,12 +23,14 @@ FILETYPE VFT_APP
 		 {
 			 VALUE "CompanyName", "OtLand.net"
 			 VALUE "FileVersion", "0.3.6"
-			 VALUE "FileDescription", "The Forgotten Server"
-			 VALUE "InternalName", "Crying Damson"
+			 // START PokeZ Executable Branding System
+			 VALUE "FileDescription", "PokeZ Server"
+			 VALUE "InternalName", "PokeZ"
 			 VALUE "LegalCopyright", ""
 			 VALUE "LegalTrademarks", ""
-			 VALUE "OriginalFilename", "Crying Damson.exe"
-			 VALUE "ProductName", "The Forgotten Server"
+			 VALUE "OriginalFilename", "PokeZ.exe"
+			 VALUE "ProductName", "PokeZ"
+			 // END PokeZ Executable Branding System
 			 VALUE "ProductVersion", "0.3.6"
 		 }
 	 }

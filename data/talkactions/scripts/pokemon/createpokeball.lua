@@ -1,104 +1,180 @@
-function onSay(cid, words, param)
+-- START Pokemon Admin Create Ball System
+local function trimCreateBallParameter(value)
+	local cleanedValue = tostring(value or ""):gsub("^%s+", ""):gsub("%s+$", "")
+	return cleanedValue
+end
 
-local typess = {
-[1] = "normal",
-[2] = "great",
-[3] = "super",
-[4] = "ultra"
+local function resolveCreateBallPokemonName(value)
+	local requestedName = trimCreateBallParameter(value):lower()
+	if requestedName == "" then return nil end
+
+	for pokemonName in pairs(pokes) do
+		if pokemonName:lower() == requestedName then
+			return pokemonName
+		end
+	end
+	return nil
+end
+
+local createBallTypes = {
+	["normal"] = "normal",
+	["poke"] = "normal",
+	["pokeball"] = "normal",
+	["poke ball"] = "normal",
+	["great"] = "great",
+	["greatball"] = "great",
+	["great ball"] = "great",
+	["super"] = "super",
+	["superball"] = "super",
+	["super ball"] = "super",
+	["ultra"] = "ultra",
+	["ultraball"] = "ultra",
+	["ultra ball"] = "ultra",
+	["safari"] = "saffari",
+	["saffari"] = "saffari",
+	["safariball"] = "saffari",
+	["saffariball"] = "saffari",
+	["safari ball"] = "saffari",
+	["saffari ball"] = "saffari",
+	["dark"] = "dark",
+	["darkball"] = "dark",
+	["dark ball"] = "dark",
+	["shinypoke"] = "shinypoke",
+	["shinygreat"] = "shinygreat",
+	["shinysuper"] = "shinysuper",
+	["shinyultra"] = "shinyultra",
+	["shinysaffari"] = "shinysaffari",
+	["shinydark"] = "shinydark"
 }
 
-if param == "" then
-doPlayerSendCancel(cid, 'Command needs parameters, function structure: "/cb [Pokemon Name], [boost], [Gender]".')
-return 0
+local createBallGenders = {
+	["male"] = SEX_MALE,
+	["macho"] = SEX_MALE,
+	["masculino"] = SEX_MALE,
+	["m"] = SEX_MALE,
+	["1"] = SEX_MALE,
+	["female"] = SEX_FEMALE,
+	["femea"] = SEX_FEMALE,
+	["fêmea"] = SEX_FEMALE,
+	["feminino"] = SEX_FEMALE,
+	["f"] = SEX_FEMALE,
+	["0"] = SEX_FEMALE,
+	["genderless"] = SEX_GENDERLESS,
+	["sem sexo"] = SEX_GENDERLESS
+}
+
+local createBallRandomGenders = {
+	["random"] = true,
+	["aleatorio"] = true,
+	["aleatório"] = true
+}
+
+local function sendCreateBallUsage(cid)
+	doPlayerSendCancel(cid, "Use: /cb Pokemon, ball, level, boost, sexo")
+	doPlayerSendTextMessage(cid, 27, "Exemplo: /cb Pikachu, ultra, 50, 10, macho")
 end
 
-local t = string.explode(param, ",")
-
-local name = ""
-local gender = 0
-local btype = typess[math.random(1, 4)]                --"normal"
-local typeee = typess[math.random(1, 4)]
-
-if t[1] then
-	local n = string.explode(t[1], " ")
-	local str = string.sub(n[1], 1, 1)
-	local sta = string.sub(n[1], 2, string.len(n[1]))
-	name = ""..string.upper(str)..""..string.lower(sta)..""
-	if n[2] then
-	str = string.sub(n[2], 1, 1)
-	sta = string.sub(n[2], 2, string.len(n[2]))
-	name = name.." "..string.upper(str)..""..string.lower(sta)..""
+function onSay(cid, words, param)
+	if trimCreateBallParameter(param) == "" then
+		sendCreateBallUsage(cid)
+		return true
 	end
-	if not pokes[name] then
-	doPlayerSendCancel(cid, "Sorry, a pokemon with the name "..name.." doesn't exists.")
+
+	local parameters = string.explode(param, ",")
+	if #parameters < 5 then
+		sendCreateBallUsage(cid)
+		return true
+	end
+
+	local name = resolveCreateBallPokemonName(parameters[1])
+	if not name then
+		doPlayerSendCancel(cid, "Pokemon inexistente: "..trimCreateBallParameter(parameters[1])..".")
+		return true
+	end
+
+	local requestedBall = trimCreateBallParameter(parameters[2]):lower()
+	local ballType = createBallTypes[requestedBall]
+	if not ballType then
+		doPlayerSendCancel(cid, "Ball invalida. Use: normal, great, super, ultra, safari ou dark.")
+		return true
+	end
+
+	local level = tonumber(trimCreateBallParameter(parameters[3]))
+	if not level or level ~= math.floor(level) then
+		doPlayerSendCancel(cid, "O level precisa ser um numero inteiro.")
+		return true
+	end
+	level = math.floor(level)
+	if level < 1 or level > (pokemonMaxLevel or 100) then
+		doPlayerSendCancel(cid, "O level deve ficar entre 1 e "..(pokemonMaxLevel or 100)..".")
+		return true
+	end
+
+	local boost = tonumber(trimCreateBallParameter(parameters[4]))
+	if not boost or boost ~= math.floor(boost) then
+		doPlayerSendCancel(cid, "O boost precisa ser um numero inteiro.")
+		return true
+	end
+	boost = math.floor(boost)
+	if boost < 0 or boost > 50 then
+		doPlayerSendCancel(cid, "O boost deve ficar entre 0 e 50.")
+		return true
+	end
+
+	local requestedGender = trimCreateBallParameter(parameters[5]):lower()
+	local gender = createBallGenders[requestedGender]
+	if createBallRandomGenders[requestedGender] then
+		gender = getRandomGenderByName(name)
+	elseif gender == nil then
+		doPlayerSendCancel(cid, "Sexo invalido. Use: macho, femea, random ou genderless.")
+		return true
+	end
+
+	local physicalBallType = getPhysicalPokemonBallType(ballType, name)
+	local ballConfig = pokeballs[physicalBallType]
+	if not ballConfig or not ballConfig.alive then
+		doPlayerSendCancel(cid, "A ball selecionada nao possui item vivo configurado.")
+		return true
+	end
+
+	local trainerBag = getPlayerSlotItem(cid, CONST_SLOT_BACKPACK)
+	if trainerBag.uid <= 0 or not isContainer(trainerBag.uid) then
+		doPlayerSendCancel(cid, "Equipe sua trainer bag antes de criar o Pokemon.")
+		return true
+	end
+	if not canPlayerCarryPokemon(cid, 1) then
+		doPlayerSendCancel(cid, "Voce ja possui o limite de seis Pokemon.")
+		return true
+	end
+
+	-- A ball e criada ja dentro da bag. Isso evita deixar um item virtual
+	-- temporariamente nos slots de equipamento durante o comando administrativo.
+	local item = addItemInFreeBag(trainerBag.uid, ballConfig.alive, 1)
+	if not item then
+		doPlayerSendCancel(cid, "Nao ha espaco livre na trainer bag.")
+		return true
+	end
+	doItemSetAttribute(item, "poke", name)
+	doItemSetAttribute(item, "hp", 1)
+	doItemSetAttribute(item, "happy", 255)
+	doItemSetAttribute(item, "gender", normalizePokemonGender(gender))
+	if boost > 0 then
+		doItemSetAttribute(item, "boost", boost)
+	end
+	if name == "Shiny Hitmonchan" or name == "Hitmonchan" then
+		doItemSetAttribute(item, "hands", 0)
+	end
+
+	initializePokemonBallProgress(item, name, level)
+	setPokemonBallCaptureInfo(item, cid, name)
+	doItemSetAttribute(item, "description", "Contains a "..name..". Level: "..level..". Boost: +"..boost..".")
+	doItemSetAttribute(item, "fakedesc", "Contains a "..name..". Level: "..level..". Boost: +"..boost..".")
+	setPhysicalPokemonBall(item, name, physicalBallType, "alive")
+	addEvent(doUpdatePokemonsBar, 100, cid)
+
+	local genderName = gender == SEX_MALE and "macho" or (gender == SEX_FEMALE and "femea" or "genderless")
+	doPlayerSendTextMessage(cid, 27, name.." criado: "..physicalBallType..", level "..level..", boost +"..boost..", "..genderName..".")
+	print(name.." ball has been created by "..getPlayerName(cid).." at level "..level.." with boost +"..boost..".")
 	return true
-	end
-print(""..name.." ball has been created by "..getPlayerName(cid)..".")
 end
-
-local genders = {
-["male"] = 4,
-["female"] = 3,
-["1"] = 4,
-["0"] = 3}
-
-if t[3] then
-	if genders[t[3]] then
-		gender = genders[t[3]]
-	else
-	local rate = newpokedex[name].gender
-		if rate == 0 then
-			gender = 3
-		elseif rate == 1000 then
-			gender = 4
-		elseif rate == -1 then
-			gender = 0
-		elseif math.random(1, 1000) <= rate then
-			gender = 4
-		else
-			gender = 3
-		end
-	end
-	else
-	local rate = newpokedex[name].gender
-		if rate == 0 then
-			gender = 3
-		elseif rate == 1000 then
-			gender = 4
-		elseif rate == -1 then
-			gender = 0
-		elseif math.random(1, 1000) <= rate then
-			gender = 4
-		else
-			gender = 3
-		end
-end
-
-local mypoke = pokes[name]
-local happy = 255
-
--- START Ball System
-local physicalBallType = getPhysicalPokemonBallType(btype, name)
-local item = doCreateItemEx(pokeballs[physicalBallType].alive)
--- END Ball System
-doItemSetAttribute(item, "poke", name)
-doItemSetAttribute(item, "hp", 1)
-if t[2] and tonumber(t[2]) > 0 and tonumber(t[2]) <= 50 then
-   doItemSetAttribute(item, "boost", tonumber(t[2]))
-end
-doItemSetAttribute(item, "happy", happy)
-doItemSetAttribute(item, "gender", gender)
--- START Ball Look System
-setPokemonBallCaptureInfo(item, cid, name, 0)
--- END Ball Look System
-if name == "Shiny Hitmonchan" or name == "Hitmonchan" then
-   doItemSetAttribute(item, "hands", 0)
-end
-doItemSetAttribute(item, "description", "Contains a "..name..".")
-doItemSetAttribute(item, "fakedesc", "Contains a "..name..".")
--- START Ball System
-setPhysicalPokemonBall(item, name, physicalBallType, "alive")
-doPlayerAddItemEx(cid, item, true)
--- END Ball System
-return 1
-end
+-- END Pokemon Admin Create Ball System

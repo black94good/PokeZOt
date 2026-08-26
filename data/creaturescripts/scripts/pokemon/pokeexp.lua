@@ -1,7 +1,10 @@
-local function playerAddExp(cid, exp)
+-- START Pokemon Level and Gender System
+local function playerAddExp(cid, exp, pokemonExp)
 	doPlayerAddExp(cid, exp)
 	doSendAnimatedText(getThingPos(cid), exp, 215)
+	addPokemonExperience(cid, pokemonExp or 0)
 end
+-- END Pokemon Level and Gender System
 
 
 function onDeath(cid, corpse, deathList)
@@ -40,6 +43,7 @@ function onDeath(cid, corpse, deathList)
 	local givenexp = getWildPokemonExp(cid)
 	---local killer = getItemAttribute(corpse.uid, "corpseowner")  
 
+-- START Pokemon Level and Gender System
 if givenexp > 0 then
 for a = 1, #deathList do
 local pk = deathList[a]
@@ -53,42 +57,43 @@ if isCreature(pk) then
       for i = 1, #party do
           if isInArray(list, party[i]) then		     
 if getPlayerLevel(pk) <= 50 then
-             playerAddExp(party[i], expTotal * 200)  
+             playerAddExp(party[i], expTotal * 200, expTotal)  
 elseif getPlayerLevel(pk) >= 51 and getPlayerLevel(pk) <= 75 then
-             playerAddExp(party[i], expTotal * 130)
+             playerAddExp(party[i], expTotal * 130, expTotal)
 elseif getPlayerLevel(pk) >= 76 and getPlayerLevel(pk) <= 100 then
-             playerAddExp(party[i], expTotal * 80)
+             playerAddExp(party[i], expTotal * 80, expTotal)
 elseif getPlayerLevel(pk) >= 101 and getPlayerLevel(pk) <= 150 then
-             playerAddExp(party[i], expTotal * 40)
+             playerAddExp(party[i], expTotal * 40, expTotal)
 elseif getPlayerLevel(pk) >= 151 and getPlayerLevel(pk) <= 250 then
-             playerAddExp(party[i], expTotal * 20)
+             playerAddExp(party[i], expTotal * 20, expTotal)
 elseif getPlayerLevel(pk) >= 251 and getPlayerLevel(pk) <= 350 then
-             playerAddExp(party[i], expTotal * 10)
+             playerAddExp(party[i], expTotal * 10, expTotal)
 elseif getPlayerLevel(pk) >= 351 then
-             playerAddExp(party[i], expTotal * 5)
+             playerAddExp(party[i], expTotal * 5, expTotal)
 			 end
           end
       end
    elseif not isInParty(pk) then
 if getPlayerLevel(pk) <= 50 then
-playerAddExp(pk, math.floor(200 * givenexp))
+playerAddExp(pk, math.floor(200 * givenexp), givenexp)
 elseif getPlayerLevel(pk) >= 51 and getPlayerLevel(pk) <= 75 then
-playerAddExp(pk, math.floor(130 * givenexp))
+playerAddExp(pk, math.floor(130 * givenexp), givenexp)
 elseif getPlayerLevel(pk) >= 76 and getPlayerLevel(pk) <= 100 then
-playerAddExp(pk, math.floor(80 * givenexp))
+playerAddExp(pk, math.floor(80 * givenexp), givenexp)
 elseif getPlayerLevel(pk) >= 101 and getPlayerLevel(pk) <= 150 then
-playerAddExp(pk, math.floor(40 * givenexp))
+playerAddExp(pk, math.floor(40 * givenexp), givenexp)
 elseif getPlayerLevel(pk) >= 151 and getPlayerLevel(pk) <= 250 then
-playerAddExp(pk, math.floor(20 * givenexp))
+playerAddExp(pk, math.floor(20 * givenexp), givenexp)
 elseif getPlayerLevel(pk) >= 251 and getPlayerLevel(pk) <= 350 then
-playerAddExp(pk, math.floor(10 * givenexp))
+playerAddExp(pk, math.floor(10 * givenexp), givenexp)
 elseif getPlayerLevel(pk) >= 351 then
-playerAddExp(pk, math.floor(5 * givenexp))
+playerAddExp(pk, math.floor(5 * givenexp), givenexp)
 return true end	  
    end       
 end
 end
 end
+-- END Pokemon Level and Gender System
 
 	if isNpcSummon(cid) then
 		local master = getCreatureMaster(cid)

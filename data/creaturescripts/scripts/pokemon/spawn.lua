@@ -8,7 +8,9 @@ local function ShinyName(cid)
 if isCreature(cid) then
    if string.find(tostring(getCreatureName(cid)), "Shiny") then
       local newName = tostring(getCreatureName(cid)):match("Shiny (.*)")             
-      doCreatureSetNick(cid, newName)
+      -- START Pokemon Level and Gender System
+      doCreatureSetNick(cid, formatPokemonDisplayName(newName, getPokemonLevel(cid)))
+      -- END Pokemon Level and Gender System
       if isMonster(cid) then
          doSetCreatureDropLoot(cid, false)  
       end
@@ -17,6 +19,7 @@ end
 end
 
 local function doSetRandomGender(cid)
+	-- START Pokemon Level and Gender System
 	if not isCreature(cid) then return true end
 	if isSummon(cid) then return true end
 	local gender = 0
@@ -24,17 +27,18 @@ local function doSetRandomGender(cid)
 	if not newpokedex[name] then return true end
 	local rate = newpokedex[name].gender
 		if rate == 0 then
-			gender = 3
-		elseif rate == 500 then
-			gender = 4
+			gender = SEX_FEMALE
+		elseif rate == 1000 then
+			gender = SEX_MALE
 		elseif rate == -1 then
 			gender = 0
-		elseif math.random(1, 500) <= rate then
-			gender = 4
+		elseif math.random(1, 1000) <= rate then
+			gender = SEX_MALE
 		else
-			gender = 3
+			gender = SEX_FEMALE
 		end
 	doCreatureSetSkullType(cid, gender)
+	-- END Pokemon Level and Gender System
 end
 
 local function doShiny(cid)
@@ -80,6 +84,9 @@ function onSpawn(cid)
 	
 	addEvent(doShiny, 10, cid)
 	addEvent(ShinyName, 15, cid)
+	-- START Pokemon Level and Gender System
+	addEvent(doSetRandomGender, 4, cid)
+	-- END Pokemon Level and Gender System
 	addEvent(adjustWildPoke, 5, cid)
 
 return true

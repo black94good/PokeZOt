@@ -106,6 +106,9 @@ local levelChance = level * 0.02
 
 	if rate >= totalChance then
 		local status = {}
+		      -- START Pokemon Level and Gender System
+		      status.level = level
+		      -- END Pokemon Level and Gender System
 		      status.gender = getItemAttribute(corpse, "gender")
 		      status.happy = 500
 
@@ -134,6 +137,9 @@ local levelChance = level * 0.02
 
 
 	local status = {}
+	      -- START Pokemon Level and Gender System
+	      status.level = level
+	      -- END Pokemon Level and Gender System
 	      status.gender = getItemAttribute(corpse, "gender")
 	      status.happy = 500
 
@@ -234,7 +240,9 @@ end
 local physicalBallType = getPhysicalPokemonBallType(typeee, poke)
 local description = "Contains a "..poke.."."
 
-local gender = status.gender
+-- START Pokemon Level and Gender System
+local gender = normalizePokemonGender(status.gender)
+-- END Pokemon Level and Gender System
 local happy = 200
         -- START Pokebar System
         local pokemonBag = getPlayerSlotItem(cid, CONST_SLOT_BACKPACK)
@@ -253,6 +261,10 @@ local happy = 200
         -- END Pokebar System
 
 		doItemSetAttribute(item, "poke", poke)
+		-- START Pokemon Level and Gender System
+		local capturedLevel = tonumber(status.level) or pokes[poke].level or 1
+		initializePokemonBallProgress(item, poke, capturedLevel)
+		-- END Pokemon Level and Gender System
 		doItemSetAttribute(item, "hp", 1)
 		doItemSetAttribute(item, "happy", happy)
 		doItemSetAttribute(item, "gender", gender)

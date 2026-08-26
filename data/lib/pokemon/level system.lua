@@ -1,24 +1,38 @@
+-- START Wild Pokemon Random Level System
+function getRandomWildPokemonLevel(name)
+	local pokemonInfo = pokes[name]
+	if not pokemonInfo then return 1 end
+
+	local configuredRange = wildPokemonLevelRanges and wildPokemonLevelRanges[name] or nil
+	local configuredLevel = configuredRange or pokemonInfo.wildLvl or pokemonInfo.level or 1
+	local minimumLevel
+	local maximumLevel
+
+	if type(configuredLevel) == "table" then
+		minimumLevel = tonumber(configuredLevel.min or configuredLevel[1]) or 1
+		maximumLevel = tonumber(configuredLevel.max or configuredLevel[2]) or minimumLevel
+	else
+		maximumLevel = tonumber(configuredLevel) or 1
+		minimumLevel = maximumLevel - (tonumber(wildPokemonDefaultLevelVariation) or 0)
+	end
+
+	local levelLimit = pokemonMaxLevel or 100
+	minimumLevel = math.max(1, math.min(levelLimit, math.floor(minimumLevel)))
+	maximumLevel = math.max(1, math.min(levelLimit, math.floor(maximumLevel)))
+	if minimumLevel > maximumLevel then
+		minimumLevel, maximumLevel = maximumLevel, minimumLevel
+	end
+
+	return math.random(minimumLevel, maximumLevel)
+end
+
 function adjustWildPoke(cid, optionalLevel)
 if isMonster(cid) and pokes[getCreatureName(cid)] then
-
-    local level = (optionalLevel and optionalLevel >= 1) and optionalLevel or getPokemonLevel(cid)  --alterado v1.8
-	
-			   local level = 0
-    local b = getCreatureOutfit(cid).lookBody
-	local shiny = 100
-    local lvl = getPokemonLevel(cid)
-	local monstrinho = getCreatureName(cid)
-                                                 --alterado v1.4
-												 
-    if optionalLevel then
-       level = optionalLevel
-    elseif b > lvl then
-       level = b
-	elseif string.find(monstrinho, "Shiny") then
-      level = lvl * 01.0
-	else
-       level = lvl
-	end
+	local pokemonName = getCreatureName(cid)
+	local levelLimit = pokemonMaxLevel or 100
+	local level = optionalLevel and tonumber(optionalLevel) or getRandomWildPokemonLevel(pokemonName)
+	level = math.max(1, math.min(levelLimit, math.floor(level or 1)))
+-- END Wild Pokemon Random Level System
 	
 	setPlayerStorageValue(cid, 1000, level) --alterado v1.8
     setPlayerStorageValue(cid, 1001, pokes[getCreatureName(cid)].offense * level)
@@ -30,6 +44,14 @@ if isMonster(cid) and pokes[getCreatureName(cid)] then
     doRegainSpeed(cid)	     --alterado!
     setCreatureMaxHealth(cid, (getVitality(cid) * HPperVITwild)) 
     doCreatureAddHealth(cid,  getCreatureMaxHealth(cid))
+
+	-- START Pokemon Level and Gender System
+	local displayName = getCreatureName(cid)
+	if string.find(displayName, "Shiny") then
+		displayName = displayName:match("Shiny (.*)") or displayName
+	end
+	doCreatureSetNick(cid, formatPokemonDisplayName(displayName, level))
+	-- END Pokemon Level and Gender System
    
     if pokes[getCreatureName(cid)].exp then
        local exp = pokes[getCreatureName(cid)].exp * baseExpRate + pokes[getCreatureName(cid)].vitality * pokemonExpPerLevelRate
@@ -148,12 +170,18 @@ function doEvolvePokemon(cid, item2, theevo, stone1, stone2)
 
 	local owner = getCreatureMaster(item2.uid)
 	local pokeball = getPlayerSlotItem(cid, 8)
+	-- START Pokemon Level and Gender System
+	local pokemonLevel = initializePokemonBallProgress(pokeball.uid, getItemAttribute(pokeball.uid, "poke"))
+	-- END Pokemon Level and Gender System
 	local description = "Contains a "..theevo.."."
 	local pct = getCreatureHealth(item2.uid) / getCreatureMaxHealth(item2.uid)
 
 		doItemSetAttribute(pokeball.uid, "hp", pct)
 
 		doItemSetAttribute(pokeball.uid, "poke", theevo)
+		-- START Pokemon Level and Gender System
+		doItemSetAttribute(pokeball.uid, "pokeLevel", pokemonLevel)
+		-- END Pokemon Level and Gender System
 		doItemSetAttribute(pokeball.uid, "description", "Contains a "..theevo..".")
 
 		doPlayerSendTextMessage(cid, 27, "Congratulations! Your "..getPokeName(item2.uid).." evolved into a "..theevo.."!")		
@@ -222,8 +250,16 @@ function adjustStatus(pk, item, health, vite, conditions)
 
 	if not isCreature(pk) then return true end
 
-	local gender = getItemAttribute(item, "gender") and getItemAttribute(item, "gender") or 0
+	-- START Pokemon Level and Gender System
+	local gender = normalizePokemonGender(getItemAttribute(item, "gender"))
+	doItemSetAttribute(item, "gender", gender)
 	addEvent(doCreatureSetSkullType, 10, pk, gender)
+	-- END Pokemon Level and Gender System
+
+	-- START Pokemon Level and Gender System
+	local pokemonLevel = initializePokemonBallProgress(item, getCreatureName(pk))
+	setPlayerStorageValue(pk, 1000, pokemonLevel)
+	-- END Pokemon Level and Gender System
 
 -- Defense -- 
 local bonusdef = {}
@@ -301,7 +337,9 @@ end
 
 	setPlayerStorageValue(pk, 1007, nick)
 
-	doCreatureSetNick(pk, nick)
+	-- START Pokemon Level and Gender System
+	doCreatureSetNick(pk, formatPokemonDisplayName(nick, pokemonLevel))
+	-- END Pokemon Level and Gender System
 
 	if not getItemAttribute(item, "happy") then
 		doItemSetAttribute(item, "happy", 120)
@@ -455,23 +493,165 @@ return getSpecialAttack(cid) * 0.85 + getDefense(cid) * 0.2
 end
 
 function getPokemonLevel(cid, dex)
+-- START Pokemon Level and Gender System
 if not isCreature(cid) or not pokes[getCreatureName(cid)] then return 0 end 
     if not dex then                      --alterado v1.9
-       if ehMonstro(cid) and getPlayerStorageValue(cid, 1000) > 0 then  
+       if getPlayerStorageValue(cid, 1000) > 0 then  
           return getPlayerStorageValue(cid, 1000)
-       elseif ehMonstro(cid) then 
-          return pokes[getCreatureName(cid)].wildLvl             
+       elseif ehMonstro(cid) then
+          -- START Wild Pokemon Random Level System
+          return getRandomWildPokemonLevel(getCreatureName(cid))
+          -- END Wild Pokemon Random Level System
        end
     end   
 return pokes[getCreatureName(cid)].level
+-- END Pokemon Level and Gender System
 end
 
 function getPokemonLevelByName(name)
 return pokes[name] and pokes[name].level or 0  --alterado v1.9
 end
 
+-- START Pokemon Level and Gender System
+local function getPokemonBallUid(ball)
+	if type(ball) == "table" then return tonumber(ball.uid) or 0 end
+	return tonumber(ball) or 0
+end
+
+function formatPokemonDisplayName(name, level)
+	name = tostring(name or "Pokemon")
+	name = name:gsub(" %[Lv%. %d+%]$", "")
+	level = math.max(1, math.floor(tonumber(level) or 1))
+	return name.." [Lv. "..level.."]"
+end
+
+function normalizePokemonGender(gender)
+	gender = tonumber(gender) or SEX_GENDERLESS
+	if gender == 4 then return SEX_MALE end
+	if gender == 3 then return SEX_FEMALE end
+	if gender == SEX_MALE or gender == SKULL_MALE then return SEX_MALE end
+	if gender == SEX_FEMALE or gender == SKULL_FEMALE then return SEX_FEMALE end
+	return SEX_GENDERLESS
+end
+
+function initializePokemonBallProgress(ball, pokemonName, requestedLevel, requestedExperience)
+	local ballUid = getPokemonBallUid(ball)
+	if ballUid <= 0 then return 1, 0 end
+
+	pokemonName = pokemonName or getItemAttribute(ballUid, "poke")
+	local pokemonInfo = pokemonName and pokes[pokemonName]
+	if not pokemonInfo then return 1, 0 end
+
+	local storedGender = getItemAttribute(ballUid, "gender")
+	if storedGender then
+		doItemSetAttribute(ballUid, "gender", normalizePokemonGender(storedGender))
+	end
+
+	local maxLevel = pokemonMaxLevel or 100
+	local minimumLevel = tonumber(pokemonInfo.level) or 1
+	local level = tonumber(getItemAttribute(ballUid, "pokeLevel")) or tonumber(requestedLevel) or minimumLevel
+	level = math.max(1, math.min(math.floor(level), maxLevel))
+
+	-- Balls antigas que receberam level 1 pelo pbar são recuperadas para o
+	-- level inicial da espécie quando ainda não possuem experiência individual.
+	local storedExperience = tonumber(getItemAttribute(ballUid, "pokeExp"))
+	if not storedExperience and level == 1 and minimumLevel > 1 then
+		level = math.min(minimumLevel, maxLevel)
+	end
+
+	local experienceTable = getPokemonExperienceTable(pokemonName)
+	local levelExperience = tonumber(experienceTable[level]) or 0
+	local experience = storedExperience
+		or tonumber(requestedExperience)
+		or tonumber(getItemAttribute(ballUid, "pokeExperience"))
+		or levelExperience
+	if experience < levelExperience then experience = levelExperience end
+
+	doItemSetAttribute(ballUid, "pokeLevel", level)
+	doItemSetAttribute(ballUid, "pokeExp", experience)
+	-- Mantém o atributo antigo sincronizado para scripts e balls já existentes.
+	doItemSetAttribute(ballUid, "pokeExperience", experience)
+	return level, experience
+end
+
+function getBallNewLevel(ball)
+	local level = initializePokemonBallProgress(ball)
+	return level
+end
+
+function getBallExperiencePercent(ball)
+	local ballUid = getPokemonBallUid(ball)
+	local pokemonName = ballUid > 0 and getItemAttribute(ballUid, "poke") or nil
+	if not pokemonName or not pokes[pokemonName] then return 0 end
+
+	local level, experience = initializePokemonBallProgress(ballUid, pokemonName)
+	if level >= (pokemonMaxLevel or 100) then return 100 end
+
+	local experienceTable = getPokemonExperienceTable(pokemonName)
+	local currentLevelExperience = tonumber(experienceTable[level]) or 0
+	local nextLevelExperience = tonumber(experienceTable[level + 1]) or currentLevelExperience
+	if nextLevelExperience <= currentLevelExperience then return 100 end
+
+	local percent = math.floor(((experience - currentLevelExperience) * 100) /
+		(nextLevelExperience - currentLevelExperience))
+	return math.max(0, math.min(percent, 100))
+end
+
+-- Compatibilidade com o nome usado pelo trade system desta base.
+function getBallExpPercet(ball)
+	return getBallExperiencePercent(ball)
+end
+
+function addPokemonExperience(cid, amount)
+	if not isPlayer(cid) or not amount or amount <= 0 then return false end
+	if #getCreatureSummons(cid) < 1 then return false end
+
+	local ball = getPlayerSlotItem(cid, CONST_SLOT_FEET)
+	if ball.uid <= 0 or not isPokeball(ball.itemid) then return false end
+
+	local pokemonName = getItemAttribute(ball.uid, "poke")
+	if not pokemonName or not pokes[pokemonName] then return false end
+
+	local maxLevel = pokemonMaxLevel or 100
+	local level, experience = initializePokemonBallProgress(ball.uid, pokemonName)
+	if level >= maxLevel then return true end
+
+	local experienceTable = getPokemonExperienceTable(pokemonName)
+	experience = experience + math.floor(amount * (pokemonExperienceRate or 1))
+
+	local oldLevel = level
+	while level < maxLevel and experience >= (experienceTable[level + 1] or math.huge) do
+		level = level + 1
+	end
+
+	if level >= maxLevel then
+		experience = math.min(experience, experienceTable[maxLevel] or experience)
+	end
+	doItemSetAttribute(ball.uid, "pokeExp", experience)
+	doItemSetAttribute(ball.uid, "pokeExperience", experience)
+	doItemSetAttribute(ball.uid, "pokeLevel", level)
+
+	if level > oldLevel then
+		local summons = getCreatureSummons(cid)
+		if #summons >= 1 and isCreature(summons[1]) then
+			adjustStatus(summons[1], ball.uid, true, true, false)
+			doSendMagicEffect(getThingPos(summons[1]), 132)
+		end
+		doPlayerSendTextMessage(cid, MESSAGE_STATUS_CONSOLE_ORANGE,
+			"Seu "..pokemonName.." avançou do level "..oldLevel.." para o level "..level..".")
+		if useKpdoDlls then doUpdateMoves(cid) end
+	end
+
+	return true
+end
+-- END Pokemon Level and Gender System
+
 function getMasterLevel(poke)
     if not isSummon(poke) then return 0 end
+	-- START Pokemon Level and Gender System
+	local pokemonLevel = tonumber(getPlayerStorageValue(poke, 1000))
+	if pokemonLevel and pokemonLevel > 0 then return pokemonLevel end
+	-- END Pokemon Level and Gender System
 return getPlayerLevel(getCreatureMaster(poke))
 end
 
@@ -517,7 +697,9 @@ end
 
 function setPokemonGender(cid, gender)
 if isCreature(cid) and gender then        --alterado v1.8
-   doCreatureSetSkullType(cid, gender)
+   -- START Pokemon Level and Gender System
+   doCreatureSetSkullType(cid, normalizePokemonGender(gender))
+   -- END Pokemon Level and Gender System
    return true
 end
 return false

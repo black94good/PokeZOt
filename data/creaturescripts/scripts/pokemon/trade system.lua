@@ -131,14 +131,17 @@ function onTradeRequest(cid, target, item)
 		name = getItemAttribute(item.uid, "poke")            --alterado v1.8 \/
 		local boost = getItemAttribute(item.uid, "boost") or 0
 		local nick = getItemAttribute(item.uid, "nick") or ""
-		local level = getItemAttribute(item.uid, "pokeLevel") or 0
-		local elite = getItemAttribute(item.uid, "elite") or 0
-		local levelPoke = getBallNewLevel(item.uid)
-		local ElitePoke = getPokemonElite(item.uid)
+		-- START Pokemon Level and Gender System
+		local level = getBallNewLevel(item.uid)
 		local exps = getBallExpPercet(item.uid)
+		-- END Pokemon Level and Gender System
+		local elite = getItemAttribute(item.uid, "elite") or 0
+		local ElitePoke = getPokemonElite(item.uid)
 		local str = "Pokemon in trade: "
-		str = str.."•Name: "..name.."   •Boost: "..boost.."   •Level: "..level.."   •elite: "..elite
-		if nick ~= "" then str = str.."   •Nick: "..nick end
+		-- START Pokemon Level and Gender System
+		str = str.."â€¢Name: "..name.."   â€¢Boost: "..boost.."   â€¢Level: "..level.."   â€¢Exp: "..exps.."%   â€¢Elite: "..elite
+		-- END Pokemon Level and Gender System
+		if nick ~= "" then str = str.."   â€¢Nick: "..nick end
 		local heldx = getItemAttribute(item.uid, "heldx")
 		local heldy = getItemAttribute(item.uid, "heldy")
 		if heldx and heldy then
@@ -158,17 +161,21 @@ function onTradeRequest(cid, target, item)
 			for i = 1, #itens do
 				if isPokeball(getThing(itens[i]).itemid) then
 					local name = getItemAttribute(itens[i], "poke")
-					local levelPoke = getItemAttribute(itens[i], "pokeLevel")
+					-- START Pokemon Level and Gender System
+					local levelPoke = getBallNewLevel(itens[i])
+					local exps = getBallExpPercet(itens[i])
+					-- END Pokemon Level and Gender System
 					local ElitePoke = getPokemonElite(itens[i], "elite")
 					local boost = getItemAttribute(itens[i], "boost") or 0
-					local exps = getBallExpPercet(itens[i])
 					local nick = getItemAttribute(itens[i], "nick") or ""
 					local heldx = getItemAttribute(itens[i], "heldx")
 					local heldy = getItemAttribute(itens[i], "heldy")
 					
 					local str = "Pokemon in trade: "
-					str = str.."•Name: "..name.."   •Boost: "..boost.."  •Level: "..levelPoke.."  •Elite: "..ElitePoke.."   •Exp: ".. exps.." "
-					if nick ~= "" then str = str.."•Nick: "..nick.."" end
+					-- START Pokemon Level and Gender System
+					str = str.."â€¢Name: "..name.."   â€¢Boost: "..boost.."  â€¢Level: "..levelPoke.."  â€¢Elite: "..ElitePoke.."   â€¢Exp: "..exps.."% "
+					-- END Pokemon Level and Gender System
+					if nick ~= "" then str = str.."â€¢Nick: "..nick.."" end
 					if heldx and heldy then
 						str = str.."Holding: "..(xhelds[heldx].name).." and "..(yhelds[heldy].name)..". "
 						elseif heldx then

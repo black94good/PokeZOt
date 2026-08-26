@@ -149,14 +149,17 @@ function setPokemonBallCaptureInfo(item, cid, pokemon, experience)
    if not getItemAttribute(item, "capturedBy") and isCreature(cid) then
       doItemSetAttribute(item, "capturedBy", getCreatureName(cid))
    end
-   if not getItemAttribute(item, "pokeExperience") then
-      doItemSetAttribute(item, "pokeExperience", tonumber(experience) or 0)
-   end
+   -- START Pokemon Level and Gender System
+   local pokemonLevel, pokemonExperience = initializePokemonBallProgress(item, pokemon, nil, experience)
+   doItemSetAttribute(item, "pokeExperience", pokemonExperience)
+   -- END Pokemon Level and Gender System
 
    local pokemonInfo = pokes[pokemon]
    if pokemonInfo and pokemonInfo.vitality and isCreature(cid) then
       local boost = tonumber(getItemAttribute(item, "boost")) or 0
-      local maxHp = math.floor(HPperVITsummon * pokemonInfo.vitality * (getPlayerLevel(cid) + boost))
+      -- START Pokemon Level and Gender System
+      local maxHp = math.floor(HPperVITsummon * pokemonInfo.vitality * (pokemonLevel + boost))
+      -- END Pokemon Level and Gender System
       local hpRate = tonumber(getItemAttribute(item, "hp")) or 1
       doItemSetAttribute(item, "maxhp", maxHp)
       doItemSetAttribute(item, "currenthp", math.max(0, math.floor(maxHp * hpRate)))
@@ -167,14 +170,18 @@ end
 -- END Ball Look System
 
 function addPokeToPlayer(cid, pokemon, boost, gender, ball)             --alterado v1.9 \/ peguem ele todo...
+-- START Pokemon Level and Gender System
 local genders = {
-["male"] = 4,
-["female"] = 3,
-[1] = 4,
-[0] = 3,
-[4] = 4,
-[3] = 3,
+["male"] = SEX_MALE,
+["female"] = SEX_FEMALE,
+[1] = SEX_MALE,
+[0] = SEX_FEMALE,
+[4] = SEX_MALE,
+[3] = SEX_FEMALE,
+[SEX_MALE] = SEX_MALE,
+[SEX_FEMALE] = SEX_FEMALE,
 }
+-- END Pokemon Level and Gender System
 if not isCreature(cid) then return false end
 
 local pokemon = doCorrectString(pokemon)
@@ -1241,21 +1248,24 @@ return true
 end
 
 function getRandomGenderByName(name)
+-- START Pokemon Level and Gender System
 local rate = newpokedex[name]
 	if not rate then return 0 end
 	rate = rate.gender
+	local gender = 0
 	if rate == 0 then
-		gender = 3
+		gender = SEX_FEMALE
 	elseif rate == 1000 then
-		gender = 4
+		gender = SEX_MALE
 	elseif rate == -1 then
 		gender = 0
 	elseif math.random(1, 1000) <= rate then
-		gender = 4
+		gender = SEX_MALE
 	else
-		gender = 3
+		gender = SEX_FEMALE
 	end
 return gender
+-- END Pokemon Level and Gender System
 end
 
 function getRecorderPlayer(pos, cid)
