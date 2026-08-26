@@ -2,9 +2,17 @@ local del = {'460', '1022', '1023', '1024'}
 
 function onStepIn(cid, item, position, lastPosition, fromPosition, toPosition, actor)
 
+-- START Pokemon Fly Creature Guard
+-- O piso tambem dispara MoveEvent para summons e monstros; funcoes de player
+-- nao podem ser executadas nesses creatures.
+if not isPlayer(cid) then
+	return true
+end
+-- END Pokemon Fly Creature Guard
+
 position.stackpos = 0
 
-if isPlayer(cid) and getCreatureOutfit(cid).lookType == 814 then return false end -- TV
+if getCreatureOutfit(cid).lookType == 814 then return false end -- TV
 
 	if getPlayerStorageValue(cid, 17000) <= 0 then
 		doTeleportThing(cid, fromPosition, false)
@@ -34,7 +42,14 @@ end
 
 function onStepOut(cid, item, position, lastPosition, fromPosition, toPosition, actor)
 
-if isPlayer(cid) and getCreatureOutfit(cid).lookType == 814 then return false end -- TV
+-- START Pokemon Fly Creature Guard
+-- Somente o player em fly deve produzir efeito e remover o piso temporario.
+if not isPlayer(cid) then
+	return true
+end
+-- END Pokemon Fly Creature Guard
+
+if getCreatureOutfit(cid).lookType == 814 then return false end -- TV
 
 local effect = 2
 
