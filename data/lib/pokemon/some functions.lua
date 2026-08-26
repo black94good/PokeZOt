@@ -1725,6 +1725,120 @@ end
 return false
 end
 
+-- START Pokemon Transportation System
+-- O Pokemon convertido em fly, ride ou surf deixa de existir temporariamente
+-- como summon. Esta storage identifica qual ball deve permanecer no slot 8.
+MOUNTED_POKEMON_STORAGE = 17002
+
+-- START Pokemon Transportation Outfit Colors
+-- Guarda a outfit normal separada da CONDITION_OUTFIT usada por bike/fly/ride/surf.
+-- Isso evita que uma condicao recarregada com cores zeradas substitua a roupa do player.
+TRANSPORT_OUTFIT_STORAGES = {
+    saved = 17003,
+    lookType = 17004,
+    lookTypeEx = 17005,
+    lookHead = 17006,
+    lookBody = 17007,
+    lookLegs = 17008,
+    lookFeet = 17009,
+    lookAddons = 17010
+}
+
+local function readPokemonTransportBaseOutfit(cid)
+    if getPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.saved) ~= 1 then
+        return nil
+    end
+
+    return {
+        lookType = math.max(0, tonumber(getPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookType)) or 0),
+        lookTypeEx = math.max(0, tonumber(getPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookTypeEx)) or 0),
+        lookHead = math.max(0, tonumber(getPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookHead)) or 0),
+        lookBody = math.max(0, tonumber(getPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookBody)) or 0),
+        lookLegs = math.max(0, tonumber(getPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookLegs)) or 0),
+        lookFeet = math.max(0, tonumber(getPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookFeet)) or 0),
+        lookAddons = math.max(0, tonumber(getPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookAddons)) or 0)
+    }
+end
+
+function savePokemonTransportBaseOutfit(cid)
+    if not isPlayer(cid) then return false end
+    if getPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.saved) == 1 then return true end
+
+    local outfit = getCreatureOutfit(cid)
+    setPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookType, tonumber(outfit.lookType) or 0)
+    setPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookTypeEx, tonumber(outfit.lookTypeEx) or 0)
+    setPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookHead, tonumber(outfit.lookHead) or 0)
+    setPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookBody, tonumber(outfit.lookBody) or 0)
+    setPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookLegs, tonumber(outfit.lookLegs) or 0)
+    setPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookFeet, tonumber(outfit.lookFeet) or 0)
+    setPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.lookAddons, tonumber(outfit.lookAddons) or 0)
+    setPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.saved, 1)
+    return true
+end
+
+function restorePokemonTransportBaseOutfit(cid, clearSavedOutfit)
+    if not isPlayer(cid) then return false end
+    local outfit = readPokemonTransportBaseOutfit(cid)
+    doRemoveCondition(cid, CONDITION_OUTFIT)
+    if not outfit then return false end
+
+    -- Atualiza tambem a defaultOutfit que sera gravada pela source no logout/morte.
+    doCreatureChangeOutfit(cid, outfit)
+
+    if clearSavedOutfit then
+        for _, storage in pairs(TRANSPORT_OUTFIT_STORAGES) do
+            setPlayerStorageValue(cid, storage, -1)
+        end
+    end
+    return true
+end
+-- END Pokemon Transportation Outfit Colors
+
+function markMountedPokemonBall(cid, pokemonName)
+    if pokemonName and pokemonName ~= "" then
+        setPlayerStorageValue(cid, MOUNTED_POKEMON_STORAGE, pokemonName)
+    end
+end
+
+function clearMountedPokemonBall(cid)
+    setPlayerStorageValue(cid, MOUNTED_POKEMON_STORAGE, -1)
+end
+
+function getMountedPokemonBall(cid)
+    local ball = getPlayerSlotItem(cid, 8)
+    if not ball or ball.uid <= 0 or ball.itemid <= 0 then
+        return false, "Put the Pokemon ball being used in the correct slot first."
+    end
+
+    local pokemonName = getItemAttribute(ball.uid, "poke")
+    if not pokemonName or pokemonName == "" or getPokeballType(ball.itemid) == "none" or not isBeingUsed(ball.itemid) then
+        return false, "The ball in the slot is not the Pokemon ball being used."
+    end
+
+    local expectedName = getPlayerStorageValue(cid, MOUNTED_POKEMON_STORAGE)
+    -- Compatibilidade com personagens que ja estavam montados antes da atualizacao.
+    if not expectedName or expectedName == -1 or expectedName == "-1" then
+        markMountedPokemonBall(cid, pokemonName)
+        expectedName = pokemonName
+    end
+
+    if string.lower(tostring(expectedName)) ~= string.lower(tostring(pokemonName)) then
+        return false, "Return the correct Pokemon ball to the slot before dismounting."
+    end
+
+    return ball
+end
+
+-- Altera somente o lookType temporario e conserva as cores da roupa.
+function applyPokemonTransportOutfit(cid, lookType)
+    if not isPlayer(cid) or not lookType then return false end
+    local outfit = readPokemonTransportBaseOutfit(cid) or getCreatureOutfit(cid)
+    outfit.lookType = lookType
+    outfit.lookTypeEx = 0
+    return doSetCreatureOutfit(cid, outfit, -1)
+end
+-- END Pokemon Transportation System
+
 function doRemoveTile(pos)-- Script by mock
 pos.stackpos = 0
 local sqm = getTileThingByPos(pos)

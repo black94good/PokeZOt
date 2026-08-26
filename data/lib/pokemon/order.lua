@@ -302,25 +302,31 @@ function recheck(sid, skill, pos)
 		addEvent(closeHole, intervalToRegrowBushAndStones * 1000)
 
 	elseif skill == "fly" then
+		-- START Pokemon Transportation System
 		local pb = getPlayerSlotItem(cid, 8).uid
+		local mountedPokemonName = getPokemonName(getCreatureSummons(cid)[1])
 		local addon = tonumber(getItemAttribute(pb, "addon") or 0)
+		-- START Pokemon Transportation Outfit Colors
+		savePokemonTransportBaseOutfit(cid)
+		-- END Pokemon Transportation Outfit Colors
 
 		if addon < 1 then
-			doSetCreatureOutfit(cid, {lookType = flys[getPokemonName(getCreatureSummons(cid)[1])][1] + 351}, -1)
+			applyPokemonTransportOutfit(cid, flys[mountedPokemonName][1] + 351)
 		else
-			doSetCreatureOutfit(cid, {lookType = flysAddon[addon][1]}, -1)
+			applyPokemonTransportOutfit(cid, flysAddon[addon][1])
 		end
 
-		local pokemon = flys[getPokemonName(getCreatureSummons(cid)[1])]
+		local pokemon = flys[mountedPokemonName]
 		doPlayerSendTextMessage(cid, 27, 'Type "up" or "h1" to fly/levitate higher and "down" or "h2" to fly/levitate lower.')
 		doChangeSpeed(cid, -getCreatureSpeed(cid))
 		local speed = 20 + PlayerSpeed + getSpeed(sid) * speedRate
 		doChangeSpeed(cid, speed)
 		doSendPlayerExtendedOpcode(cid, 244, "open".."@")
 		setPlayerStorageValue(cid, 54844, speed)
-		doSetCreatureOutfit(cid, {lookType = pokemon[1] + 351}, -1)
+		applyPokemonTransportOutfit(cid, pokemon[1] + 351)
 		doItemSetAttribute(pb, "hp", getCreatureHealth(getCreatureSummons(cid)[1]) / getCreatureMaxHealth(getCreatureSummons(cid)[1]))
 		doRemoveCreature(getCreatureSummons(cid)[1])
+		markMountedPokemonBall(cid, mountedPokemonName)
 		setPlayerStorageValue(cid, 17000, 1)
 
 		if getCreatureOutfit(cid).lookType == 667 or getCreatureOutfit(cid).lookType == 999 then
@@ -331,7 +337,8 @@ function recheck(sid, skill, pos)
 		local item = getPlayerSlotItem(cid, 8)
 		local boost = tonumber(getItemAttribute(item.uid, "boost") or 0)
 		if boost >= 50 and getPlayerStorageValue(cid, 42368) <= 0 then
-			sendAuraEffect(cid, auras.getItemAttribute(item.uid, "aura") - 1)
+			local aura = tonumber(getItemAttribute(item.uid, "aura"))
+			if aura and auraSyst[aura] then sendAuraEffect(cid, auraSyst[aura]) end
 		end
 
 		if useOTClient then
@@ -339,31 +346,39 @@ function recheck(sid, skill, pos)
 		end
 
 		return true
+		-- END Pokemon Transportation System
 
 	elseif skill == "ride" then
+		-- START Pokemon Transportation System
 		local pb = getPlayerSlotItem(cid, 8).uid
+		local mountedPokemonName = getPokemonName(getCreatureSummons(cid)[1])
 		local addon = tonumber(getItemAttribute(pb, "addon") or 0)
+		-- START Pokemon Transportation Outfit Colors
+		savePokemonTransportBaseOutfit(cid)
+		-- END Pokemon Transportation Outfit Colors
 
 		if addon < 1 then
-			doSetCreatureOutfit(cid, {lookType = rides[getPokemonName(getCreatureSummons(cid)[1])][1] + 351}, -1)
+			applyPokemonTransportOutfit(cid, rides[mountedPokemonName][1] + 351)
 		else
-			doSetCreatureOutfit(cid, {lookType = ridesAddon[addon][1]}, -1)
+			applyPokemonTransportOutfit(cid, ridesAddon[addon][1])
 		end
 
-		local pokemon = rides[getPokemonName(getCreatureSummons(cid)[1])]
+		local pokemon = rides[mountedPokemonName]
 		doChangeSpeed(cid, -getCreatureSpeed(cid))
 		local speed = 20 + PlayerSpeed + getSpeed(sid) * speedRate
 		doChangeSpeed(cid, speed)
 		setPlayerStorageValue(cid, 54844, speed)
-		doSetCreatureOutfit(cid, {lookType = pokemon[1] + 351}, -1)
+		applyPokemonTransportOutfit(cid, pokemon[1] + 351)
 		doItemSetAttribute(pb, "hp", getCreatureHealth(getCreatureSummons(cid)[1]) / getCreatureMaxHealth(getCreatureSummons(cid)[1]))
 		doRemoveCreature(getCreatureSummons(cid)[1])
+		markMountedPokemonBall(cid, mountedPokemonName)
 		setPlayerStorageValue(cid, 17001, 1)
 
 		local item = getPlayerSlotItem(cid, 8)
 		local boost = tonumber(getItemAttribute(item.uid, "boost") or 0)
 		if boost >= 50 and getPlayerStorageValue(cid, 42368) <= 0 then
-			sendAuraEffect(cid, auras.getItemAttribute(item.uid, "aura") - 1)
+			local aura = tonumber(getItemAttribute(item.uid, "aura"))
+			if aura and auraSyst[aura] then sendAuraEffect(cid, auraSyst[aura]) end
 		end
 
 		if useOTClient then
@@ -371,6 +386,7 @@ function recheck(sid, skill, pos)
 		end
 
 		return true
+		-- END Pokemon Transportation System
 	end
 
 	if getOwnerPos(sid).x ~= getThingPos(getCreatureMaster(sid)).x or

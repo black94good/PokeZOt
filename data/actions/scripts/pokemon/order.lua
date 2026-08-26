@@ -27,13 +27,19 @@ function onUse(cid, item, frompos, item2, topos)
 
 --------END FLY/RIDE --------
 if getCreatureCondition(cid, CONDITION_OUTFIT) and (item2.uid == cid or getRecorderPlayer(topos) == cid) and (getPlayerStorageValue(cid, 17000) >= 1 or getPlayerStorageValue(cid, 17001) >= 1) then
+	-- START Pokemon Transportation System
+	local item, ballError = getMountedPokemonBall(cid)
+	if not item then
+		doPlayerSendCancel(cid, ballError)
+		return true
+	end
+	-- END Pokemon Transportation System
 
 	if isInArray({460, 11675, 11676, 11677}, getTileInfo(getThingPos(cid)).itemid) then
         doPlayerSendCancel(cid, "You can\'t stop flying at this height!")
         return true
     end
 
-	local item = getPlayerSlotItem(cid, 8)
 	local pokemon = getItemAttribute(item.uid, "poke")
 	local x = pokes[pokemon]
 
@@ -64,9 +70,14 @@ if getCreatureCondition(cid, CONDITION_OUTFIT) and (item2.uid == cid or getRecor
 	doSendPlayerExtendedOpcode(cid, 244, "close".."@")
    doRegainSpeed(cid)
     
-	doRemoveCondition(cid, CONDITION_OUTFIT)
+	-- START Pokemon Transportation Outfit Colors
+	restorePokemonTransportBaseOutfit(cid, true)
+	-- END Pokemon Transportation Outfit Colors
 	setPlayerStorageValue(cid, 17000, -1)
 	setPlayerStorageValue(cid, 17001, -1)
+	-- START Pokemon Transportation System
+	clearMountedPokemonBall(cid)
+	-- END Pokemon Transportation System
 	
 	if useOTClient then
 	   doUpdateMoves(cid)

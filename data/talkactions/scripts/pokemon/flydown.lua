@@ -1,6 +1,8 @@
-local lower = {'460', '11675', '11676'}
+-- START Pokemon Fly Transportation System
+local lower = {460, 11675, 11676}
 
-local houses = {'919', '1015', '1590', '1591', '1592', '1593', '1582', '1584', '1586', '1588', '5248', '5189'}
+local houses = {919, 1015, 1590, 1591, 1592, 1593, 1582, 1584, 1586, 1588, 5248, 5189}
+-- END Pokemon Fly Transportation System
 
 function onSay(cid, words, param)
 

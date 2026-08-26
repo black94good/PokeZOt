@@ -24,8 +24,15 @@ function onSay(cid, words, param, channel)
 	if string.len(words) > 3 then return true end
 
 	if #getCreatureSummons(cid) == 0 then
+	-- START Pokemon Transportation Move Block
+	-- Em fly, ride ou surf o Pokemon vira a montaria e deixa de ser summon.
+	-- As hotkeys de moves sao ignoradas silenciosamente nesses estados.
+	if getPlayerStorageValue(cid, 17000) >= 1 or getPlayerStorageValue(cid, 17001) >= 1 or getPlayerStorageValue(cid, 63215) >= 1 then
+		return true
+	end
+	-- END Pokemon Transportation Move Block
 	doPlayerSendTextMessage(cid, MESSAGE_STATUS_CONSOLE_BLUE, "You need a pokemon to use moves.")
-	return 0
+	return true
 	end
                       --alterado v1.5
 local mypoke = getCreatureSummons(cid)[1]

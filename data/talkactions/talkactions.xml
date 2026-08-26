@@ -226,18 +226,20 @@
 	<talkaction words="h1" case-sensitive="no" event="script" value="pokemon/flyup.lua"/>
         <talkaction words="!down" case-sensitive="no" event="script" value="pokemon/flydown.lua"/>
 	<talkaction words="h2" case-sensitive="no" event="script" value="pokemon/flydown.lua"/>
-	<talkaction words="m1" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
-	<talkaction words="m2" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
-	<talkaction words="m3" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
-	<talkaction words="m4" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
-	<talkaction words="m5" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
-	<talkaction words="m6" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
-	<talkaction words="m7" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
-	<talkaction words="m8" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
-	<talkaction words="m9" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
-	<talkaction words="m10" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
-	<talkaction words="m11" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
-	<talkaction words="m12" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<!-- START Pokemon Transportation Move Block -->
+	<talkaction words="m1" hide="yes" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<talkaction words="m2" hide="yes" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<talkaction words="m3" hide="yes" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<talkaction words="m4" hide="yes" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<talkaction words="m5" hide="yes" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<talkaction words="m6" hide="yes" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<talkaction words="m7" hide="yes" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<talkaction words="m8" hide="yes" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<talkaction words="m9" hide="yes" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<talkaction words="m10" hide="yes" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<talkaction words="m11" hide="yes" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<talkaction words="m12" hide="yes" case-sensitive="no" event="script" value="pokemon/move1.lua"/>
+	<!-- END Pokemon Transportation Move Block -->
 	<talkaction words="!cd" case-sensitive="no" event="script" value="pokemon/cd.lua"/>
 	<talkaction words="/cd" case-sensitive="no" event="script" value="pokemon/cd.lua"/>
 	<talkaction words="!love" case-sensitive="no" event="script" value="love.lua"/>

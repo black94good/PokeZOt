@@ -113,13 +113,66 @@ end
         end
     end
     --/////////////////////////////////////////////////////////////////////////--
-	if getPlayerStorageValue(cid, 17000) >= 1 then -- fly
+	-- START Pokemon Transportation System
+	-- A source salva a outfit padrao (lookType e cores) no logout e na morte.
+	-- Aqui apenas restauramos a forma temporaria do transporte sobre essas cores.
+	local transportActive = getPlayerStorageValue(cid, 17000) >= 1
+		or getPlayerStorageValue(cid, 63215) >= 1
+		or getPlayerStorageValue(cid, 17001) >= 1
+	-- START Pokemon Transportation Outfit Colors
+	local outfitTransportActive = transportActive
+		or getPlayerStorageValue(cid, 5700) >= 1
+		or getPlayerStorageValue(cid, 13008) >= 1
+	local hasSavedTransportOutfit = getPlayerStorageValue(cid, TRANSPORT_OUTFIT_STORAGES.saved) == 1
+
+	if outfitTransportActive then
+		if not hasSavedTransportOutfit then
+			-- Compatibilidade com personagens que deslogaram montados antes desta correcao.
+			doRemoveCondition(cid, CONDITION_OUTFIT)
+			savePokemonTransportBaseOutfit(cid)
+		end
+		-- Regrava a defaultOutfit correta antes de aplicar novamente a forma montada.
+		restorePokemonTransportBaseOutfit(cid, false)
+	elseif hasSavedTransportOutfit then
+		-- Recupera e limpa uma outfit pendente quando morte/logout encerrou o transporte.
+		restorePokemonTransportBaseOutfit(cid, true)
+	end
+	-- END Pokemon Transportation Outfit Colors
+	local transportBall = false
+	local transportPoke = nil
+	if transportActive then
+		transportBall = getMountedPokemonBall(cid)
+		transportPoke = transportBall and getItemAttribute(transportBall.uid, "poke") or nil
+		local transportConfigured = transportBall and (
+			(getPlayerStorageValue(cid, 17000) >= 1 and flys[transportPoke])
+			or (getPlayerStorageValue(cid, 63215) >= 1 and surfs[transportPoke])
+			or (getPlayerStorageValue(cid, 17001) >= 1 and rides[transportPoke])
+		)
+		if not transportBall or not transportConfigured then
+			setPlayerStorageValue(cid, 17000, -1)
+			setPlayerStorageValue(cid, 63215, -1)
+			setPlayerStorageValue(cid, 17001, -1)
+			clearMountedPokemonBall(cid)
+			-- START Pokemon Transportation Outfit Colors
+			restorePokemonTransportBaseOutfit(cid, true)
+			-- END Pokemon Transportation Outfit Colors
+		end
+	end
+	-- END Pokemon Transportation System
+	if getPlayerStorageValue(cid, 17000) >= 1 and transportBall and flys[transportPoke] then -- fly
         
-		local item = getPlayerSlotItem(cid, 8)
-		local poke = getItemAttribute(item.uid, "poke")
+		-- START Pokemon Transportation System
+		local item = transportBall
+		local poke = transportPoke
 		doChangeSpeed(cid, getPlayerStorageValue(cid, 54844))
 		doRemoveCondition(cid, CONDITION_OUTFIT)
-		doSetCreatureOutfit(cid, {lookType = flys[poke][1] + 351}, -1)
+		local addon = tonumber(getItemAttribute(item.uid, "addon") or 0)
+		if addon > 0 and flysAddon[addon] then
+			applyPokemonTransportOutfit(cid, flysAddon[addon][1])
+		else
+			applyPokemonTransportOutfit(cid, flys[poke][1] + 351)
+		end
+		-- END Pokemon Transportation System
 
 	local apos = getFlyingMarkedPos(cid)
     apos.stackpos = 0
@@ -130,40 +183,57 @@ end
 			end 
 
 	doTeleportThing(cid, apos, false)
-	if getItemAttribute(item.uid, "boost") and getItemAttribute(item.uid, "boost") >= 50 and getPlayerStorageValue(cid, 42368) >= 1 then   
-       sendAuraEffect(cid, auraSyst[getItemAttribute(item.uid, "aura")])                     --alterado v1.8
+	if getItemAttribute(item.uid, "boost") and getItemAttribute(item.uid, "boost") >= 50 and getPlayerStorageValue(cid, 42368) >= 1 then
+	   local aura = tonumber(getItemAttribute(item.uid, "aura"))
+	   if aura and auraSyst[aura] then sendAuraEffect(cid, auraSyst[aura]) end
     end  
  
     local posicao = getTownTemplePosition(getPlayerTown(cid))
     markFlyingPos(cid, posicao)
     
-	elseif getPlayerStorageValue(cid, 63215) >= 1 then -- surf
+	elseif getPlayerStorageValue(cid, 63215) >= 1 and transportBall and surfs[transportPoke] then -- surf
 
-		local item = getPlayerSlotItem(cid, 8)
-		local poke = getItemAttribute(item.uid, "poke")
-		doSetCreatureOutfit(cid, {lookType = surfs[poke].lookType + 351}, -1) --alterado v1.6
+		-- START Pokemon Transportation System
+		local item = transportBall
+		local poke = transportPoke
+		local addon = tonumber(getItemAttribute(item.uid, "addon") or 0)
+		if addon > 0 and surfsAddon[addon] then
+			applyPokemonTransportOutfit(cid, surfsAddon[addon][1])
+		else
+			applyPokemonTransportOutfit(cid, surfs[poke].lookType + 351)
+		end
+		-- END Pokemon Transportation System
 		doChangeSpeed(cid, getPlayerStorageValue(cid, 54844))
-		if getItemAttribute(item.uid, "boost") and getItemAttribute(item.uid, "boost") >= 50 and getPlayerStorageValue(cid, 42368) >= 1 then   
-           sendAuraEffect(cid, auraSyst[getItemAttribute(item.uid, "aura")])                     --alterado v1.8
+		if getItemAttribute(item.uid, "boost") and getItemAttribute(item.uid, "boost") >= 50 and getPlayerStorageValue(cid, 42368) >= 1 then
+		   local aura = tonumber(getItemAttribute(item.uid, "aura"))
+		   if aura and auraSyst[aura] then sendAuraEffect(cid, auraSyst[aura]) end
         end 
 
-	elseif getPlayerStorageValue(cid, 17001) >= 1 then -- ride
+	elseif getPlayerStorageValue(cid, 17001) >= 1 and transportBall and rides[transportPoke] then -- ride
         
-		local item = getPlayerSlotItem(cid, 8)
-		local poke = getItemAttribute(item.uid, "poke")
+		-- START Pokemon Transportation System
+		local item = transportBall
+		local poke = transportPoke
 		
 		
 		if rides[poke] then
 		   doChangeSpeed(cid, getPlayerStorageValue(cid, 54844))
 		   doRemoveCondition(cid, CONDITION_OUTFIT)
-		   doSetCreatureOutfit(cid, {lookType = rides[poke][1] + 351}, -1)
-		   if getItemAttribute(item.uid, "boost") and getItemAttribute(item.uid, "boost") >= 50 and getPlayerStorageValue(cid, 42368) >= 1 then   
-              sendAuraEffect(cid, auraSyst[getItemAttribute(item.uid, "aura")])                     --alterado v1.8
+		   local addon = tonumber(getItemAttribute(item.uid, "addon") or 0)
+		   if addon > 0 and ridesAddon[addon] then
+		      applyPokemonTransportOutfit(cid, ridesAddon[addon][1])
+		   else
+		      applyPokemonTransportOutfit(cid, rides[poke][1] + 351)
+		   end
+		   if getItemAttribute(item.uid, "boost") and getItemAttribute(item.uid, "boost") >= 50 and getPlayerStorageValue(cid, 42368) >= 1 then
+		      local aura = tonumber(getItemAttribute(item.uid, "aura"))
+		      if aura and auraSyst[aura] then sendAuraEffect(cid, auraSyst[aura]) end
            end 
 		else
 		   setPlayerStorageValue(cid, 17001, -1)
 		   doRegainSpeed(cid)   
 		end
+		-- END Pokemon Transportation System
 	
 	    local posicao2 = getTownTemplePosition(getPlayerTown(cid))
         markFlyingPos(cid, posicao2)
@@ -176,21 +246,17 @@ end
 		return true
 		end   
           
-       if getPlayerSex(cid) == 1 then
-          doSetCreatureOutfit(cid, {lookType = 1034, lookHead = getCreatureOutfit(cid).lookHead, lookBody = getCreatureOutfit(cid).lookBody, lookLegs = getCreatureOutfit(cid).lookLegs, lookFeet = getCreatureOutfit(cid).lookFeet}, -1)
-       else
-          doSetCreatureOutfit(cid, {lookType = 1035, lookHead = getCreatureOutfit(cid).lookHead, lookBody = getCreatureOutfit(cid).lookBody, lookLegs = getCreatureOutfit(cid).lookLegs, lookFeet = getCreatureOutfit(cid).lookFeet}, -1)
-       end
+	   -- START Pokemon Transportation System
+	   applyPokemonTransportOutfit(cid, getPlayerSex(cid) == 1 and 1034 or 1035)
+	   -- END Pokemon Transportation System
        doChangeSpeed(cid, 800)
 
      elseif getPlayerStorageValue(cid, 5700) > 0 then   --bike
+		-- START Pokemon Transportation System
         doChangeSpeed(cid, -getCreatureSpeed(cid))
-        doChangeSpeed(cid, getPlayerStorageValue(cid, 5700))  --alterado v1.8
-        if getPlayerSex(cid) == 1 then
-           doSetCreatureOutfit(cid, {lookType = 1676}, -1)
-        else
-           doSetCreatureOutfit(cid, {lookType = 1675}, -1)
-        end
+		doChangeSpeed(cid, 2000)
+		applyPokemonTransportOutfit(cid, getPlayerSex(cid) == 1 and 162 or 161)
+		-- END Pokemon Transportation System
      
      elseif getPlayerStorageValue(cid, 75846) >= 1 then     --alterado v1.9 \/
         doTeleportThing(cid, getTownTemplePosition(getPlayerTown(cid)), false)  

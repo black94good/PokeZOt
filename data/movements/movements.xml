@@ -296,6 +296,12 @@
 
 	<!-- Other -->
 
+	<!-- START Pokemon Fly Transportation System -->
+	<!-- Pisos temporarios criados por flyup.lua e flydown.lua. -->
+	<movevent type="StepIn" itemid="460;1022-1024;11675-11677" event="script" value="pokemon/fly.lua"/>
+	<movevent type="StepOut" itemid="460;1022-1024;11675-11677" event="script" value="pokemon/fly.lua"/>
+	<!-- END Pokemon Fly Transportation System -->
+
 	<movevent type="StepIn" itemid="4820-4825;11756" event="script" value="pokemon/surf.lua"/>
 	<movevent type="StepOut" itemid="4820-4825;11756" event="script" value="pokemon/surf.lua"/>
 	<!-- <movevent type="StepIn" itemid="4632-4663;6627-6694" event="script" value="pokemon/surfcancel.lua"/> -->
